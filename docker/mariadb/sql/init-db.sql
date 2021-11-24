@@ -365,6 +365,32 @@ INSERT INTO data_access_sl.issue_assignment
 INSERT INTO data_access_sl.issue_assignment
 (id_programmer, id_issue, start_date) VALUES(10,4,'2020-01-07 08:01:00.000'),(14,4,'2020-01-07 08:01:00.000');
 
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(11,5,'2021-02-09 12:00:00.000'),(15,5,'2021-02-09 12:00:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(11,6,'2021-05-19 09:05:00.000'),(15,6,'2021-05-19 09:05:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(12,7,'2021-02-09 12:00:00.000'),(16,7,'2021-02-09 12:00:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(12,8,'2021-02-11 8:00:00.000'),(16,8,'2021-02-11 8:00:00.000');
 /*
- * to-do commit, issue assignment
+ * commit inserts
  */
+INSERT INTO data_access_sl.commit
+(id, title, text, date, id_repository, id_programmer, id_issue)VALUES(1,'Los buenos matafuegos',
+'Problema solucionado con los buenos matafuegos, mitad de las cosas quemadas','2021-02-09 15:42:00.000',1,9,1);
+
+INSERT INTO data_access_sl.commit
+(id, title, text, date, id_repository, id_programmer, id_issue)VALUES(2,'El jefe nos ha traido los pinceles',
+'Aunque le parecia un desperdicio, el jefe de mala gana nos dio unos cuantos','2019-12-11 16:03:00.000',2,10,3);
+
+INSERT INTO data_access_sl.commit
+(id, title, text, date, id_repository, id_programmer, id_issue)VALUES(3,'hemos puesto random a todo, solucinado',
+'entre nada y el azar decidimos rellenarlo todo con aleatorios','2021-02-09 21:00:00.000',3,11,5);
+
+INSERT INTO data_access_sl.commit
+(id, title, text, date, id_repository, id_programmer, id_issue) VALUES(4,'la ps5 hizo crack asi que ahora tiene tiritas',
+'despues de unos cuantos martillazos le logramos crackear al viejo estilo','2021-02-09 23:00:00.000',4,12,7);

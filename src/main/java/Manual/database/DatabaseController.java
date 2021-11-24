@@ -74,9 +74,9 @@ public class DatabaseController {
         serverPort = properties.readProperty("database.server.port");
         dataBaseName = properties.readProperty("database.name");
         jdbcDriver = properties.readProperty("database.jdbc.driver");
-        Dotenv dotenv = Dotenv.load();
-        user = dotenv.get("DATABASE_USER");
-        password = dotenv.get("DATABASE_PASSWORD");
+       // Dotenv dotenv = Dotenv.load();
+        user =  properties.readProperty("database.username") ;//dotenv.get("DATABASE_USER");
+        password = properties.readProperty("database.password") ;//dotenv.get("DATABASE_PASSWORD");
     }
 
     /**
