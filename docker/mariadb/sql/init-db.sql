@@ -350,6 +350,20 @@ INSERT INTO data_access_sl.issue
 (id, title , `text` , `date`, state, id_repository, id_boss)
 VALUES(8, 'GnomeMakerRepositoryIssue2', 'Se nos ha jodido la ps5 por crackearla',
        '2021-02-11 8:00:00.000', 'open', 4, 4);
+/*
+ * Issue Assignment inserts
+ */
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(9,1,'2021-02-09 10:42:00.000'),(13,1,'2021-02-09 10:42:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(9,2,'2021-03-09 14:41:00.000'),(13,2,'2021-03-09 14:41:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(10,3,'2019-12-11 10:03:00.000'),(14,3,'2019-12-11 10:03:00.000');
+
+INSERT INTO data_access_sl.issue_assignment
+(id_programmer, id_issue, start_date) VALUES(10,4,'2020-01-07 08:01:00.000'),(14,4,'2020-01-07 08:01:00.000');
 
 /*
  * to-do commit, issue assignment
