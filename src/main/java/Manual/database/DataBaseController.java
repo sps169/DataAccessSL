@@ -1,7 +1,6 @@
 package Manual.database;
 
 import Manual.utils.ApplicationProperties;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.ibatis.jdbc.ScriptRunner;
 
 import java.io.BufferedReader;
@@ -14,8 +13,8 @@ import java.util.Optional;
 /**
  * Controlador de Bases de Datos Relacionales
  */
-public class DatabaseController {
-    private static DatabaseController controller;
+public class DataBaseController {
+    private static DataBaseController controller;
 
     private String serverUrl;
 
@@ -43,7 +42,7 @@ public class DatabaseController {
     /**
      * Constructor privado para Singleton
      */
-    private DatabaseController() {
+    private DataBaseController() {
         // System.out.println("Mi nombre es: " + this.nombre);
         initConfig();
     }
@@ -53,9 +52,9 @@ public class DatabaseController {
      *
      * @return instancia del controladorBD
      */
-    public static DatabaseController getInstance() {
+    public static DataBaseController getInstance() {
         if (controller == null) {
-            controller = new DatabaseController();
+            controller = new DataBaseController();
         }
         return controller;
     }

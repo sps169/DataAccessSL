@@ -105,7 +105,6 @@ public class Programmer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", entry_date=" + entry_date +
-                ", password='" + password + '\'' +
                 ", technologies='" + technologies + '\'' +
                 ", salary=" + salary +
                 ", idDepartment=" + departmentId +

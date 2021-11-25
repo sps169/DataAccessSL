@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Repository {
      private long id;
      private String name;
-     private LocalDateTime creation_date;
+     private LocalDateTime creationDate;
      private long projectId;
 
     public Repository() {
@@ -20,7 +20,7 @@ public class Repository {
     public Repository(long id, String name, LocalDateTime creation_date, long projectId) {
         this.id = id;
         this.name = name;
-        this.creation_date = creation_date;
+        this.creationDate = creation_date;
         this.projectId = projectId;
     }
 
@@ -29,12 +29,12 @@ public class Repository {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Repository that = (Repository) o;
-        return id == that.id && projectId == that.projectId && name.equals(that.name) && creation_date.equals(that.creation_date);
+        return id == that.id && projectId == that.projectId && name.equals(that.name) && creationDate.equals(that.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, creation_date, projectId);
+        return Objects.hash(id, name, creationDate, projectId);
     }
 
     public long getId() {
@@ -53,12 +53,12 @@ public class Repository {
         this.name = name;
     }
 
-    public LocalDateTime getCreation_date() {
-        return creation_date;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreation_date(LocalDateTime creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public long getProjectId() {
@@ -74,7 +74,7 @@ public class Repository {
         return "Repository{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", creation_date=" + creation_date +
+                ", creationDate=" + creationDate +
                 ", projectId=" + projectId +
                 '}';
     }

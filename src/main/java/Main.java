@@ -1,12 +1,18 @@
-import Manual.database.DatabaseController;
+import Manual.repositories.ProgrammerRepo;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args){
         Database.checkService();
+        ProgrammerRepo progRepo = new ProgrammerRepo();
+        try {
+            System.out.println(progRepo.findAll());
+            System.out.println(progRepo.getById(1L));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

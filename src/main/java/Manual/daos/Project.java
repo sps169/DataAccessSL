@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Project {
     private long id;
     private String name;
-    private LocalDateTime start_date;
-    private LocalDateTime end_date;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String technologies;
     private float annualBudget;
     private String state;
@@ -23,12 +23,12 @@ public class Project {
         this.departmentId = departmentId;
     }
 
-    public Project(long id, String name, LocalDateTime start_date, LocalDateTime end_date, String technologies,
+    public Project(long id, String name, LocalDateTime startDate, LocalDateTime endDate, String technologies,
                    float annualBudget, String state, long bossId, long departmentId) {
         this.id = id;
         this.name = name;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.technologies = technologies;
         this.annualBudget = annualBudget;
         this.state = state;
@@ -41,12 +41,12 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id == project.id && Float.compare(project.annualBudget, annualBudget) == 0 && projectBossId == project.projectBossId && departmentId == project.departmentId && name.equals(project.name) && start_date.equals(project.start_date) && end_date.equals(project.end_date) && technologies.equals(project.technologies) && state.equals(project.state);
+        return id == project.id && Float.compare(project.annualBudget, annualBudget) == 0 && projectBossId == project.projectBossId && departmentId == project.departmentId && name.equals(project.name) && startDate.equals(project.startDate) && endDate.equals(project.endDate) && technologies.equals(project.technologies) && state.equals(project.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, start_date, end_date, technologies, annualBudget, state, projectBossId, departmentId);
+        return Objects.hash(id, name, startDate, endDate, technologies, annualBudget, state, projectBossId, departmentId);
     }
 
     public long getId() {
@@ -65,20 +65,20 @@ public class Project {
         this.name = name;
     }
 
-    public LocalDateTime getStart_date() {
-        return start_date;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(LocalDateTime start_date) {
-        this.start_date = start_date;
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDateTime getEnd_date() {
-        return end_date;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(LocalDateTime end_date) {
-        this.end_date = end_date;
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     public String getTechnologies() {
@@ -126,8 +126,8 @@ public class Project {
         return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", start_date=" + start_date +
-                ", end_date=" + end_date +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", technologies='" + technologies + '\'' +
                 ", annualBudget=" + annualBudget +
                 ", state='" + state + '\'' +

@@ -1,4 +1,4 @@
-import Manual.database.DatabaseController;
+import Manual.database.DataBaseController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class Database {
     public static void checkService() {
-        DatabaseController controller = DatabaseController.getInstance();
+        DataBaseController controller = DataBaseController.getInstance();
         try {
             controller.open();
             Optional<ResultSet> rs = controller.select("SELECT * FROM commit WHERE id = 1");
