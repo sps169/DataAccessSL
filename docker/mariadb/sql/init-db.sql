@@ -201,7 +201,7 @@ INSERT INTO data_access_sl.programmer
 VALUES(16, 'Jesus Matamoros', '2020-03-12 00:00:00.000', SHA2('vanadio65', 256), 'Java;C++', 1200.0, 4);
 
 /*
- * Projects insertion
+ * Project insertion
  */
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
