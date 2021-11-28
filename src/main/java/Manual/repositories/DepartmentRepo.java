@@ -56,7 +56,7 @@ public class DepartmentRepo implements CRUDRepo<Department,Long> {
     }
 
     @Override
-    public Optional<Department> save(Department department) throws SQLException {
+    public Optional<Department> insert(Department department) throws SQLException {
         String query = "INSERT INTO department VALUES (?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

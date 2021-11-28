@@ -63,7 +63,7 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
     }
 
     @Override
-    public Optional<Programmer> save(Programmer programmer) throws SQLException {
+    public Optional<Programmer> insert(Programmer programmer) throws SQLException {
         String query = "INSERT INTO programmer VALUES (?,?,?,?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

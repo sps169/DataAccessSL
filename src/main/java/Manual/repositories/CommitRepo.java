@@ -63,7 +63,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
     }
 
     @Override
-    public Optional<Commit> save(Commit commit) throws SQLException {
+    public Optional<Commit> insert(Commit commit) throws SQLException {
         String query = "INSERT INTO commit VALUES (?,?,?,?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();
