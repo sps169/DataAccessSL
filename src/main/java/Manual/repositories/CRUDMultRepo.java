@@ -15,7 +15,7 @@ public interface CRUDMultRepo <T, ID>{
     Optional<T> getById(ID id1, ID id2, LocalDateTime date) throws SQLException;
 
     // Salva
-    Optional<T> save(T t) throws SQLException;
+    Optional<T> insert(T t) throws SQLException;
 
     // Actualiza
     Optional<T> update(T t) throws SQLException;

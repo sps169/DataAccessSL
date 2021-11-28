@@ -57,7 +57,7 @@ public class RepositoryRepo implements CRUDRepo<Repository,Long> {
     }
 
     @Override
-    public Optional<Repository> save(Repository repository) throws SQLException {
+    public Optional<Repository> insert(Repository repository) throws SQLException {
         String query = "INSERT INTO repository VALUES (?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

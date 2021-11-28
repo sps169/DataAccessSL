@@ -61,7 +61,7 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
     }
 
     @Override
-    public Optional<ProjectAssignment> save(ProjectAssignment projectAssignment) throws SQLException {
+    public Optional<ProjectAssignment> insert(ProjectAssignment projectAssignment) throws SQLException {
         String query = "INSERT INTO project_assignment VALUES (?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

@@ -63,7 +63,7 @@ public class IssueRepo implements CRUDRepo<Issue,Long> {
     }
 
     @Override
-    public Optional<Issue> save(Issue issue) throws SQLException {
+    public Optional<Issue> insert(Issue issue) throws SQLException {
         String query = "INSERT INTO issue VALUES (?,?,?,?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

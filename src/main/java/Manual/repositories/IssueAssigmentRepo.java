@@ -57,7 +57,7 @@ public class IssueAssigmentRepo implements CRUDMultRepo<IssueAssignment,Long> {
     }
 
     @Override
-    public Optional<IssueAssignment> save(IssueAssignment issueAssignment) throws SQLException {
+    public Optional<IssueAssignment> insert(IssueAssignment issueAssignment) throws SQLException {
         String query = "INSERT INTO issue_assignment VALUES (?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

@@ -61,7 +61,7 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
     }
 
     @Override
-    public Optional<BossHistory> save(BossHistory bossHistory) throws SQLException {
+    public Optional<BossHistory> insert(BossHistory bossHistory) throws SQLException {
         String query = "INSERT INTO boss_history VALUES (?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

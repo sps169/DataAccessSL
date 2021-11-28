@@ -70,7 +70,7 @@ public class ProjectRepo implements CRUDRepo<Project,Long>{
     }
 
     @Override
-    public Optional<Project> save(Project project) throws SQLException {
+    public Optional<Project> insert(Project project) throws SQLException {
         String query = "INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();
