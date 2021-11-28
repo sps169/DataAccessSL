@@ -13,7 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class ProgrammerRepoTest extends ProgrammerRepo {
+class ProgrammerRepoTest {
     private static ProgrammerRepo repo = new ProgrammerRepo();
     private static List<Programmer> programmersTest = new ArrayList<Programmer>();
 
