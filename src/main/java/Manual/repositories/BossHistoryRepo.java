@@ -27,11 +27,11 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
                             result.getLong("id_programmer"),
                             result.getLong("id_department"),
                             result.getDate("entry_date").toLocalDate().atTime(
-                                    result.getTime("entry_date").toLocalTime()),
+                                    result.getTime("entry_date").toLocalTime())));
+                    if (result.getDate("leave_date") != null){
                             result.getDate("leave_date").toLocalDate().atTime(
-                                    result.getTime("leave_date").toLocalTime())
-                    )
-            );
+                                    result.getTime("leave_date").toLocalTime());
+                    }
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);

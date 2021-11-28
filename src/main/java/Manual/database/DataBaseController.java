@@ -1,7 +1,6 @@
 package Manual.database;
 
 import Manual.utils.ApplicationProperties;
-import org.apache.ibatis.jdbc.ScriptRunner;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -202,9 +201,4 @@ public class DataBaseController {
         return preparedStatement.executeUpdate();
     }
 
-    public void initData(String sqlFile) throws FileNotFoundException {
-        ScriptRunner sr = new ScriptRunner(connection);
-        Reader reader = new BufferedReader(new FileReader(sqlFile));
-        sr.runScript(reader);
-    }
 }

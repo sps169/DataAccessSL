@@ -12,9 +12,10 @@ public class BossHistory {
     public BossHistory() {
     }
 
-    public BossHistory(long programmerId, long departmentId) {
+    public BossHistory(long programmerId, long departmentId, LocalDateTime entryDate) {
         this.programmerId = programmerId;
         this.departmentId = departmentId;
+        this.entryDate = entryDate;
     }
 
     public BossHistory(long programmerId, long departmentId, LocalDateTime entryDate, LocalDateTime leave_date) {

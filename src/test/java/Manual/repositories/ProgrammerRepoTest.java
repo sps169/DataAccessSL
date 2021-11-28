@@ -17,7 +17,6 @@ class ProgrammerRepoTest {
     private static ProgrammerRepo repo = new ProgrammerRepo();
     private static List<Programmer> programmersTest = new ArrayList<Programmer>();
 
-
     @BeforeAll
     static void fillProgrammersTest ()
     {
