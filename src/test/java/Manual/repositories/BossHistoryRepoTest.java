@@ -1,7 +1,6 @@
 package Manual.repositories;
 
 import Manual.daos.BossHistory;
-import Manual.daos.Programmer;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;

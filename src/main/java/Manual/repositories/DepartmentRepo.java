@@ -73,7 +73,7 @@ public class DepartmentRepo implements CRUDRepo<Department,Long> {
 
     @Override
     public Optional<Department> update(Department department) throws SQLException {
-        String query = "UPDATE programmer SET name = ?, boss = ?, budget = ? WHERE id = ?";
+        String query = "UPDATE department SET name = ?, boss = ?, budget = ? WHERE id = ?";
         DataBaseController db = DataBaseController.getInstance();
         db.open();
         int result = db.update(query,department.getName(),department.getDepartmentBossId(),

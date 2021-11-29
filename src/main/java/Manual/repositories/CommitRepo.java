@@ -23,8 +23,8 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
             list.add(
                     new Commit(
                             result.getLong("id"),
-                            result.getString("text"),
                             result.getString("title"),
+                            result.getString("text"),
                             result.getDate("date").toLocalDate().atTime(
                                     result.getTime("date").toLocalTime()),
                             result.getLong("id_repository"),
@@ -48,8 +48,8 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
         if (result.next()) {
             Commit commit = new Commit(
                     result.getLong("id"),
-                    result.getString("text"),
                     result.getString("title"),
+                    result.getString("text"),
                     result.getDate("date").toLocalDate().atTime(
                             result.getTime("date").toLocalTime()),
                     result.getLong("id_repository"),
