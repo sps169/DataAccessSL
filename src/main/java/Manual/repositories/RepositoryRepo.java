@@ -24,8 +24,7 @@ public class RepositoryRepo implements CRUDRepo<Repository,Long> {
                     new Repository(
                             result.getLong("id"),
                             result.getString("name"),
-                            result.getDate("creation_date").toLocalDate().atTime(
-                                    result.getTime("creation_date").toLocalTime()),
+                            result.getTimestamp("creation_date").toLocalDateTime(),
                             result.getLong("id_project")
                     )
             );
@@ -46,8 +45,7 @@ public class RepositoryRepo implements CRUDRepo<Repository,Long> {
             Repository repository = new Repository(
                     result.getLong("id"),
                     result.getString("name"),
-                    result.getDate("creation_date").toLocalDate().atTime(
-                            result.getTime("creation_date").toLocalTime()),
+                    result.getTimestamp("creation_date").toLocalDateTime(),
                     result.getLong("id_project")
             );
             return Optional.of(repository);

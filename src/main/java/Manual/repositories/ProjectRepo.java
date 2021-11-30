@@ -25,10 +25,8 @@ public class ProjectRepo implements CRUDRepo<Project,Long>{
                     new Project(
                             result.getLong("id"),
                             result.getString("name"),
-                            result.getDate("start_date").toLocalDate().atTime(
-                                    result.getTime("start_date").toLocalTime()),
-                            result.getDate("end_date").toLocalDate().atTime(
-                                    result.getTime("end_date").toLocalTime()),
+                            result.getTimestamp("start_date").toLocalDateTime(),
+                            result.getTimestamp("end_date").toLocalDateTime(),
                             result.getString("technologies"),
                             result.getFloat("annual_Budget"),
                             result.getString("state"),
@@ -53,10 +51,8 @@ public class ProjectRepo implements CRUDRepo<Project,Long>{
             Project project = new Project(
                     result.getLong("id"),
                     result.getString("name"),
-                    result.getDate("start_date").toLocalDate().atTime(
-                            result.getTime("start_date").toLocalTime()),
-                    result.getDate("end_date").toLocalDate().atTime(
-                            result.getTime("end_date").toLocalTime()),
+                    result.getTimestamp("start_date").toLocalDateTime(),
+                    result.getTimestamp("end_date").toLocalDateTime(),
                     result.getString("technologies"),
                     result.getFloat("annual_budget"),
                     result.getString("state"),

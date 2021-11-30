@@ -26,8 +26,7 @@ public class IssueAssigmentRepo implements CRUDMultRepo<IssueAssignment,Long> {
                     new IssueAssignment(
                             result.getLong("id_programmer"),
                             result.getLong("id_issue"),
-                            result.getDate("start_date").toLocalDate().atTime(
-                                    result.getTime("start_date").toLocalTime())
+                            result.getTimestamp("start_date").toLocalDateTime()
                     )
             );
         }
@@ -47,8 +46,7 @@ public class IssueAssigmentRepo implements CRUDMultRepo<IssueAssignment,Long> {
                 IssueAssignment issueAssignment = new IssueAssignment(
                         result.getLong("id_programmer"),
                         result.getLong("id_issue"),
-                        result.getDate("start_date").toLocalDate().atTime(
-                                result.getTime("start_date").toLocalTime())
+                        result.getTimestamp("start_date").toLocalDateTime()
                 );
                 return Optional.of(issueAssignment);
             } else{

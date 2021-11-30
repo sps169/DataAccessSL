@@ -24,8 +24,7 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
                     new Programmer(
                             result.getLong("id"),
                             result.getString("name"),
-                            result.getDate("entry_date").toLocalDate().atTime(
-                                    result.getTime("entry_date").toLocalTime()),
+                            result.getTimestamp("entry_date").toLocalDateTime(),
                             result.getString("password"),
                             result.getString("technologies"),
                             result.getFloat("salary"),
@@ -49,8 +48,7 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
             Programmer programmer = new Programmer(
                     result.getLong("id"),
                     result.getString("name"),
-                    result.getDate("entry_date").toLocalDate().atTime(
-                            result.getTime("entry_date").toLocalTime()),
+                    result.getTimestamp("entry_date").toLocalDateTime(),
                     result.getString("password"),
                     result.getString("technologies"),
                     result.getFloat("salary"),

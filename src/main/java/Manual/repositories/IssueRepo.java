@@ -25,8 +25,7 @@ public class IssueRepo implements CRUDRepo<Issue,Long> {
                             result.getLong("id"),
                             result.getString("title"),
                             result.getString("text"),
-                            result.getDate("date").toLocalDate().atTime(
-                                    result.getTime("date").toLocalTime()),
+                            result.getTimestamp("date").toLocalDateTime(),
                             result.getString("state"),
                             result.getLong("id_repository"),
                             result.getLong("id_boss")
@@ -50,8 +49,7 @@ public class IssueRepo implements CRUDRepo<Issue,Long> {
                     result.getLong("id"),
                     result.getString("title"),
                     result.getString("text"),
-                    result.getDate("date").toLocalDate().atTime(
-                            result.getTime("date").toLocalTime()),
+                    result.getTimestamp("date").toLocalDateTime(),
                     result.getString("state"),
                     result.getLong("id_repository"),
                     result.getLong("id_boss")

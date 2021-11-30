@@ -25,8 +25,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
                             result.getLong("id"),
                             result.getString("title"),
                             result.getString("text"),
-                            result.getDate("date").toLocalDate().atTime(
-                                    result.getTime("date").toLocalTime()),
+                            result.getTimestamp("date").toLocalDateTime(),
                             result.getLong("id_repository"),
                             result.getLong("id_programmer"),
                             result.getLong("id_issue")
@@ -50,8 +49,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
                     result.getLong("id"),
                     result.getString("title"),
                     result.getString("text"),
-                    result.getDate("date").toLocalDate().atTime(
-                            result.getTime("date").toLocalTime()),
+                    result.getTimestamp("date").toLocalDateTime(),
                     result.getLong("id_repository"),
                     result.getLong("id_programmer"),
                     result.getLong("id_issue")

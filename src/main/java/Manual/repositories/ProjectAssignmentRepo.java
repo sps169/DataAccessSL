@@ -26,10 +26,8 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
                     new ProjectAssignment(
                             result.getLong("id_programmer"),
                             result.getLong("id_project"),
-                            result.getDate("start_date").toLocalDate().atTime(
-                                    result.getTime("start_date").toLocalTime()),
-                            result.getDate("end_date").toLocalDate().atTime(
-                                    result.getTime("end_date").toLocalTime())
+                            result.getTimestamp("start_date").toLocalDateTime(),
+                            result.getTimestamp("end_date").toLocalDateTime()
                     )
             );
         }
@@ -49,10 +47,8 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
             ProjectAssignment projectAssignment = new ProjectAssignment(
                     result.getLong("id_programmer"),
                     result.getLong("id_project"),
-                    result.getDate("start_date").toLocalDate().atTime(
-                            result.getTime("start_date").toLocalTime()),
-                    result.getDate("end_date").toLocalDate().atTime(
-                            result.getTime("end_date").toLocalTime())
+                    result.getTimestamp("start_date").toLocalDateTime(),
+                    result.getTimestamp("end_date").toLocalDateTime()
             );
             return Optional.of(projectAssignment);
         } else{

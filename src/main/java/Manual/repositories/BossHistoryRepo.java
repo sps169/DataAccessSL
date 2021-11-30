@@ -45,10 +45,8 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
            BossHistory bossHistory = new BossHistory(
                     result.getLong("id_programmer"),
                     result.getLong("id_department"),
-                    result.getDate("entry_date").toLocalDate().atTime(
-                            result.getTime("entry_date").toLocalTime()),
-                    result.getDate("leave_date").toLocalDate().atTime(
-                            result.getTime("leave_date").toLocalTime())
+                   result.getTimestamp("entry_date").toLocalDateTime(),
+                    result.getTimestamp("leave_date").toLocalDateTime()
             );
             return Optional.of(bossHistory);
         } else{
