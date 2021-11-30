@@ -30,7 +30,15 @@ public class BossHistory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BossHistory that = (BossHistory) o;
-        return programmerId == that.programmerId && departmentId == that.departmentId && entryDate.equals(that.entryDate) && leave_date.equals(that.leave_date);
+        boolean equals = programmerId == that.programmerId
+                && departmentId == that.departmentId
+                && entryDate.equals(that.entryDate);
+        if (that.leave_date != null && this.leave_date != null)
+            return equals && this.leave_date.equals(that.leave_date);
+        else if (that.leave_date == null && this.leave_date == null)
+            return equals;
+        else
+            return false;
     }
 
     @Override
@@ -79,4 +87,6 @@ public class BossHistory {
                 ", leave_date=" + leave_date +
                 '}';
     }
+
+
 }

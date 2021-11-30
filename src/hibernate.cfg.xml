@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+	<persistence-unit name = "data_access_sl">
+		<description> Hibernate JPA for Data Access SL</description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+	</persistence-unit>
+</persistence>
