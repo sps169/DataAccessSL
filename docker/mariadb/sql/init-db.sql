@@ -206,7 +206,7 @@ VALUES(16, 'Jesus Matamoros', '2020-03-12 00:00:00', SHA2('vanadio65', 256), 'Ja
  */
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(1, 'GnomeAI', '2020-12-11 00:00:00', '1000-01-01 00:00:00', 'Python', 150000, 'active', 5, 1);
+VALUES(1, 'GnomeAI', '2020-12-11 00:00:00', '0000-00-00 00:00:00', 'Python', 150000, 'active', 5, 1);
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
@@ -214,18 +214,18 @@ VALUES(2, 'GnomeUI', '2019-12-11 00:00:00', '2020-12-11 00:00:00', 'Java', 90000
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(3, 'GnomeTester', '2021-02-09 00:00:00', '1000-01-01 00:00:00', 'Java;C++', 100000, 'active', 7, 3);
+VALUES(3, 'GnomeTester', '2021-02-09 00:00:00', '0000-00-00 00:00:00', 'Java;C++', 100000, 'active', 7, 3);
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00', '1000-01-01 00:00:00', 'C++', 100000, 'active', 8, 4);
+VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00', '0000-00-00 00:00:00', 'C++', 100000, 'active', 8, 4);
 
 /*
  * Project Assignment insertion
  */
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(9, 1, '2020-12-11 00:00:00', '1000-01-01 00:00:00');
+VALUES(9, 1, '2020-12-11 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
@@ -233,15 +233,15 @@ VALUES(10, 2, '2019-12-11 00:00:00', '2020-12-11 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(11, 3, '2021-02-09 00:00:00', '1000-01-01 00:00:00');
+VALUES(11, 3, '2021-02-09 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(12, 4, '2021-02-09 00:00:00', '1000-01-01 00:00:00');
+VALUES(12, 4, '2021-02-09 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(13, 1, '2021-02-01 00:00:00', '1000-01-01 00:00:00');
+VALUES(13, 1, '2021-02-01 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
@@ -249,11 +249,11 @@ VALUES(14, 2, '2020-12-01 00:00:00', '2020-12-11 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(15, 3, '2021-02-12 00:00:00', '1000-01-01 00:00:00');
+VALUES(15, 3, '2021-02-12 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(16, 4, '2021-02-11 00:00:00', '1000-01-01 00:00:00');
+VALUES(16, 4, '2021-02-11 00:00:00', '0000-00-00 00:00:00');
 
 /*
  * Boss History insertion
@@ -276,19 +276,19 @@ VALUES(4, 1, '2021-01-20 00:00:00', '2021-03-25 00:00:00');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(1, 1, '2021-02-21 00:00:00', '1000-01-01 00:00:00');
+VALUES(1, 1, '2021-02-21 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(2, 2, '2020-01-10 00:00:00', '1000-01-01 00:00:00');
+VALUES(2, 2, '2020-01-10 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(3, 3, '2019-04-11 00:00:00', '1000-01-01 00:00:00.00');
+VALUES(3, 3, '2019-04-11 00:00:00', '0000-00-00 00:00:00');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(4, 4, '2021-03-25 00:00:00', '1000-01-01 00:00:00');
+VALUES(4, 4, '2021-03-25 00:00:00', '0000-00-00 00:00:00');
 
 /*
  * Repository inserts
