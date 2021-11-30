@@ -22,16 +22,17 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
         ArrayList<ProjectAssignment> list = new ArrayList<ProjectAssignment>();
         db.close();
         while (result.next()) {
-            list.add(
-                    new ProjectAssignment(
-                            result.getLong("id_programmer"),
-                            result.getLong("id_project"),
-                            result.getDate("start_date").toLocalDate().atTime(
-                                    result.getTime("start_date").toLocalTime()),
-                            result.getDate("end_date").toLocalDate().atTime(
-                                    result.getTime("end_date").toLocalTime())
-                    )
-            );
+
+             ProjectAssignment projectAssignment = new ProjectAssignment(
+                     result.getLong("id_programmer"),
+                     result.getLong("id_project"),
+                     result.getDate("start_date").toLocalDate().atTime(
+                             result.getTime("start_date").toLocalTime())
+             );
+             if (result.getDate("end_date") != null)
+                 projectAssignment.setEndDate(result.getDate("end_date").toLocalDate().atTime(
+                         result.getTime("end_date").toLocalTime()));
+            list.add(projectAssignment);
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
@@ -69,7 +70,7 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
                 projectAssignment.getStartDate(), projectAssignment.getEndDate()).orElseThrow(() ->
                 new SQLException("Error ProjectAssignmentRepository al consultar para insertar project_assignment"));
         db.close();
-        if (result.next()) {
+        if (result != null) {
             return Optional.of(projectAssignment);
         } else{
             throw new SQLException("Error ProjectAssignmentRepository al insertar project_assignment en BD");
@@ -78,7 +79,7 @@ public class ProjectAssignmentRepo implements CRUDMultRepo<ProjectAssignment,Lon
 
     @Override
     public Optional<ProjectAssignment> update(ProjectAssignment projectAssignment) throws SQLException {
-        String query = "UPDATE project_assignment SET id_programmer = ?, id_project = ?, start_date = ?,end_date = ? " +
+        String query = "UPDATE project_assignment SET id_programmer = ?, id_project = ?, start_date = ?, end_date = ? " +
                 "WHERE id_programmer = ? AND id_project = ? AND start_date = ?";
         DataBaseController db = DataBaseController.getInstance();
         db.open();

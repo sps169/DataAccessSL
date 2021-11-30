@@ -70,7 +70,7 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
                 bossHistory.getEntryDate(), bossHistory.getLeave_date()).orElseThrow(() ->
                 new SQLException("Error BossHistoryRepository al consultar para insertar boss_history"));
         db.close();
-        if (result.next()) {
+        if (result != null) {
             return Optional.of(bossHistory);
         } else{
             throw new SQLException("Error BossHistoryRepository al insertar boss_history en BD");

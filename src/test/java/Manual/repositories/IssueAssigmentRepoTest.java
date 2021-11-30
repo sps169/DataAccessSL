@@ -79,11 +79,12 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(3)
     void testInsert() {
         try{
-            IssueAssignment issueAssignmentToInsert =  new IssueAssignment(17,	9,
+            IssueAssignment issueAssignmentToInsert =  new IssueAssignment(16,	8,
                     LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<IssueAssignment> issueAssignmentOptional = repo.insert(issueAssignmentToInsert);
             Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToInsert);
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }
@@ -92,7 +93,7 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(4)
     void testUpdate() {
         try{
-            IssueAssignment issueAssignmentToUpdate =  new  IssueAssignment(17,	9,
+            IssueAssignment issueAssignmentToUpdate =  new  IssueAssignment(16,	8,
                     LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<IssueAssignment> issueAssignmentOptional = repo.update(issueAssignmentToUpdate);
             Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToUpdate);
@@ -105,7 +106,7 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(5)
     void testDelete() {
         try{
-            IssueAssignment issueAssignmentToDelete =  new  IssueAssignment(17,	9,
+            IssueAssignment issueAssignmentToDelete =  new  IssueAssignment(16,	8,
                     LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         Optional<IssueAssignment> issueAssignmentOptional = repo.delete(issueAssignmentToDelete);
         Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToDelete);

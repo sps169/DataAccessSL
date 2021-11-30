@@ -21,21 +21,22 @@ public class ProjectRepo implements CRUDRepo<Project,Long>{
         ArrayList<Project> list = new ArrayList<Project>();
         db.close();
         while (result.next()) {
-            list.add(
-                    new Project(
-                            result.getLong("id"),
-                            result.getString("name"),
-                            result.getDate("start_date").toLocalDate().atTime(
-                                    result.getTime("start_date").toLocalTime()),
-                            result.getDate("end_date").toLocalDate().atTime(
-                                    result.getTime("end_date").toLocalTime()),
-                            result.getString("technologies"),
-                            result.getFloat("annual_Budget"),
-                            result.getString("state"),
-                            result.getLong("id_boss"),
-                            result.getLong("id_department")
-                    )
+             Project project = new Project(
+                     result.getLong("id"),
+                     result.getString("name"),
+                     result.getDate("start_date").toLocalDate().atTime(
+                             result.getTime("start_date").toLocalTime()),
+                     result.getString("technologies"),
+                     result.getFloat("annual_Budget"),
+                     result.getString("state"),
+                     result.getLong("id_boss"),
+                     result.getLong("id_department")
             );
+            if (result.getDate("end_date") != null){
+                project.setEndDate(result.getDate("end_date").toLocalDate().atTime(
+                        result.getTime("end_date").toLocalTime()));
+            }
+            list.add(project);
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
@@ -55,14 +56,16 @@ public class ProjectRepo implements CRUDRepo<Project,Long>{
                     result.getString("name"),
                     result.getDate("start_date").toLocalDate().atTime(
                             result.getTime("start_date").toLocalTime()),
-                    result.getDate("end_date").toLocalDate().atTime(
-                            result.getTime("end_date").toLocalTime()),
                     result.getString("technologies"),
-                    result.getFloat("annual_budget"),
+                    result.getFloat("annual_Budget"),
                     result.getString("state"),
                     result.getLong("id_boss"),
                     result.getLong("id_department")
             );
+            if (result.getDate("end_date") != null){
+                project.setEndDate(result.getDate("end_date").toLocalDate().atTime(
+                        result.getTime("end_date").toLocalTime()));
+            }
             return Optional.of(project);
         } else{
             throw new SQLException("Error ProjectRepository no existe project con ID: " + ID);
