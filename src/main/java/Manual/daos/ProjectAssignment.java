@@ -12,9 +12,10 @@ public class ProjectAssignment {
     public ProjectAssignment() {
     }
 
-    public ProjectAssignment(long programmerId, long projectId) {
+    public ProjectAssignment(long programmerId, long projectId, LocalDateTime startDate) {
         this.programmerId = programmerId;
         this.projectId = projectId;
+        this.startDate = startDate;
     }
 
     public ProjectAssignment(long programmerId, long projectId, LocalDateTime startDate, LocalDateTime endDate) {
@@ -29,7 +30,12 @@ public class ProjectAssignment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectAssignment that = (ProjectAssignment) o;
-        return programmerId == that.programmerId && projectId == that.projectId && startDate.equals(that.startDate) && endDate.equals(that.endDate);
+        boolean result = programmerId == that.programmerId && projectId == that.projectId && startDate.equals(that.startDate);
+        if (endDate == null && that.endDate == null)
+            return result;
+        else if (endDate != null && that.endDate != null)
+            return result;
+        else return false;
     }
 
     @Override

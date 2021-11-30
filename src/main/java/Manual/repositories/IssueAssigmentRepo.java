@@ -65,7 +65,7 @@ public class IssueAssigmentRepo implements CRUDMultRepo<IssueAssignment,Long> {
                 issueAssignment.getStartDate()).orElseThrow(() ->
                 new SQLException("Error IssueAssignmentRepository al consultar para insertar issue_assignment"));
         db.close();
-        if (result.next()) {
+        if (result != null) {
             return Optional.of(issueAssignment);
         } else{
             throw new SQLException("Error IssueAssignmentRepository al insertar issue_assignment en BD");
