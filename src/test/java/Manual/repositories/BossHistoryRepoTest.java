@@ -3,12 +3,14 @@ package Manual.repositories;
 import Manual.daos.BossHistory;
 import org.junit.jupiter.api.*;
 
+import javax.swing.text.html.Option;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,6 +72,7 @@ class BossHistoryRepoTest extends BossHistoryRepo {
             Optional<BossHistory> historyOptional = repo.insert(bossHistory);
             Assertions.assertEquals(historyOptional.orElse(null), bossHistory);
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }
