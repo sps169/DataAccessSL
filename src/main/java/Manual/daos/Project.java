@@ -36,12 +36,35 @@ public class Project {
         this.departmentId = departmentId;
     }
 
+    public Project(long id, String name, LocalDateTime startDate, String technologies, float annualBudget, String state, long bossId, long departmentId) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.technologies = technologies;
+        this.annualBudget = annualBudget;
+        this.state = state;
+        this.projectBossId = bossId;
+        this.departmentId = departmentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id == project.id && Float.compare(project.annualBudget, annualBudget) == 0 && projectBossId == project.projectBossId && departmentId == project.departmentId && name.equals(project.name) && startDate.equals(project.startDate) && endDate.equals(project.endDate) && technologies.equals(project.technologies) && state.equals(project.state);
+        boolean result = id == project.id
+                && Float.compare(project.annualBudget, annualBudget) == 0
+                && projectBossId == project.projectBossId
+                && departmentId == project.departmentId
+                && name.equals(project.name)
+                && startDate.equals(project.startDate)
+                && technologies.equals(project.technologies)
+                && state.equals(project.state);
+        if (endDate == null && project.getEndDate() == null)
+            return result;
+        else if (endDate != null && project.getEndDate() != null)
+            return result;
+        else return false;
     }
 
     @Override

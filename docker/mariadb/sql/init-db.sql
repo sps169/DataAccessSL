@@ -8,8 +8,8 @@ USE `data_access_sl`;
 CREATE TABLE `boss_history` (
                                 `id_programmer` int(10) unsigned NOT NULL,
                                 `id_department` int(10) unsigned NOT NULL,
-                                `entry_date` timestamp NOT NULL,
-                                `leave_date` timestamp NOT NULL,
+                                `entry_date` datetime NOT NULL,
+                                `leave_date` datetime DEFAULT NULL,
                                 PRIMARY KEY (`id_programmer`,`id_department`,`entry_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -46,7 +46,7 @@ CREATE TABLE `issue` (
 CREATE TABLE `issue_assignment` (
                                     `id_programmer` int(10) unsigned NOT NULL,
                                     `id_issue` int(10) unsigned NOT NULL,
-                                    `start_date` timestamp NOT NULL,
+                                    `start_date` datetime NOT NULL,
                                     PRIMARY KEY (`id_programmer`,`id_issue`,`start_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

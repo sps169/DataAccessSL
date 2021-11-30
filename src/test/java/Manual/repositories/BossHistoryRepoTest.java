@@ -22,17 +22,17 @@ class BossHistoryRepoTest extends BossHistoryRepo {
     @BeforeAll
     static void fillBossHistory(){
         bossHistoryList.add(new BossHistory(1,	1,
-                LocalDateTime.parse("2021-02-21 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                LocalDateTime.parse("2021-02-21 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	null));
         bossHistoryList.add(new BossHistory(1, 2,
                 LocalDateTime.parse("2020-12-21 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2021-02-21 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         bossHistoryList.add(new BossHistory(2,	2,
-                LocalDateTime.parse("2020-01-10 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                LocalDateTime.parse("2020-01-10 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	null));
         bossHistoryList.add(new BossHistory(2, 3,
                 LocalDateTime.parse("2019-08-18 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-01-10 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         bossHistoryList.add(new BossHistory(3,	3,
-                LocalDateTime.parse("2019-04-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                LocalDateTime.parse("2019-04-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),	null));
         bossHistoryList.add(new BossHistory(3,	4,
                 LocalDateTime.parse("2018-08-10 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2019-04-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
@@ -72,6 +72,7 @@ class BossHistoryRepoTest extends BossHistoryRepo {
             Optional<BossHistory> historyOptional = repo.insert(bossHistory);
             Assertions.assertEquals(historyOptional.orElse(null), bossHistory);
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }

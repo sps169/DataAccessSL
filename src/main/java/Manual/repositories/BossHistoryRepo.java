@@ -23,11 +23,16 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
         db.close();
         while (result.next()) {
 
-                    list.add (new BossHistory(
+                    BossHistory history = new BossHistory(
                             result.getLong("id_programmer"),
                             result.getLong("id_department"),
-                            result.getTimestamp("entry_date").toLocalDateTime(),
-                            result.getTimestamp("leave_date").toLocalDateTime()));
+                            result.getDate("entry_date").toLocalDate().atTime(
+                                    result.getTime("entry_date").toLocalTime()));
+                    if (result.getDate("leave_date") != null){
+                        history.setLeave_date(result.getDate("leave_date").toLocalDate().atTime(
+                                result.getTime("leave_date").toLocalTime()));
+                    }
+                    list.add(history);
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
@@ -63,7 +68,7 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
                 bossHistory.getEntryDate(), bossHistory.getLeave_date()).orElseThrow(() ->
                 new SQLException("Error BossHistoryRepository al consultar para insertar boss_history"));
         db.close();
-        if (result.next()) {
+        if (result != null) {
             return Optional.of(bossHistory);
         } else{
             throw new SQLException("Error BossHistoryRepository al insertar boss_history en BD");
