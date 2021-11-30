@@ -20,28 +20,28 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     static void setUp() {
         projectAssignmentList.add(new ProjectAssignment(9,1,
                 LocalDateTime.parse("2020-12-11 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(10,2,
                 LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(11,3,
                 LocalDateTime.parse("2021-02-09 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(12,4,
                 LocalDateTime.parse("2021-02-09 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(13,1,
                 LocalDateTime.parse("2021-02-01 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(14,2,
                 LocalDateTime.parse("2020-12-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(15,3,
                 LocalDateTime.parse("2021-02-12 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         projectAssignmentList.add(new ProjectAssignment(16,4,
                 LocalDateTime.parse("2021-02-11 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
     }
 
     @Test
@@ -51,6 +51,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
             Optional<List<ProjectAssignment>> projectAssignmentToFindAll = repo.findAll();
             Assertions.assertArrayEquals(projectAssignmentToFindAll.orElse(null).toArray(), projectAssignmentList.toArray());
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }
@@ -62,9 +63,10 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
         Optional<ProjectAssignment> projectAssignmentToGetById = repo.getById(10L,2L,
                 LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         Assertions.assertEquals(projectAssignmentToGetById.orElse(null), projectAssignmentList.get(1));
-    }catch(SQLException e) {
-        Assertions.fail();
-    }
+        }catch(SQLException e) {
+            e.printStackTrace();
+            Assertions.fail();
+        }
     }
 
     @Test
@@ -77,6 +79,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
             Optional<ProjectAssignment> projectAssignmentOptional = repo.insert(projectAssignmentToInsert);
             Assertions.assertEquals(projectAssignmentOptional.orElse(null), projectAssignmentToInsert);
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }
@@ -91,6 +94,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
             Optional<ProjectAssignment> projectAssignmentOptional = repo.update(projectAssignmentToUpdate);
             Assertions.assertEquals(projectAssignmentOptional.orElse(null), projectAssignmentToUpdate);
         }catch(SQLException e) {
+            e.printStackTrace();
             Assertions.fail();
         }
     }
@@ -104,8 +108,9 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
                     LocalDateTime.parse("2020-12-11 01:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         Optional<ProjectAssignment> projectAssignmentOptional = repo.delete(projectAssignmentToDelete);
         Assertions.assertEquals(projectAssignmentOptional.orElse(null), projectAssignmentToDelete);
-    }catch(SQLException e) {
-        Assertions.fail();
-    }
+        }catch(SQLException e) {
+            e.printStackTrace();
+            Assertions.fail();
+        }
     }
 }

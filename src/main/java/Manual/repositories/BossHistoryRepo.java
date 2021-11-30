@@ -19,20 +19,15 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
         db.open();
         ResultSet result = db.select(query).orElseThrow(() -> new SQLException("Error BossHistoryRepository al " +
                 "consultar registros de boss_history"));
-        ArrayList<BossHistory> list = new ArrayList<BossHistory>();
+        ArrayList<BossHistory> list = new ArrayList<>();
         db.close();
         while (result.next()) {
 
-                    BossHistory history = new BossHistory(
+                    list.add (new BossHistory(
                             result.getLong("id_programmer"),
                             result.getLong("id_department"),
-                            result.getDate("entry_date").toLocalDate().atTime(
-                                    result.getTime("entry_date").toLocalTime()));
-                    if (result.getDate("leave_date") != null){
-                        history.setLeave_date(result.getDate("leave_date").toLocalDate().atTime(
-                                result.getTime("leave_date").toLocalTime()));
-                    }
-                    list.add(history);
+                            result.getTimestamp("entry_date").toLocalDateTime(),
+                            result.getTimestamp("leave_date").toLocalDateTime()));
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);

@@ -9,7 +9,7 @@ CREATE TABLE `boss_history` (
                                 `id_programmer` int(10) unsigned NOT NULL,
                                 `id_department` int(10) unsigned NOT NULL,
                                 `entry_date` datetime NOT NULL,
-                                `leave_date` datetime DEFAULT NULL,
+                                `leave_date` datetime NOT NULL,
                                 PRIMARY KEY (`id_programmer`,`id_department`,`entry_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -55,7 +55,7 @@ CREATE TABLE `programmer` (
                               `name` varchar(50) NOT NULL,
                               `entry_date` datetime NOT NULL,
                               `password` varchar(100) NOT NULL,
-                              `technologies` varchar(200) DEFAULT NULL,
+                              `technologies` varchar(200) NOT NULL,
                               `salary` float NOT NULL,
                               `id_department` int(10) unsigned NOT NULL,
                               PRIMARY KEY (`id`)
@@ -65,7 +65,7 @@ CREATE TABLE `project` (
                            `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                            `name` varchar(100) NOT NULL,
                            `start_date` datetime NOT NULL,
-                           `end_date` datetime DEFAULT NULL,
+                           `end_date` datetime NOT NULL,
                            `technologies` varchar(512) NOT NULL,
                            `annual_budget` float NOT NULL,
                            `state` varchar(20) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE project_assignment (
                                     `id_programmer` int(10) unsigned NOT NULL,
                                     `id_project` int(10) unsigned NOT NULL,
                                     `start_date` datetime NOT NULL,
-                                    `end_date` datetime DEFAULT NULL,
+                                    `end_date` datetime NOT NULL,
                                     PRIMARY KEY (`id_programmer`,`id_project`,`start_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -206,7 +206,7 @@ VALUES(16, 'Jesus Matamoros', '2020-03-12 00:00:00.000', SHA2('vanadio65', 256),
  */
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(1, 'GnomeAI', '2020-12-11 00:00:00.000', NULL, 'Python', 150000, 'active', 5, 1);
+VALUES(1, 'GnomeAI', '2020-12-11 00:00:00.000', '1000-01-01 00:00:00.000000', 'Python', 150000, 'active', 5, 1);
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
@@ -214,18 +214,18 @@ VALUES(2, 'GnomeUI', '2019-12-11 00:00:00.000', '2020-12-11 00:00:00.000', 'Java
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(3, 'GnomeTester', '2021-02-09 00:00:00.000', NULL, 'Java;C++', 100000, 'active', 7, 3);
+VALUES(3, 'GnomeTester', '2021-02-09 00:00:00.000', '1000-01-01 00:00:00.000000', 'Java;C++', 100000, 'active', 7, 3);
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00.000', NULL, 'C++', 100000, 'active', 8, 4);
+VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00.000', '1000-01-01 00:00:00.000000', 'C++', 100000, 'active', 8, 4);
 
 /*
  * Project Assignment insertion
  */
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(9, 1, '2020-12-11 00:00:00.000', NULL);
+VALUES(9, 1, '2020-12-11 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
@@ -233,15 +233,15 @@ VALUES(10, 2, '2019-12-11 00:00:00.000', '2020-12-11 00:00:00.000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(11, 3, '2021-02-09 00:00:00.000', NULL);
+VALUES(11, 3, '2021-02-09 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(12, 4, '2021-02-09 00:00:00.000', NULL);
+VALUES(12, 4, '2021-02-09 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(13, 1, '2021-02-01 00:00:00.000', NULL);
+VALUES(13, 1, '2021-02-01 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
@@ -249,11 +249,11 @@ VALUES(14, 2, '2020-12-01 00:00:00.000', '2020-12-11 00:00:00.000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(15, 3, '2021-02-12 00:00:00.000', NULL);
+VALUES(15, 3, '2021-02-12 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.project_assignment
 (id_programmer, id_project, start_date, end_date)
-VALUES(16, 4, '2021-02-11 00:00:00.000', NULL);
+VALUES(16, 4, '2021-02-11 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 /*
  * Boss History insertion
@@ -276,19 +276,19 @@ VALUES(4, 1, '2021-01-20 00:00:00.000', '2021-03-25 00:00:00.000');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(1, 1, '2021-02-21 00:00:00.000', NULL);
+VALUES(1, 1, '2021-02-21 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(2, 2, '2020-01-10 00:00:00.000', NULL);
+VALUES(2, 2, '2020-01-10 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(3, 3, '2019-04-11 00:00:00.000', NULL);
+VALUES(3, 3, '2019-04-11 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 INSERT INTO data_access_sl.boss_history
 (id_programmer, id_department , entry_date , leave_date)
-VALUES(4, 4, '2021-03-25 00:00:00.000', NULL);
+VALUES(4, 4, '2021-03-25 00:00:00.000', '1000-01-01 00:00:00.000000');
 
 /*
  * Repository inserts

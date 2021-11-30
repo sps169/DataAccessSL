@@ -20,17 +20,17 @@ class ProjectRepoTest extends ProgrammerRepo {
     static void setUp() {
         listProjects.add(new Project(1,"GnomeAI",
                 LocalDateTime.parse("2020-12-11 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null,"Python",150000,"active",5,1));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),"Python",150000,"active",5,1));
         listProjects.add(new Project(2,"GnomeUI",
                 LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 "Java", 90000,"ended",6,2));
         listProjects.add(new Project(3,"GnomeTester",
                 LocalDateTime.parse("2021-02-09 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null,"Java;C++",100000,"active",7,3));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),"Java;C++",100000,"active",7,3));
         listProjects.add(new Project(4,"GnomeMaker",
                 LocalDateTime.parse("2021-02-09 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null,"C++",100000,"active",8,4));
+                LocalDateTime.parse("1000-01-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),"C++",100000,"active",8,4));
     }
 
     @Test
