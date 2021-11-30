@@ -22,16 +22,17 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
         ArrayList<BossHistory> list = new ArrayList<BossHistory>();
         db.close();
         while (result.next()) {
-            list.add(
-                    new BossHistory(
+
+                    BossHistory history = new BossHistory(
                             result.getLong("id_programmer"),
                             result.getLong("id_department"),
                             result.getDate("entry_date").toLocalDate().atTime(
-                                    result.getTime("entry_date").toLocalTime())));
+                                    result.getTime("entry_date").toLocalTime()));
                     if (result.getDate("leave_date") != null){
-                            result.getDate("leave_date").toLocalDate().atTime(
-                                    result.getTime("leave_date").toLocalTime());
+                        history.setLeave_date(result.getDate("leave_date").toLocalDate().atTime(
+                                result.getTime("leave_date").toLocalTime()));
                     }
+                    list.add(history);
         }
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
