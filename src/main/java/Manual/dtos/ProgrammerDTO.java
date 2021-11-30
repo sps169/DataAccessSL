@@ -1,9 +1,25 @@
 package Manual.dtos;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
 public class ProgrammerDTO {
+    ExclusionStrategy strategy = new ExclusionStrategy() {
+        @Override
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes field) {
+            return field.getName().startsWith("password");
+        }
+    };
     private long id;
     private String name;
     private LocalDateTime entry_date;
@@ -124,5 +140,17 @@ public class ProgrammerDTO {
                 ", commits=" + commits +
                 ", issuesAssigned=" + issuesAssigned +
                 '}';
+    }
+    public static ProgrammerDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, ProgrammerDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder()
+                .addSerializationExclusionStrategy(strategy)
+                .setPrettyPrinting()
+                .create();
+        return prettyGson.toJson(this);
     }
 }

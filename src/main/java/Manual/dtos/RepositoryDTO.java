@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -81,5 +84,14 @@ public class RepositoryDTO {
                 ", commits=" + commits +
                 ", issues=" + issues +
                 '}';
+    }
+    public static RepositoryDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, RepositoryDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

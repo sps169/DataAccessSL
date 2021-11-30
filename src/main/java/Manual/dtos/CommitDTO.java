@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 
 public class CommitDTO {
@@ -102,5 +105,14 @@ public class CommitDTO {
                 ", programmer=" + programmer +
                 ", issue=" + issue +
                 '}';
+    }
+    public static CommitDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, CommitDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

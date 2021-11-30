@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 
 public class IssueAssignmentDTO {
@@ -47,5 +50,14 @@ public class IssueAssignmentDTO {
                 ", issueId=" + issue +
                 ", startDate=" + startDate +
                 '}';
+    }
+    public static IssueAssignmentDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, IssueAssignmentDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }
