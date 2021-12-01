@@ -47,6 +47,15 @@ public class ProgrammerDTO {
     public ProgrammerDTO() {
     }
 
+    public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password, Set<Technologies> technologies, float salary) {
+        this.id = id;
+        this.name = name;
+        this.entry_date = entry_date;
+        this.password = password;
+        this.technologies = technologies;
+        this.salary = salary;
+    }
+
     public long getId() {
         return id;
     }
