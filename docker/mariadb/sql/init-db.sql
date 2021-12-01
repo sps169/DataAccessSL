@@ -93,33 +93,9 @@ CREATE TABLE `repository` (
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE boss_history ADD CONSTRAINT `boss_history_department_FK` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`);
-ALTER TABLE boss_history ADD CONSTRAINT `boss_history_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
 ALTER TABLE boss_history ADD CONSTRAINT `boss_history_programmer_UK` UNIQUE KEY (`id_programmer`, `id_department`, `entry_date`);
-
-ALTER TABLE data_access_sl.commit ADD CONSTRAINT `commit_issue_FK` FOREIGN KEY (`id_issue`) REFERENCES `issue` (`id`);
-ALTER TABLE data_access_sl.commit ADD CONSTRAINT `commit_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
-ALTER TABLE data_access_sl.commit ADD CONSTRAINT `commit_repository_FK` FOREIGN KEY (`id_repository`) REFERENCES `repository` (`id`);
-
-ALTER TABLE data_access_sl.department ADD CONSTRAINT `department_FK` FOREIGN KEY (`boss`) REFERENCES `programmer` (`id`);
-
-ALTER TABLE data_access_sl.issue ADD CONSTRAINT `issue_boss_FK` FOREIGN KEY (`id_boss`) REFERENCES `programmer` (`id`);
-ALTER TABLE data_access_sl.issue ADD CONSTRAINT `issue_repository_FK` FOREIGN KEY (`id_repository`) REFERENCES `repository` (`id`);
-
-ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_issue_FK` FOREIGN KEY (`id_issue`) REFERENCES `issue` (`id`);
-ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
 ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_issue_UK` UNIQUE KEY (`id_issue`, `id_programmer`, `start_date`);
-
-ALTER TABLE data_access_sl.programmer ADD CONSTRAINT `programmer_FK` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`);
-
-ALTER TABLE data_access_sl.project ADD CONSTRAINT `projects_boss_FK` FOREIGN KEY (`id_boss`) REFERENCES `programmer` (`id`);
-ALTER TABLE data_access_sl.project ADD CONSTRAINT `projects_department_FK` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`);
-
-ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
-ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_project_FK` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`);
 ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_programmer_UK` UNIQUE KEY (`id_programmer`, `id_project`, `start_date`);
-
-ALTER TABLE data_access_sl.repository ADD FOREIGN KEY (`id_project`) REFERENCES `project` (`id`);
 
 /*
  * Department insertion
