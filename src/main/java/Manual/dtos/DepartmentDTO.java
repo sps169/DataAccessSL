@@ -25,6 +25,12 @@ public class DepartmentDTO {
         this.historyBosses = historyBosses;
     }
 
+    public DepartmentDTO(long id, String name, float budget) {
+        this.id = id;
+        this.name = name;
+        this.budget = budget;
+    }
+
     public Set<ProjectDTO> getFinishedProjects() {
         return finishedProjects;
     }

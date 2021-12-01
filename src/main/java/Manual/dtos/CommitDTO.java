@@ -29,6 +29,13 @@ public class CommitDTO {
         this.issue = issue;
     }
 
+    public CommitDTO(long id, String title, String text, LocalDateTime date) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+    }
+
     public long getId() {
         return id;
     }

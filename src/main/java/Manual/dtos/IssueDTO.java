@@ -32,6 +32,14 @@ public class IssueDTO {
     public IssueDTO() {
     }
 
+    public IssueDTO(long id, String title, String text, LocalDateTime date, String state) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+        this.state = state;
+    }
+
     public long getId() {
         return id;
     }
