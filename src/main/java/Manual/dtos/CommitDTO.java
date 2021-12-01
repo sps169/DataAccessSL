@@ -1,5 +1,9 @@
 package Manual.dtos;
 
+import Manual.daos.Issue;
+import Manual.daos.Programmer;
+import Manual.daos.Project;
+import Manual.daos.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -10,15 +14,16 @@ public class CommitDTO {
     private String title;
     private String text;
     private LocalDateTime date;
-    private RepositoryDTO repository;
-    private ProjectDTO project;
-    private ProgrammerDTO programmer;
-    private IssueDTO issue;
+    private Repository repository;
+    private Project project;
+    private Programmer programmer;
+    private Issue issue;
 
     public CommitDTO() {
     }
 
-    public CommitDTO(long id, String title, String text, LocalDateTime date, RepositoryDTO repository, ProjectDTO project, ProgrammerDTO programmer, IssueDTO issue) {
+    public CommitDTO(long id, String title, String text, LocalDateTime date, Repository repository,
+                     Project project, Programmer programmer, Issue issue) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -68,35 +73,35 @@ public class CommitDTO {
         this.date = date;
     }
 
-    public RepositoryDTO getRepository() {
+    public Repository getRepository() {
         return repository;
     }
 
-    public void setRepository(RepositoryDTO repository) {
+    public void setRepository(Repository repository) {
         this.repository = repository;
     }
 
-    public ProjectDTO getProject() {
+    public Project getProject() {
         return project;
     }
 
-    public void setProject(ProjectDTO project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
-    public ProgrammerDTO getProgrammer() {
+    public Programmer getProgrammer() {
         return programmer;
     }
 
-    public void setProgrammer(ProgrammerDTO programmer) {
+    public void setProgrammer(Programmer programmer) {
         this.programmer = programmer;
     }
 
-    public IssueDTO getIssue() {
+    public Issue getIssue() {
         return issue;
     }
 
-    public void setIssue(IssueDTO issue) {
+    public void setIssue(Issue issue) {
         this.issue = issue;
     }
 

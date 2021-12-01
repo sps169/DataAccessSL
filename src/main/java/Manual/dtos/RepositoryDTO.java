@@ -1,5 +1,7 @@
 package Manual.dtos;
 
+import Manual.daos.Issue;
+import Manual.daos.Project;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -10,10 +12,10 @@ public class RepositoryDTO {
     private long id;
     private String name;
     private LocalDateTime creationDate;
-    private ProjectDTO project;
-    private Set<IssueDTO> issues;
+    private Project project;
+    private Set<Issue> issues;
 
-    public RepositoryDTO(long id, String name, LocalDateTime creationDate, ProjectDTO project, Set<IssueDTO> issues) {
+    public RepositoryDTO(long id, String name, LocalDateTime creationDate, Project project, Set<Issue> issues) {
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
@@ -54,19 +56,19 @@ public class RepositoryDTO {
         this.creationDate = creationDate;
     }
 
-    public ProjectDTO getProject() {
+    public Project getProject() {
         return project;
     }
 
-    public void setProject(ProjectDTO project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
-    public Set<IssueDTO> getIssues() {
+    public Set<Issue> getIssues() {
         return issues;
     }
 
-    public void setIssues(Set<IssueDTO> issues) {
+    public void setIssues(Set<Issue> issues) {
         this.issues = issues;
     }
 

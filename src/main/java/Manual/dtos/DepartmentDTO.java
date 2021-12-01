@@ -1,5 +1,7 @@
 package Manual.dtos;
 
+import Manual.daos.Programmer;
+import Manual.daos.Project;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -9,13 +11,13 @@ import java.util.Set;
 public class DepartmentDTO {
     private long id;
     private String name;
-    private ProgrammerDTO departmentBoss;
+    private Programmer departmentBoss;
     private float budget;
-    private Set<ProjectDTO> finishedProjects;
-    private Set<ProjectDTO> ongoingProjects;
-    private List<ProgrammerDTO> historyBosses;
+    private Set<Project> finishedProjects;
+    private Set<Project> ongoingProjects;
+    private List<Programmer> historyBosses;
 
-    public DepartmentDTO(long id, String name, ProgrammerDTO departmentBoss, float budget, Set<ProjectDTO> finishedProjects, Set<ProjectDTO> ongoingProjects, List<ProgrammerDTO> historyBosses) {
+    public DepartmentDTO(long id, String name, Programmer departmentBoss, float budget, Set<Project> finishedProjects, Set<Project> ongoingProjects, List<Programmer> historyBosses) {
         this.id = id;
         this.name = name;
         this.departmentBoss = departmentBoss;
@@ -31,27 +33,27 @@ public class DepartmentDTO {
         this.budget = budget;
     }
 
-    public Set<ProjectDTO> getFinishedProjects() {
+    public Set<Project> getFinishedProjects() {
         return finishedProjects;
     }
 
-    public void setFinishedProjects(Set<ProjectDTO> finishedProjects) {
+    public void setFinishedProjects(Set<Project> finishedProjects) {
         this.finishedProjects = finishedProjects;
     }
 
-    public Set<ProjectDTO> getOngoingProjects() {
+    public Set<Project> getOngoingProjects() {
         return ongoingProjects;
     }
 
-    public void setOngoingProjects(Set<ProjectDTO> ongoingProjects) {
+    public void setOngoingProjects(Set<Project> ongoingProjects) {
         this.ongoingProjects = ongoingProjects;
     }
 
-    public List<ProgrammerDTO> getHistoryBosses() {
+    public List<Programmer> getHistoryBosses() {
         return historyBosses;
     }
 
-    public void setHistoryBosses(List<ProgrammerDTO> historyBosses) {
+    public void setHistoryBosses(List<Programmer> historyBosses) {
         this.historyBosses = historyBosses;
     }
 
@@ -74,11 +76,11 @@ public class DepartmentDTO {
         this.name = name;
     }
 
-    public ProgrammerDTO getDepartmentBoss() {
+    public Programmer getDepartmentBoss() {
         return departmentBoss;
     }
 
-    public void setDepartmentBoss(ProgrammerDTO departmentBoss) {
+    public void setDepartmentBoss(Programmer departmentBoss) {
         this.departmentBoss = departmentBoss;
     }
 

@@ -1,5 +1,7 @@
 package Manual.dtos;
 
+import Manual.daos.Issue;
+import Manual.daos.Programmer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -7,8 +9,8 @@ import java.time.LocalDateTime;
 
 public class IssueAssignmentDTO {
     private long id;
-    private ProgrammerDTO programmer;
-    private IssueDTO issue;
+    private Programmer programmer;
+    private Issue issue;
     private LocalDateTime startDate;
 
 
@@ -16,7 +18,7 @@ public class IssueAssignmentDTO {
     public IssueAssignmentDTO() {
     }
 
-    public IssueAssignmentDTO(long id,ProgrammerDTO programmer, IssueDTO issue, LocalDateTime startDate) {
+    public IssueAssignmentDTO(long id,Programmer programmer, Issue issue, LocalDateTime startDate) {
         this.id = id;
         this.programmer = programmer;
         this.issue = issue;
@@ -32,19 +34,19 @@ public class IssueAssignmentDTO {
 
     public void setId(long id) {this.id = id;}
 
-    public ProgrammerDTO getProgrammer() {
+    public Programmer getProgrammer() {
         return programmer;
     }
 
-    public void setProgrammer(ProgrammerDTO programmer) {
+    public void setProgrammer(Programmer programmer) {
         this.programmer = programmer;
     }
 
-    public IssueDTO getIssue() {
+    public Issue getIssue() {
         return issue;
     }
 
-    public void setIssue(IssueDTO issue) {
+    public void setIssue(Issue issue) {
         this.issue = issue;
     }
 

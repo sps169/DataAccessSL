@@ -1,5 +1,6 @@
 package Manual.dtos;
 
+import Manual.daos.Department;
 import Manual.daos.Programmer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,11 +16,11 @@ public class ProjectDTO {
     private Set<Technologies> technologies;
     private float annualBudget;
     private String state;
-    private ProgrammerDTO projectBoss;
-    private DepartmentDTO department;
-    private RepositoryDTO repository;
+    private Programmer projectBoss;
+    private Department department;
 
-    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologiesToSet, float annualBudget, String state) {
+    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate,
+                      Set<Technologies> technologiesToSet, float annualBudget, String state) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -29,7 +30,9 @@ public class ProjectDTO {
         this.state = state;
     }
 
-    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologies, float annualBudget, String state, ProgrammerDTO projectBoss, DepartmentDTO department, RepositoryDTO repository) {
+    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate,
+                      Set<Technologies> technologies, float annualBudget, String state,
+                      Programmer projectBoss, Department department) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -39,7 +42,6 @@ public class ProjectDTO {
         this.state = state;
         this.projectBoss = projectBoss;
         this.department = department;
-        this.repository = repository;
     }
 
     public ProjectDTO() {
@@ -103,28 +105,20 @@ public class ProjectDTO {
         this.state = state;
     }
 
-    public ProgrammerDTO getProjectBoss() {
+    public Programmer getProjectBoss() {
         return projectBoss;
     }
 
-    public void setProjectBoss(ProgrammerDTO projectBoss) {
+    public void setProjectBoss(Programmer projectBoss) {
         this.projectBoss = projectBoss;
     }
 
-    public DepartmentDTO getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(DepartmentDTO department) {
+    public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public RepositoryDTO getRepository() {
-        return repository;
-    }
-
-    public void setRepository(RepositoryDTO repository) {
-        this.repository = repository;
     }
 
     @Override
@@ -139,7 +133,6 @@ public class ProjectDTO {
                 ", state='" + state + '\'' +
                 ", projectBoss=" + projectBoss +
                 ", department=" + department +
-                ", repository=" + repository +
                 '}';
     }
     public static ProjectDTO fromJSON(String json) {

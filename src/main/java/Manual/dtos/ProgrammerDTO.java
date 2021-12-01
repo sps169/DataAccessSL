@@ -1,5 +1,9 @@
 package Manual.dtos;
 
+import Manual.daos.Commit;
+import Manual.daos.Department;
+import Manual.daos.IssueAssignment;
+import Manual.daos.ProjectAssignment;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -26,12 +30,15 @@ public class ProgrammerDTO {
     private String password;
     private Set<Technologies> technologies;
     private float salary;
-    private DepartmentDTO department;
-    private Set<ProjectAssignmentDTO> projects;
-    private Set<CommitDTO> commits;
-    private Set<IssueAssignmentDTO> issuesAssigned;
+    private Department department;
+    private Set<ProjectAssignment> projects;
+    private Set<Commit> commits;
+    private Set<IssueAssignment> issuesAssigned;
 
-    public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password, Set<Technologies> technologies, float salary, DepartmentDTO department, Set<ProjectAssignmentDTO> projects, Set<CommitDTO> commits, Set<IssueAssignmentDTO> issuesAssigned) {
+    public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password,
+                         Set<Technologies> technologies, float salary, Department department,
+                         Set<ProjectAssignment> projects, Set<Commit> commits,
+                         Set<IssueAssignment> issuesAssigned) {
         this.id = id;
         this.name = name;
         this.entry_date = entry_date;
@@ -96,11 +103,11 @@ public class ProgrammerDTO {
         this.salary = salary;
     }
 
-    public DepartmentDTO getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(DepartmentDTO department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
@@ -112,27 +119,27 @@ public class ProgrammerDTO {
         this.technologies = technologies;
     }
 
-    public Set<ProjectAssignmentDTO> getProjects() {
+    public Set<ProjectAssignment> getProjects() {
         return projects;
     }
 
-    public void setProjects(Set<ProjectAssignmentDTO> projects) {
+    public void setProjects(Set<ProjectAssignment> projects) {
         this.projects = projects;
     }
 
-    public Set<CommitDTO> getCommits() {
+    public Set<Commit> getCommits() {
         return commits;
     }
 
-    public void setCommits(Set<CommitDTO> commits) {
+    public void setCommits(Set<Commit> commits) {
         this.commits = commits;
     }
 
-    public Set<IssueAssignmentDTO> getIssuesAssigned() {
+    public Set<IssueAssignment> getIssuesAssigned() {
         return issuesAssigned;
     }
 
-    public void setIssuesAssigned(Set<IssueAssignmentDTO> issuesAssigned) {
+    public void setIssuesAssigned(Set<IssueAssignment> issuesAssigned) {
         this.issuesAssigned = issuesAssigned;
     }
 

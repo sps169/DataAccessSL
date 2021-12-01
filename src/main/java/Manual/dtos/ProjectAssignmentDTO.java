@@ -1,5 +1,7 @@
 package Manual.dtos;
 
+import Manual.daos.Programmer;
+import Manual.daos.Project;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -7,12 +9,12 @@ import java.time.LocalDateTime;
 
 public class ProjectAssignmentDTO {
     private long id;
-    private ProgrammerDTO programmer;
-    private ProjectDTO project;
+    private Programmer programmer;
+    private Project project;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-    public ProjectAssignmentDTO(long id, ProgrammerDTO programmer, ProjectDTO project, LocalDateTime startDate, LocalDateTime endDate) {
+    public ProjectAssignmentDTO(long id, Programmer programmer, Project project, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.programmer = programmer;
         this.project = project;
@@ -37,19 +39,19 @@ public class ProjectAssignmentDTO {
         this.id = id;
     }
 
-    public ProgrammerDTO getProgrammer() {
+    public Programmer getProgrammer() {
         return programmer;
     }
 
-    public void setProgrammer(ProgrammerDTO programmer) {
+    public void setProgrammer(Programmer programmer) {
         this.programmer = programmer;
     }
 
-    public ProjectDTO getProject() {
+    public Project getProject() {
         return project;
     }
 
-    public void setProject(ProjectDTO project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 

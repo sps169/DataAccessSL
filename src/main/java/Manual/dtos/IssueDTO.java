@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import Manual.daos.Programmer;
+import Manual.daos.Project;
+import Manual.daos.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,11 +15,11 @@ public class IssueDTO {
     private String text;
     private LocalDateTime date;
     private String state;
-    private ProjectDTO project;
-    private RepositoryDTO repository;
-    private ProgrammerDTO boss;
+    private Project project;
+    private Repository repository;
+    private Programmer boss;
 
-    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, ProjectDTO project, RepositoryDTO repository, ProgrammerDTO boss) {
+    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, Project project, Repository repository, Programmer boss) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -78,27 +81,27 @@ public class IssueDTO {
         this.state = state;
     }
 
-    public ProjectDTO getProject() {
+    public Project getProject() {
         return project;
     }
 
-    public void setProject(ProjectDTO project) {
+    public void setProject(Project project) {
         this.project = project;
     }
 
-    public RepositoryDTO getRepository() {
+    public Repository getRepository() {
         return repository;
     }
 
-    public void setRepository(RepositoryDTO repository) {
+    public void setRepository(Repository repository) {
         this.repository = repository;
     }
 
-    public ProgrammerDTO getBoss() {
+    public Programmer getBoss() {
         return boss;
     }
 
-    public void setBoss(ProgrammerDTO boss) {
+    public void setBoss(Programmer boss) {
         this.boss = boss;
     }
 

@@ -1,5 +1,7 @@
 package Manual.dtos;
 
+import Manual.daos.Department;
+import Manual.daos.Programmer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -7,15 +9,16 @@ import java.time.LocalDateTime;
 
 public class BossHistoryDTO {
     private long id;
-    private ProgrammerDTO programmer;
-    private DepartmentDTO department;
+    private Programmer programmer;
+    private Department department;
     private LocalDateTime entryDate;
     private LocalDateTime leaveDate;
 
     public BossHistoryDTO() {
     }
 
-    public BossHistoryDTO(long id, ProgrammerDTO programmer, DepartmentDTO department, LocalDateTime entryDate, LocalDateTime leaveDate) {
+    public BossHistoryDTO(long id, Programmer programmer, Department department,
+                          LocalDateTime entryDate, LocalDateTime leaveDate) {
         this.id = id;
         this.programmer = programmer;
         this.department = department;
@@ -37,19 +40,19 @@ public class BossHistoryDTO {
         this.id = id;
     }
 
-    public ProgrammerDTO getProgrammer() {
+    public Programmer getProgrammer() {
         return programmer;
     }
 
-    public void setProgrammer(ProgrammerDTO programmer) {
+    public void setProgrammer(Programmer programmer) {
         this.programmer = programmer;
     }
 
-    public DepartmentDTO getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(DepartmentDTO department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
