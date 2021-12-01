@@ -15,9 +15,8 @@ public class IssueDTO {
     private ProjectDTO project;
     private RepositoryDTO repository;
     private ProgrammerDTO boss;
-    private Set<IssueAssignmentDTO> programmers;
 
-    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, ProjectDTO project, RepositoryDTO repository, ProgrammerDTO boss, Set<IssueAssignmentDTO> programmers) {
+    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, ProjectDTO project, RepositoryDTO repository, ProgrammerDTO boss) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -26,7 +25,6 @@ public class IssueDTO {
         this.project = project;
         this.repository = repository;
         this.boss = boss;
-        this.programmers = programmers;
     }
 
     public IssueDTO() {
@@ -104,14 +102,6 @@ public class IssueDTO {
         this.boss = boss;
     }
 
-    public Set<IssueAssignmentDTO> getProgrammers() {
-        return programmers;
-    }
-
-    public void setProgrammers(Set<IssueAssignmentDTO> programmers) {
-        this.programmers = programmers;
-    }
-
     @Override
     public String toString() {
         return "IssueDTO{" +
@@ -123,7 +113,6 @@ public class IssueDTO {
                 ", project=" + project +
                 ", repository=" + repository +
                 ", boss=" + boss +
-                ", programmers=" + programmers +
                 '}';
     }
     public static IssueDTO fromJSON(String json) {
