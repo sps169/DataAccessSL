@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class IssueAssigmentRepo implements CRUDMultRepo<IssueAssignment,Long> {
+public class IssueAssigmentRepo implements CRUDRepo<IssueAssignment,Long> {
     @Override
     public Optional<List<IssueAssignment>> findAll() throws SQLException {
         String query = "SELECT * FROM issue_assignment";

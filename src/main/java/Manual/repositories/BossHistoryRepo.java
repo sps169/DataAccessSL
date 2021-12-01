@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
+public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
     @Override
     public Optional<List<BossHistory>> findAll() throws SQLException {
         String query = "SELECT * FROM boss_history";
