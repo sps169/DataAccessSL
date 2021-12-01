@@ -43,7 +43,7 @@ public class CommitService extends BaseService<Commit,Long, CommitRepo> {
         return commitDTO;
     }
 
-    public CommitDTO insertProject (CommitDTO commitDTO) throws SQLException {
+    public CommitDTO insertCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.insert(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al insertar Commit"));
         CommitDTO result = mapper.toDTO(commit);
         result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
@@ -52,7 +52,7 @@ public class CommitService extends BaseService<Commit,Long, CommitRepo> {
         return result;
     }
 
-    public CommitDTO updateProject (CommitDTO commitDTO) throws SQLException {
+    public CommitDTO updateCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.update(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al actualizar Commit"));
         CommitDTO result = mapper.toDTO(commit);
         result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
@@ -61,7 +61,7 @@ public class CommitService extends BaseService<Commit,Long, CommitRepo> {
         return result;
     }
 
-    public CommitDTO deleteProject (CommitDTO commitDTO) throws SQLException {
+    public CommitDTO deleteCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.delete(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al borrar Commit"));
         CommitDTO result = mapper.toDTO(commit);
         result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
