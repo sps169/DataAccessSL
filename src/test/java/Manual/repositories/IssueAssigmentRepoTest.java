@@ -79,8 +79,8 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(3)
     void testInsert() {
         try{
-            IssueAssignment issueAssignmentToInsert =  new IssueAssignment(16,	8,
-                    LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            IssueAssignment issueAssignmentToInsert =  new IssueAssignment(16,	1,
+                    LocalDateTime.parse("2021-02-09 10:42:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<IssueAssignment> issueAssignmentOptional = repo.insert(issueAssignmentToInsert);
             Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToInsert);
         }catch(SQLException e) {
@@ -93,8 +93,8 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(4)
     void testUpdate() {
         try{
-            IssueAssignment issueAssignmentToUpdate =  new  IssueAssignment(16,	8,
-                    LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            IssueAssignment issueAssignmentToUpdate =  new  IssueAssignment(16,	1,
+                    LocalDateTime.parse("2021-02-09 11:42:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<IssueAssignment> issueAssignmentOptional = repo.update(issueAssignmentToUpdate);
             Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToUpdate);
         }catch(SQLException e) {
@@ -106,8 +106,8 @@ class IssueAssigmentRepoTest extends IssueAssigmentRepo {
     @Order(5)
     void testDelete() {
         try{
-            IssueAssignment issueAssignmentToDelete =  new  IssueAssignment(16,	8,
-                    LocalDateTime.parse("2021-10-10 10:10:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            IssueAssignment issueAssignmentToDelete =  new  IssueAssignment(16,	1,
+                    LocalDateTime.parse("2021-02-09 11:42:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         Optional<IssueAssignment> issueAssignmentOptional = repo.delete(issueAssignmentToDelete);
         Assertions.assertEquals(issueAssignmentOptional.orElse(null), issueAssignmentToDelete);
     }catch(SQLException e) {

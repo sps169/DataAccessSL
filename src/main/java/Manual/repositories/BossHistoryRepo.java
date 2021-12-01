@@ -67,6 +67,8 @@ public class BossHistoryRepo implements CRUDMultRepo<BossHistory,Long> {
         ResultSet result = db.insert(query, bossHistory.getProgrammerId(),bossHistory.getDepartmentId(),
                 bossHistory.getEntryDate(), bossHistory.getLeave_date()).orElseThrow(() ->
                 new SQLException("Error BossHistoryRepository al consultar para insertar boss_history"));
+        System.out.println(bossHistory);
+        System.out.println(result.first());
         db.close();
         if (result != null) {
             return Optional.of(bossHistory);
