@@ -26,6 +26,12 @@ public class RepositoryDTO {
     public RepositoryDTO() {
     }
 
+    public RepositoryDTO(long id, String name, LocalDateTime creationDate) {
+        this.id = id;
+        this.name = name;
+        this.creationDate = creationDate;
+    }
+
     public long getId() {
         return id;
     }

@@ -2,7 +2,6 @@ package Manual.mappers;
 
 import Manual.daos.Programmer;
 import Manual.dtos.ProgrammerDTO;
-import Manual.repositories.DepartmentRepo;
 import Manual.utils.TechnologiesParser;
 
 public class ProgrammerMapper extends BaseMapper<Programmer, ProgrammerDTO>{

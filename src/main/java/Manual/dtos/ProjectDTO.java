@@ -19,6 +19,16 @@ public class ProjectDTO {
     private DepartmentDTO department;
     private RepositoryDTO repository;
 
+    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologiesToSet, float annualBudget, String state) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.technologies = technologies;
+        this.annualBudget = annualBudget;
+        this.state = state;
+    }
+
     public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologies, float annualBudget, String state, ProgrammerDTO projectBoss, DepartmentDTO department, RepositoryDTO repository) {
         this.id = id;
         this.name = name;
@@ -34,6 +44,8 @@ public class ProjectDTO {
 
     public ProjectDTO() {
     }
+
+
 
     public long getId() {
         return id;
