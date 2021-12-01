@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ProjectAssignment {
+    private long id;
     private long programmerId;
     private long projectId;
     private LocalDateTime startDate;
@@ -12,13 +13,15 @@ public class ProjectAssignment {
     public ProjectAssignment() {
     }
 
-    public ProjectAssignment(long programmerId, long projectId, LocalDateTime startDate) {
+    public ProjectAssignment(long id, long programmerId, long projectId, LocalDateTime startDate) {
+        this.id = id;
         this.programmerId = programmerId;
         this.projectId = projectId;
         this.startDate = startDate;
     }
 
-    public ProjectAssignment(long programmerId, long projectId, LocalDateTime startDate, LocalDateTime endDate) {
+    public ProjectAssignment(long id, long programmerId, long projectId, LocalDateTime startDate, LocalDateTime endDate) {
+        this.id = id;
         this.programmerId = programmerId;
         this.projectId = projectId;
         this.startDate = startDate;
@@ -30,7 +33,8 @@ public class ProjectAssignment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectAssignment that = (ProjectAssignment) o;
-        boolean result = programmerId == that.programmerId && projectId == that.projectId && startDate.equals(that.startDate);
+        boolean result = id == that.id && programmerId == that.programmerId
+                && projectId == that.projectId && startDate.equals(that.startDate);
         if (endDate == null && that.endDate == null)
             return result;
         else if (endDate != null && that.endDate != null)
@@ -75,10 +79,19 @@ public class ProjectAssignment {
         this.endDate = endDate;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "ProjectAssignment{" +
-                "programmerId=" + programmerId +
+                "id=" + id +
+                ", programmerId=" + programmerId +
                 ", projectId=" + projectId +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

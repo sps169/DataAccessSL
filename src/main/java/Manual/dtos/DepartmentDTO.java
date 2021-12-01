@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +23,12 @@ public class DepartmentDTO {
         this.finishedProjects = finishedProjects;
         this.ongoingProjects = ongoingProjects;
         this.historyBosses = historyBosses;
+    }
+
+    public DepartmentDTO(long id, String name, float budget) {
+        this.id = id;
+        this.name = name;
+        this.budget = budget;
     }
 
     public Set<ProjectDTO> getFinishedProjects() {
@@ -92,5 +101,14 @@ public class DepartmentDTO {
                 ", ongoingProjects=" + ongoingProjects +
                 ", historyBosses=" + historyBosses +
                 '}';
+    }
+    public static DepartmentDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, DepartmentDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

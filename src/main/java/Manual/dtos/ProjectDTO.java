@@ -1,6 +1,8 @@
 package Manual.dtos;
 
 import Manual.daos.Programmer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -17,6 +19,16 @@ public class ProjectDTO {
     private DepartmentDTO department;
     private RepositoryDTO repository;
 
+    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologiesToSet, float annualBudget, String state) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.technologies = technologies;
+        this.annualBudget = annualBudget;
+        this.state = state;
+    }
+
     public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate, Set<Technologies> technologies, float annualBudget, String state, ProgrammerDTO projectBoss, DepartmentDTO department, RepositoryDTO repository) {
         this.id = id;
         this.name = name;
@@ -32,6 +44,8 @@ public class ProjectDTO {
 
     public ProjectDTO() {
     }
+
+
 
     public long getId() {
         return id;
@@ -127,5 +141,14 @@ public class ProjectDTO {
                 ", department=" + department +
                 ", repository=" + repository +
                 '}';
+    }
+    public static ProjectDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, ProjectDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

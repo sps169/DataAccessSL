@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 
 public class CommitDTO {
@@ -24,6 +27,13 @@ public class CommitDTO {
         this.project = project;
         this.programmer = programmer;
         this.issue = issue;
+    }
+
+    public CommitDTO(long id, String title, String text, LocalDateTime date) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
     }
 
     public long getId() {
@@ -102,5 +112,14 @@ public class CommitDTO {
                 ", programmer=" + programmer +
                 ", issue=" + issue +
                 '}';
+    }
+    public static CommitDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, CommitDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

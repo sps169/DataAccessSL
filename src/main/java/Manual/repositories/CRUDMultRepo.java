@@ -12,7 +12,7 @@ public interface CRUDMultRepo <T, ID>{
     Optional<List<T>> findAll() throws SQLException;
 
     // Obtiene por ID
-    Optional<T> getById(ID id1, ID id2, LocalDateTime date) throws SQLException;
+    Optional<T> getById(ID t) throws SQLException;
 
     // Salva
     Optional<T> insert(T t) throws SQLException;

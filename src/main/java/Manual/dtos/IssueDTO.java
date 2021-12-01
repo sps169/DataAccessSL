@@ -1,5 +1,8 @@
 package Manual.dtos;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -27,6 +30,14 @@ public class IssueDTO {
     }
 
     public IssueDTO() {
+    }
+
+    public IssueDTO(long id, String title, String text, LocalDateTime date, String state) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+        this.state = state;
     }
 
     public long getId() {
@@ -114,5 +125,14 @@ public class IssueDTO {
                 ", boss=" + boss +
                 ", programmers=" + programmers +
                 '}';
+    }
+    public static IssueDTO fromJSON(String json) {
+        final Gson gson = new Gson();
+        return gson.fromJson(json, IssueDTO.class);
+    }
+
+    public String toJSON() {
+        final Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        return prettyGson.toJson(this);
     }
 }

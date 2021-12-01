@@ -18,28 +18,28 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     private static List<ProjectAssignment> projectAssignmentList = new ArrayList<>();
     @BeforeAll
     static void setUp() {
-        projectAssignmentList.add(new ProjectAssignment(9,1,
+        projectAssignmentList.add(new ProjectAssignment(1, 9,1,
                 LocalDateTime.parse("2020-12-11 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
-        projectAssignmentList.add(new ProjectAssignment(10,2,
+        projectAssignmentList.add(new ProjectAssignment(2, 10,2,
                 LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-        projectAssignmentList.add(new ProjectAssignment(11,3,
+        projectAssignmentList.add(new ProjectAssignment(3, 11,3,
                 LocalDateTime.parse("2021-02-09 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
-        projectAssignmentList.add(new ProjectAssignment(12,4,
+        projectAssignmentList.add(new ProjectAssignment(4, 12,4,
                 LocalDateTime.parse("2021-02-09 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
-        projectAssignmentList.add(new ProjectAssignment(13,1,
+        projectAssignmentList.add(new ProjectAssignment(5, 13,1,
                 LocalDateTime.parse("2021-02-01 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
-        projectAssignmentList.add(new ProjectAssignment(14,2,
+        projectAssignmentList.add(new ProjectAssignment(6, 14,2,
                 LocalDateTime.parse("2020-12-01 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-        projectAssignmentList.add(new ProjectAssignment(15,3,
+        projectAssignmentList.add(new ProjectAssignment(7, 15,3,
                 LocalDateTime.parse("2021-02-12 00:00:00",	DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
-        projectAssignmentList.add(new ProjectAssignment(16,4,
+        projectAssignmentList.add(new ProjectAssignment(8, 16,4,
                 LocalDateTime.parse("2021-02-11 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 null));
     }
@@ -59,8 +59,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     @Order(2)
     void testGetById() {
         try{
-        Optional<ProjectAssignment> projectAssignmentToGetById = repo.getById(10L,2L,
-                LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        Optional<ProjectAssignment> projectAssignmentToGetById = repo.getById(2L);
         Assertions.assertEquals(projectAssignmentToGetById.orElse(null), projectAssignmentList.get(1));
         }catch(SQLException e) {
             Assertions.fail();
@@ -71,7 +70,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     @Order(3)
     void testInsert() {
         try{
-            ProjectAssignment projectAssignmentToInsert =  new ProjectAssignment(16,1,
+            ProjectAssignment projectAssignmentToInsert =  new ProjectAssignment(9, 16,1,
                     LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     LocalDateTime.parse("2020-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<ProjectAssignment> projectAssignmentOptional = repo.insert(projectAssignmentToInsert);
@@ -85,7 +84,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     @Order(4)
     void testUpdate() {
         try{
-            ProjectAssignment projectAssignmentToUpdate =  new ProjectAssignment(16,1,
+            ProjectAssignment projectAssignmentToUpdate =  new ProjectAssignment(9, 16,1,
                     LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     LocalDateTime.parse("2020-12-12 01:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             Optional<ProjectAssignment> projectAssignmentOptional = repo.update(projectAssignmentToUpdate);
@@ -100,7 +99,7 @@ class ProjectAssignmentRepoTest extends ProjectAssignmentRepo {
     @Order(5)
     void testDelete() {
         try{
-            ProjectAssignment projectAssignmentToDelete =  new ProjectAssignment(16,1,
+            ProjectAssignment projectAssignmentToDelete =  new ProjectAssignment(9, 16,1,
                     LocalDateTime.parse("2019-12-11 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     LocalDateTime.parse("2020-12-12 01:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         Optional<ProjectAssignment> projectAssignmentOptional = repo.delete(projectAssignmentToDelete);
