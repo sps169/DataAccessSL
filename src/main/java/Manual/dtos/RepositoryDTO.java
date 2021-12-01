@@ -1,5 +1,6 @@
 package Manual.dtos;
 
+import Manual.daos.Commit;
 import Manual.daos.Issue;
 import Manual.daos.Project;
 import com.google.gson.Gson;
@@ -14,13 +15,15 @@ public class RepositoryDTO {
     private LocalDateTime creationDate;
     private Project project;
     private Set<Issue> issues;
+    private Set<Commit> commits;
 
-    public RepositoryDTO(long id, String name, LocalDateTime creationDate, Project project, Set<Issue> issues) {
+    public RepositoryDTO(long id, String name, LocalDateTime creationDate, Project project, Set<Issue> issues, Set<Commit> commits) {
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
         this.project = project;
         this.issues = issues;
+        this.commits = commits;
     }
 
     public RepositoryDTO() {
@@ -72,6 +75,10 @@ public class RepositoryDTO {
         this.issues = issues;
     }
 
+    public Set<Commit> getCommits() {return commits;}
+
+    public void setCommits(Set<Commit> commits) {this.commits = commits;}
+
     @Override
     public String toString() {
         return "RepositoryDTO{" +
@@ -80,6 +87,7 @@ public class RepositoryDTO {
                 ", creationDate=" + creationDate +
                 ", project=" + project +
                 ", issues=" + issues +
+                ", commits=" + commits +
                 '}';
     }
     public static RepositoryDTO fromJSON(String json) {

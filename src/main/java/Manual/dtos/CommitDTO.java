@@ -15,7 +15,6 @@ public class CommitDTO {
     private String text;
     private LocalDateTime date;
     private Repository repository;
-    private Project project;
     private Programmer programmer;
     private Issue issue;
 
@@ -23,13 +22,12 @@ public class CommitDTO {
     }
 
     public CommitDTO(long id, String title, String text, LocalDateTime date, Repository repository,
-                     Project project, Programmer programmer, Issue issue) {
+                     Programmer programmer, Issue issue) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
         this.repository = repository;
-        this.project = project;
         this.programmer = programmer;
         this.issue = issue;
     }
@@ -81,14 +79,6 @@ public class CommitDTO {
         this.repository = repository;
     }
 
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
     public Programmer getProgrammer() {
         return programmer;
     }
@@ -113,7 +103,6 @@ public class CommitDTO {
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", repository=" + repository +
-                ", project=" + project +
                 ", programmer=" + programmer +
                 ", issue=" + issue +
                 '}';

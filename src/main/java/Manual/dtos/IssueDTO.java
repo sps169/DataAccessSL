@@ -15,17 +15,15 @@ public class IssueDTO {
     private String text;
     private LocalDateTime date;
     private String state;
-    private Project project;
     private Repository repository;
     private Programmer boss;
 
-    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, Project project, Repository repository, Programmer boss) {
+    public IssueDTO(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
         this.state = state;
-        this.project = project;
         this.repository = repository;
         this.boss = boss;
     }
@@ -81,14 +79,6 @@ public class IssueDTO {
         this.state = state;
     }
 
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
     public Repository getRepository() {
         return repository;
     }
@@ -113,7 +103,6 @@ public class IssueDTO {
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", state='" + state + '\'' +
-                ", project=" + project +
                 ", repository=" + repository +
                 ", boss=" + boss +
                 '}';
