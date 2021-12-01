@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class IssueAssignment {
+    private long id;
     private long programmerId;
     private long issueId;
     private LocalDateTime startDate;
@@ -11,12 +12,14 @@ public class IssueAssignment {
     public IssueAssignment() {
     }
 
-    public IssueAssignment(long programmerId, long issueId) {
+    public IssueAssignment(long id, long programmerId, long issueId) {
+        this.id = id;
         this.programmerId = programmerId;
         this.issueId = issueId;
     }
 
-    public IssueAssignment(long programmerId, long issueId, LocalDateTime startDate) {
+    public IssueAssignment(long id, long programmerId, long issueId, LocalDateTime startDate) {
+        this.id = id;
         this.programmerId = programmerId;
         this.issueId = issueId;
         this.startDate = startDate;
@@ -27,7 +30,8 @@ public class IssueAssignment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssueAssignment that = (IssueAssignment) o;
-        return programmerId == that.programmerId && issueId == that.issueId && startDate.equals(that.startDate);
+        return id == that.id && programmerId == that.programmerId
+                && issueId == that.issueId && startDate.equals(that.startDate);
     }
 
     @Override
@@ -59,10 +63,19 @@ public class IssueAssignment {
         this.startDate = startDate;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "IssueAssignment{" +
-                "programmerId=" + programmerId +
+                "id=" + id +
+                ", programmerId=" + programmerId +
                 ", issueId=" + issueId +
                 ", startDate=" + startDate +
                 '}';

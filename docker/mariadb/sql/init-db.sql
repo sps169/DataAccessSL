@@ -6,11 +6,12 @@ CREATE DATABASE `data_access_sl`;
 USE `data_access_sl`;
 
 CREATE TABLE `boss_history` (
+                                `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                                 `id_programmer` int(10) unsigned NOT NULL,
                                 `id_department` int(10) unsigned NOT NULL,
                                 `entry_date` datetime NOT NULL,
                                 `leave_date` datetime DEFAULT NULL,
-                                PRIMARY KEY (`id_programmer`,`id_department`,`entry_date`)
+                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `commit` (
@@ -44,10 +45,11 @@ CREATE TABLE `issue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `issue_assignment` (
+                                    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                                     `id_programmer` int(10) unsigned NOT NULL,
                                     `id_issue` int(10) unsigned NOT NULL,
                                     `start_date` datetime NOT NULL,
-                                    PRIMARY KEY (`id_programmer`,`id_issue`,`start_date`)
+                                    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `programmer` (
@@ -75,11 +77,12 @@ CREATE TABLE `project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE project_assignment (
+                                    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                                     `id_programmer` int(10) unsigned NOT NULL,
                                     `id_project` int(10) unsigned NOT NULL,
                                     `start_date` datetime NOT NULL,
                                     `end_date` datetime DEFAULT NULL,
-                                    PRIMARY KEY (`id_programmer`,`id_project`,`start_date`)
+                                    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `repository` (
@@ -92,6 +95,7 @@ CREATE TABLE `repository` (
 
 ALTER TABLE boss_history ADD CONSTRAINT `boss_history_department_FK` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`);
 ALTER TABLE boss_history ADD CONSTRAINT `boss_history_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
+ALTER TABLE boss_history ADD CONSTRAINT `boss_history_programmer_UK` UNIQUE KEY (`id_programmer`, `id_department`, `entry_date`);
 
 ALTER TABLE data_access_sl.commit ADD CONSTRAINT `commit_issue_FK` FOREIGN KEY (`id_issue`) REFERENCES `issue` (`id`);
 ALTER TABLE data_access_sl.commit ADD CONSTRAINT `commit_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
@@ -104,6 +108,7 @@ ALTER TABLE data_access_sl.issue ADD CONSTRAINT `issue_repository_FK` FOREIGN KE
 
 ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_issue_FK` FOREIGN KEY (`id_issue`) REFERENCES `issue` (`id`);
 ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
+ALTER TABLE data_access_sl.issue_assignment ADD CONSTRAINT `issue_assignment_issue_UK` UNIQUE KEY (`id_issue`, `id_programmer`, `start_date`);
 
 ALTER TABLE data_access_sl.programmer ADD CONSTRAINT `programmer_FK` FOREIGN KEY (`id_department`) REFERENCES `department` (`id`);
 
@@ -112,6 +117,7 @@ ALTER TABLE data_access_sl.project ADD CONSTRAINT `projects_department_FK` FOREI
 
 ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_programmer_FK` FOREIGN KEY (`id_programmer`) REFERENCES `programmer` (`id`);
 ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_project_FK` FOREIGN KEY (`id_project`) REFERENCES `project` (`id`);
+ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment_programmer_UK` UNIQUE KEY (`id_programmer`, `id_project`, `start_date`);
 
 ALTER TABLE data_access_sl.repository ADD FOREIGN KEY (`id_project`) REFERENCES `project` (`id`);
 
@@ -224,71 +230,71 @@ VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00.000', NULL, 'C++', 100000, 'active'
  * Project Assignment insertion
  */
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(9, 1, '2020-12-11 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(1, 9, 1, '2020-12-11 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(10, 2, '2019-12-11 00:00:00.000', '2020-12-11 00:00:00.000');
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(2, 10, 2, '2019-12-11 00:00:00.000', '2020-12-11 00:00:00.000');
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(11, 3, '2021-02-09 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(3, 11, 3, '2021-02-09 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(12, 4, '2021-02-09 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(4, 12, 4, '2021-02-09 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(13, 1, '2021-02-01 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(5, 13, 1, '2021-02-01 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(14, 2, '2020-12-01 00:00:00.000', '2020-12-11 00:00:00.000');
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(6, 14, 2, '2020-12-01 00:00:00.000', '2020-12-11 00:00:00.000');
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(15, 3, '2021-02-12 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(7, 15, 3, '2021-02-12 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.project_assignment
-(id_programmer, id_project, start_date, end_date)
-VALUES(16, 4, '2021-02-11 00:00:00.000', NULL);
+(id, id_programmer, id_project, start_date, end_date)
+VALUES(8, 16, 4, '2021-02-11 00:00:00.000', NULL);
 
 /*
  * Boss History insertion
  */
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(1, 2, '2020-12-21 00:00:00.000', '2021-02-21 00:00:00.000');
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(1, 1, 2, '2020-12-21 00:00:00.000', '2021-02-21 00:00:00.000');
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(2, 3, '2019-08-18 00:00:00.000', '2020-01-10 00:00:00.000');
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(2, 2, 3, '2019-08-18 00:00:00.000', '2020-01-10 00:00:00.000');
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(3, 4, '2018-08-10 00:00:00.000', '2019-04-11 00:00:00.000');
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(3, 3, 4, '2018-08-10 00:00:00.000', '2019-04-11 00:00:00.000');
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(4, 1, '2021-01-20 00:00:00.000', '2021-03-25 00:00:00.000');
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(4, 4, 1, '2021-01-20 00:00:00.000', '2021-03-25 00:00:00.000');
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(1, 1, '2021-02-21 00:00:00.000', NULL);
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(5, 1, 1, '2021-02-21 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(2, 2, '2020-01-10 00:00:00.000', NULL);
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(6, 2, 2, '2020-01-10 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(3, 3, '2019-04-11 00:00:00.000', NULL);
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(7, 3, 3, '2019-04-11 00:00:00.000', NULL);
 
 INSERT INTO data_access_sl.boss_history
-(id_programmer, id_department , entry_date , leave_date)
-VALUES(4, 4, '2021-03-25 00:00:00.000', NULL);
+(id, id_programmer, id_department , entry_date , leave_date)
+VALUES(8, 4, 4, '2021-03-25 00:00:00.000', NULL);
 
 /*
  * Repository inserts
@@ -355,28 +361,28 @@ VALUES(8, 'GnomeMakerRepositoryIssue2', 'Se nos ha jodido la ps5 por crackearla'
  * Issue Assignment inserts
  */
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(9,1,'2021-02-09 10:42:00.000'),(13,1,'2021-02-09 10:42:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(1, 9,1,'2021-02-09 10:42:00.000'),(2, 13,1,'2021-02-09 10:42:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(9,2,'2021-03-09 14:41:00.000'),(13,2,'2021-03-09 14:41:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(3, 9,2,'2021-03-09 14:41:00.000'),(4, 13,2,'2021-03-09 14:41:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(10,3,'2019-12-11 10:03:00.000'),(14,3,'2019-12-11 10:03:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(5, 10,3,'2019-12-11 10:03:00.000'),(6, 14,3,'2019-12-11 10:03:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(10,4,'2020-01-07 08:01:00.000'),(14,4,'2020-01-07 08:01:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(7, 10,4,'2020-01-07 08:01:00.000'),(8, 14,4,'2020-01-07 08:01:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(11,5,'2021-02-09 12:00:00.000'),(15,5,'2021-02-09 12:00:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(9, 11,5,'2021-02-09 12:00:00.000'),(10, 15,5,'2021-02-09 12:00:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(11,6,'2021-05-19 09:05:00.000'),(15,6,'2021-05-19 09:05:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(11, 11,6,'2021-05-19 09:05:00.000'),(12, 15,6,'2021-05-19 09:05:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(12,7,'2021-02-09 12:00:00.000'),(16,7,'2021-02-09 12:00:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(13, 12,7,'2021-02-09 12:00:00.000'),(14, 16,7,'2021-02-09 12:00:00.000');
 
 INSERT INTO data_access_sl.issue_assignment
-(id_programmer, id_issue, start_date) VALUES(12,8,'2021-02-11 8:00:00.000'),(16,8,'2021-02-11 8:00:00.000');
+(id, id_programmer, id_issue, start_date) VALUES(15, 12,8,'2021-02-11 8:00:00.000'),(16, 16,8,'2021-02-11 8:00:00.000');
 /*
  * commit inserts
  */

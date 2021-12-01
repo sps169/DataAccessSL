@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BossHistory {
+    private long id;
     private long programmerId;
     private long departmentId;
     private LocalDateTime entryDate;
@@ -12,13 +13,15 @@ public class BossHistory {
     public BossHistory() {
     }
 
-    public BossHistory(long programmerId, long departmentId, LocalDateTime entryDate) {
+    public BossHistory(long id, long programmerId, long departmentId, LocalDateTime entryDate) {
+        this.id = id;
         this.programmerId = programmerId;
         this.departmentId = departmentId;
         this.entryDate = entryDate;
     }
 
-    public BossHistory(long programmerId, long departmentId, LocalDateTime entryDate, LocalDateTime leave_date) {
+    public BossHistory(long id,long programmerId, long departmentId, LocalDateTime entryDate, LocalDateTime leave_date) {
+        this.id = id;
         this.programmerId = programmerId;
         this.departmentId = departmentId;
         this.entryDate = entryDate;
@@ -30,7 +33,8 @@ public class BossHistory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BossHistory that = (BossHistory) o;
-        boolean equals = programmerId == that.programmerId
+        boolean equals = id == that.id
+                && programmerId == that.programmerId
                 && departmentId == that.departmentId
                 && entryDate.equals(that.entryDate);
         if (that.leave_date != null && this.leave_date != null)
@@ -78,15 +82,22 @@ public class BossHistory {
         this.leave_date = leave_date;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "BossHistory{" +
-                "programmerId=" + programmerId +
+                "id=" + id +
+                ", programmerId=" + programmerId +
                 ", departmentId=" + departmentId +
                 ", entryDate=" + entryDate +
                 ", leave_date=" + leave_date +
                 '}';
     }
-
-
 }
