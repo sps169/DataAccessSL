@@ -19,22 +19,23 @@ public class Repository {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime creationDate;
 
+    @OneToOne
     @Column(name = "id_project", nullable = false)
-    private long projectId;
+    private Project project;
 
     public Repository() {
     }
 
-    public Repository(long id, long projectId) {
+    public Repository(long id, Project project) {
         this.id = id;
-        this.projectId = projectId;
+        this.project = project;
     }
 
-    public Repository(long id, String name, LocalDateTime creation_date, long projectId) {
+    public Repository(long id, String name, LocalDateTime creation_date, Project project) {
         this.id = id;
         this.name = name;
         this.creationDate = creation_date;
-        this.projectId = projectId;
+        this.project = project;
     }
 
     @Override
@@ -42,12 +43,12 @@ public class Repository {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Repository that = (Repository) o;
-        return id == that.id && projectId == that.projectId && name.equals(that.name) && creationDate.equals(that.creationDate);
+        return id == that.id && project.equals(that.project) && name.equals(that.name) && creationDate.equals(that.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, creationDate, projectId);
+        return Objects.hash(id, name, creationDate, project);
     }
 
     public long getId() {
@@ -74,12 +75,12 @@ public class Repository {
         this.creationDate = creationDate;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public long getProject() {
+        return project;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setProject(long project) {
+        this.project = project;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class Repository {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", creationDate=" + creationDate +
-                ", projectId=" + projectId +
+                ", project=" + project +
                 '}';
     }
 }

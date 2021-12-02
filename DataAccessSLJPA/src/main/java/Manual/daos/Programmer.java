@@ -31,25 +31,26 @@ public class Programmer {
     @Column(nullable = false)
     private float salary;
 
-    @Column(name = "id_department", nullable = false)
-    private long departmentId;
+    @ManyToOne
+    @JoinColumn(name = "id_department", referencedColumnName = "id", nullable = false)
+    private Department department;
 
     public Programmer() {
     }
 
-    public Programmer(long id, long idDepartment) {
+    public Programmer(long id, Department department) {
         this.id = id;
-        this.departmentId = idDepartment;
+        this.department = department;
     }
 
-    public Programmer(long id, String name, LocalDateTime entry_date, String password, String technologies, float salary, long idDepartment) {
+    public Programmer(long id, String name, LocalDateTime entry_date, String password, String technologies, float salary, Department department) {
         this.id = id;
         this.name = name;
         this.entry_date = entry_date;
         this.password = password;
         this.technologies = technologies;
         this.salary = salary;
-        this.departmentId = idDepartment;
+        this.department = department;
     }
 
     public long getId() {
@@ -100,12 +101,12 @@ public class Programmer {
         this.salary = salary;
     }
 
-    public long getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(long departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -113,12 +114,18 @@ public class Programmer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Programmer that = (Programmer) o;
-        return id == that.id && Float.compare(that.salary, salary) == 0 && departmentId == that.departmentId && name.equals(that.name) && entry_date.equals(that.entry_date) && password.equals(that.password) && technologies.equals(that.technologies);
+        return id == that.id &&
+                Float.compare(that.salary, salary) == 0 &&
+                department.equals(that.department)
+                && name.equals(that.name)
+                && entry_date.equals(that.entry_date)
+                && password.equals(that.password)
+                && technologies.equals(that.technologies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, entry_date, password, technologies, salary, departmentId);
+        return Objects.hash(id, name, entry_date, password, technologies, salary, department);
     }
 
     @Override
@@ -129,7 +136,7 @@ public class Programmer {
                 ", entry_date=" + entry_date +
                 ", technologies='" + technologies + '\'' +
                 ", salary=" + salary +
-                ", idDepartment=" + departmentId +
+                ", idDepartment=" + department +
                 '}';
     }
 }

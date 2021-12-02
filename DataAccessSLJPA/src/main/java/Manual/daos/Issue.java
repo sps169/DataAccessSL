@@ -25,29 +25,31 @@ public class Issue {
     @Column(nullable = false)
     private String state;
 
-    @Column(name = "id_repository", nullable = false)
-    private long repositoryId;
+    @ManyToOne
+    @JoinColumn(name = "id_repository",referencedColumnName = "id", nullable = false)
+    private Repository repository;
 
-    @Column(name = "id_boss", nullable = false)
-    private long bossId;
+    @ManyToOne
+    @JoinColumn(name = "id_boss",referencedColumnName="id", nullable = false)
+    private Programmer boss;
 
     public Issue() {
     }
 
-    public Issue(long id, long repositoryId, long bossId) {
+    public Issue(long id, Repository repository, Programmer boss) {
         this.id = id;
-        this.repositoryId = repositoryId;
-        this.bossId = bossId;
+        this.repository = repository;
+        this.boss = boss;
     }
 
-    public Issue(long id, String title, String text, LocalDateTime date, String state, long repositoryId, long bossId) {
+    public Issue(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
         this.state = state;
-        this.repositoryId = repositoryId;
-        this.bossId = bossId;
+        this.repository = repository;
+        this.boss = boss;
     }
 
     @Override
@@ -55,12 +57,18 @@ public class Issue {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Issue issue = (Issue) o;
-        return id == issue.id && repositoryId == issue.repositoryId && bossId == issue.bossId && title.equals(issue.title) && text.equals(issue.text) && date.equals(issue.date) && state.equals(issue.state);
+        return id == issue.id &&
+                repository.equals(issue.repository) &&
+                boss.equals(issue.boss) &&
+                title.equals(issue.title) &&
+                text.equals(issue.text) &&
+                date.equals(issue.date) &&
+                state.equals(issue.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, text, date, state, repositoryId, bossId);
+        return Objects.hash(id, title, text, date, state, repository, boss);
     }
 
     public long getId() {
@@ -103,20 +111,20 @@ public class Issue {
         this.state = state;
     }
 
-    public long getRepositoryId() {
-        return repositoryId;
+    public Repository getRepository() {
+        return repository;
     }
 
-    public void setRepositoryId(long repositoryId) {
-        this.repositoryId = repositoryId;
+    public void setRepository(Repository repository) {
+        this.repository = repository;
     }
 
-    public long getBossId() {
-        return bossId;
+    public Programmer getBoss() {
+        return boss;
     }
 
-    public void setBossId(long bossId) {
-        this.bossId = bossId;
+    public void setBoss(Programmer boss) {
+        this.boss = boss;
     }
 
     @Override
@@ -127,8 +135,8 @@ public class Issue {
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", state='" + state + '\'' +
-                ", repositoryId=" + repositoryId +
-                ", bossId=" + bossId +
+                ", repository=" + repository +
+                ", boss=" + boss +
                 '}';
     }
 }

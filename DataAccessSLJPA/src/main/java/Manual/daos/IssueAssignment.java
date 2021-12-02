@@ -11,12 +11,12 @@ public class IssueAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "id_programmer", nullable = false)
-    private long programmerId;
-
-    @Column(name = "id_issue", nullable = false)
-    private long issueId;
+    @ManyToOne
+    @JoinColumn(name = "id_programmer",referencedColumnName = "id", nullable = false)
+    private Programmer programmer;
+    @ManyToOne
+    @JoinColumn(name = "id_issue",referencedColumnName = "id",nullable = false)
+    private Issue issue;
 
     @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -25,16 +25,16 @@ public class IssueAssignment {
     public IssueAssignment() {
     }
 
-    public IssueAssignment(long id, long programmerId, long issueId) {
+    public IssueAssignment(long id, Programmer programmer, Issue issue) {
         this.id = id;
-        this.programmerId = programmerId;
-        this.issueId = issueId;
+        this.programmer = programmer;
+        this.issueId = issue;
     }
 
-    public IssueAssignment(long id, long programmerId, long issueId, LocalDateTime startDate) {
+    public IssueAssignment(long id, Programmer programmer, Issue issue, LocalDateTime startDate) {
         this.id = id;
-        this.programmerId = programmerId;
-        this.issueId = issueId;
+        this.programmer = programmer;
+        this.issue = issue;
         this.startDate = startDate;
     }
 
@@ -43,29 +43,31 @@ public class IssueAssignment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IssueAssignment that = (IssueAssignment) o;
-        return id == that.id && programmerId == that.programmerId
-                && issueId == that.issueId && startDate.equals(that.startDate);
+        return id == that.id &&
+                programmer.equals(that.programmer) &&
+                issue.equals(that.issue)  &&
+                startDate.equals(that.startDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(programmerId, issueId, startDate);
+        return Objects.hash(programmer, issue, startDate);
     }
 
-    public long getProgrammerId() {
-        return programmerId;
+    public Programmer getProgrammer() {
+        return programmer;
     }
 
-    public void setProgrammerId(long programmerId) {
-        this.programmerId = programmerId;
+    public void setProgrammer(Programmer programmer) {
+        this.programmer = programmer;
     }
 
-    public long getIssueId() {
-        return issueId;
+    public Issue getIssue() {
+        return issue;
     }
 
-    public void setIssueId(long issueId) {
-        this.issueId = issueId;
+    public void setIssue(Issue issueId) {
+        this.issue = issue;
     }
 
     public LocalDateTime getStartDate() {
@@ -88,8 +90,8 @@ public class IssueAssignment {
     public String toString() {
         return "IssueAssignment{" +
                 "id=" + id +
-                ", programmerId=" + programmerId +
-                ", issueId=" + issueId +
+                ", programmer=" + programmer +
+                ", issue=" + issue +
                 ", startDate=" + startDate +
                 '}';
     }

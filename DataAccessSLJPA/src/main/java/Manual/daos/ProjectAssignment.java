@@ -11,12 +11,12 @@ public class ProjectAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "id_programmer", nullable = false)
-    private long programmerId;
-
-    @Column(name = "id_project", nullable = false)
-    private long projectId;
+    @ManyToOne
+    @JoinColumn(name = "id_programmer",referencedColumnName = "id", nullable = false)
+    private Programmer programmer;
+    @ManyToOne
+    @JoinColumn(name = "id_project",referencedColumnName = "id", nullable = false)
+    private Project project;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
@@ -29,17 +29,17 @@ public class ProjectAssignment {
     public ProjectAssignment() {
     }
 
-    public ProjectAssignment(long id, long programmerId, long projectId, LocalDateTime startDate) {
+    public ProjectAssignment(long id, Programmer programmer, Project project, LocalDateTime startDate) {
         this.id = id;
-        this.programmerId = programmerId;
-        this.projectId = projectId;
+        this.programmer = programmer;
+        this.project = project;
         this.startDate = startDate;
     }
 
-    public ProjectAssignment(long id, long programmerId, long projectId, LocalDateTime startDate, LocalDateTime endDate) {
+    public ProjectAssignment(long id, Programmer programmer, Project project, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
-        this.programmerId = programmerId;
-        this.projectId = projectId;
+        this.programmer = programmer;
+        this.project = project;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -49,8 +49,8 @@ public class ProjectAssignment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProjectAssignment that = (ProjectAssignment) o;
-        boolean result = id == that.id && programmerId == that.programmerId
-                && projectId == that.projectId && startDate.equals(that.startDate);
+        boolean result = id == that.id && programmer.equals(that.programmer)
+                && project.equals(that.project)  && startDate.equals(that.startDate);
         if (endDate == null && that.endDate == null)
             return result;
         else if (endDate != null && that.endDate != null)
@@ -60,23 +60,23 @@ public class ProjectAssignment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(programmerId, projectId, startDate, endDate);
+        return Objects.hash(programmer, project, startDate, endDate);
     }
 
-    public long getProgrammerId() {
-        return programmerId;
+    public Programmer getProgrammer() {
+        return programmer;
     }
 
-    public void setProgrammerId(long programmerId) {
-        this.programmerId = programmerId;
+    public void setProgrammer(long programmerId) {
+        this.programmer = programmer;
     }
 
-    public long getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public LocalDateTime getStartDate() {
@@ -107,8 +107,8 @@ public class ProjectAssignment {
     public String toString() {
         return "ProjectAssignment{" +
                 "id=" + id +
-                ", programmerId=" + programmerId +
-                ", projectId=" + projectId +
+                ", programmer=" + programmer +
+                ", project=" + project +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';

@@ -32,23 +32,25 @@ public class Project {
     @Column(nullable = false)
     private String state;
 
-    @Column(name = "id_boss", nullable = false)
-    private long projectBossId;
+    @ManyToOne
+    @JoinColumn(name = "id_boss",referencedColumnName = "id", nullable = false)
+    private Programmer projectBoss;
 
-    @Column(name = "id_department", nullable = false)
-    private long departmentId;
+    @ManyToOne
+    @JoinColumn(name = "id_department", referencedColumnName = "id",nullable = false)
+    private Department department;
 
     public Project() {
     }
 
-    public Project(long id, long bossId, long departmentId) {
+    public Project(long id, Programmer boss, Department department) {
         this.id = id;
-        this.projectBossId = bossId;
-        this.departmentId = departmentId;
+        this.projectBoss = boss;
+        this.department = department;
     }
 
     public Project(long id, String name, LocalDateTime startDate, LocalDateTime endDate, String technologies,
-                   float annualBudget, String state, long bossId, long departmentId) {
+                   float annualBudget, String state, Programmer boss, Department department) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -56,19 +58,19 @@ public class Project {
         this.technologies = technologies;
         this.annualBudget = annualBudget;
         this.state = state;
-        this.projectBossId = bossId;
-        this.departmentId = departmentId;
+        this.projectBoss = boss;
+        this.department = department;
     }
 
-    public Project(long id, String name, LocalDateTime startDate, String technologies, float annualBudget, String state, long bossId, long departmentId) {
+    public Project(long id, String name, LocalDateTime startDate, String technologies, float annualBudget, String state, Programmer boss, Department department) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.technologies = technologies;
         this.annualBudget = annualBudget;
         this.state = state;
-        this.projectBossId = bossId;
-        this.departmentId = departmentId;
+        this.projectBoss = boss;
+        this.department = department;
     }
 
     @Override
@@ -78,8 +80,8 @@ public class Project {
         Project project = (Project) o;
         boolean result = id == project.id
                 && Float.compare(project.annualBudget, annualBudget) == 0
-                && projectBossId == project.projectBossId
-                && departmentId == project.departmentId
+                && projectBoss.equals(project.projectBoss)
+                && department.equals(project.department)
                 && name.equals(project.name)
                 && startDate.equals(project.startDate)
                 && technologies.equals(project.technologies)
@@ -93,7 +95,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, startDate, endDate, technologies, annualBudget, state, projectBossId, departmentId);
+        return Objects.hash(id, name, startDate, endDate, technologies, annualBudget, state, projectBoss, department);
     }
 
     public long getId() {
@@ -152,20 +154,20 @@ public class Project {
         this.state = state;
     }
 
-    public long getProjectBossId() {
-        return projectBossId;
+    public Programmer getProjectBoss() {
+        return projectBoss;
     }
 
-    public void setProjectBossId(long projectBossId) {
-        this.projectBossId = projectBossId;
+    public void setProjectBoss(long projectBossId) {
+        this.projectBoss = projectBoss;
     }
 
-    public long getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(long departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -178,8 +180,8 @@ public class Project {
                 ", technologies='" + technologies + '\'' +
                 ", annualBudget=" + annualBudget +
                 ", state='" + state + '\'' +
-                ", bossId=" + projectBossId +
-                ", departmentId=" + departmentId +
+                ", boss=" + projectBoss +
+                ", department=" + department +
                 '}';
     }
 }
