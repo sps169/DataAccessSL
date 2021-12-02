@@ -1,6 +1,8 @@
+import Manual.controllers.ProgrammerController;
 import Manual.daos.BossHistory;
 import Manual.repositories.BossHistoryRepo;
 import Manual.repositories.ProgrammerRepo;
+import Manual.services.ProgrammerService;
 
 import java.sql.SQLException;
 
@@ -9,11 +11,10 @@ public class Main {
         Database.checkService();
         BossHistoryRepo bossHistoryRepo = new BossHistoryRepo();
         ProgrammerRepo progRepo = new ProgrammerRepo();
+        System.out.println(ProgrammerController.getInstance().getAllProgrammersJSON());
         try {
-            System.out.println(progRepo.findAll());
-            System.out.println(progRepo.getById(1L));
-            System.out.println(bossHistoryRepo.findAll());
-        } catch (SQLException e) {
+            System.out.println(ProgrammerController.getInstance().deleteProgrammerJSON(new ProgrammerService(new ProgrammerRepo()).getProgrammerById(14L)));
+        }catch (Exception e) {
             e.printStackTrace();
         }
 
