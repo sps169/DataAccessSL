@@ -61,7 +61,7 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
         dto.setCommits(this.getCommitsOfProgrammer(result.getId()));
         dto.setIssuesAssigned(this.getIssuesOfProgrammer(result.getId()));
         dto.setProjects(this.getProjectsOfProgrammer(result.getId()));
-        return mapper.toDTO(result);
+        return dto;
     }
 
     private Set<Project> getProjectsOfProgrammer(long id) throws SQLException {

@@ -3,6 +3,7 @@ package Manual.controllers;
 import Manual.dtos.ProgrammerDTO;
 import Manual.repositories.ProgrammerRepo;
 import Manual.services.ProgrammerService;
+import Manual.utils.GsonConverter;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -25,25 +26,10 @@ public class ProgrammerController {
         return controller;
     }
 
-    ExclusionStrategy strategy = new ExclusionStrategy() {
-        @Override
-        public boolean shouldSkipClass(Class<?> clazz) {
-            return false;
-        }
-
-        @Override
-        public boolean shouldSkipField(FieldAttributes field) {
-            return field.getName().startsWith("password");
-        }
-    };
-
     public String getAllProgrammersJSON() {
         try {
-            final Gson prettyGson = new GsonBuilder()
-                    .addSerializationExclusionStrategy(strategy)
-                    .setPrettyPrinting()
-                    .create();
-            return prettyGson.toJson(programmerService.getAllProgrammers());
+            GsonConverter gsonConverter = new GsonConverter();
+            return gsonConverter.toJson(programmerService.getAllProgrammers());
         }catch(SQLException e) {
             System.err.println("Error al obtener los programadores: " + e.getMessage());
             return "Error al obtener los programadores: " + e.getMessage();
@@ -52,12 +38,8 @@ public class ProgrammerController {
 
     public String getProgrammerByIdJSON(Long id) {
         try {
-            final Gson prettyGson = new GsonBuilder()
-                    .addSerializationExclusionStrategy(strategy)
-                    .setPrettyPrinting()
-                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                    .create();
-            return prettyGson.toJson(programmerService.getProgrammerById(id));
+            GsonConverter gsonConverter = new GsonConverter();
+            return gsonConverter.toJson(programmerService.getProgrammerById(id));
         }catch(SQLException e) {
             System.err.println("Error al obtener programador con id " + id + ": " + e.getMessage());
             return "Error al obtener programador con id " + id + ": " + e.getMessage();
@@ -66,11 +48,8 @@ public class ProgrammerController {
 
     public String insertProgrammerJSON(ProgrammerDTO programmer) {
         try {
-            final Gson prettyGson = new GsonBuilder()
-                    .addSerializationExclusionStrategy(strategy)
-                    .setPrettyPrinting()
-                    .create();
-            return prettyGson.toJson(programmerService.updateProgrammer(programmer));
+            GsonConverter gsonConverter = new GsonConverter();
+            return gsonConverter.toJson(programmerService.updateProgrammer(programmer));
         }catch(SQLException e) {
             System.err.println("Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage());
             return "Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage();
@@ -79,11 +58,8 @@ public class ProgrammerController {
 
     public String updateProgrammerJSON(ProgrammerDTO programmer) {
         try {
-            final Gson prettyGson = new GsonBuilder()
-                    .addSerializationExclusionStrategy(strategy)
-                    .setPrettyPrinting()
-                    .create();
-            return prettyGson.toJson(programmerService.insertProgrammer(programmer));
+            GsonConverter gsonConverter = new GsonConverter();
+            return gsonConverter.toJson(programmerService.insertProgrammer(programmer));
         }catch(SQLException e) {
             System.err.println("Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage());
             return "Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage();
@@ -92,11 +68,8 @@ public class ProgrammerController {
 
     public String deleteProgrammerJSON(ProgrammerDTO programmer) {
         try {
-            final Gson prettyGson = new GsonBuilder()
-                    .addSerializationExclusionStrategy(strategy)
-                    .setPrettyPrinting()
-                    .create();
-            return prettyGson.toJson(programmerService.deleteProgrammer(programmer));
+            GsonConverter gsonConverter = new GsonConverter();
+            return gsonConverter.toJson(programmerService.deleteProgrammer(programmer));
         }catch(SQLException e) {
             System.err.println("Error al borrar programador con id " + programmer.getId() + ": " + e.getMessage());
             return "Error al borrar programador con id " + programmer.getId() + ": " + e.getMessage();
