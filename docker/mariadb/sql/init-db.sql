@@ -125,7 +125,7 @@ VALUES(1, 'Sergio Pérez', '2020-12-21 00:00:00.000', SHA2('aluminio', 256),'Jav
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(2, 'Federico Toledo', '2019-08-18 00:00:00.000', SHA2('cobre44', 256), 'Java;C#;C++;Javascript', 2000.0, 2);
+VALUES(2, 'Federico Toledo', '2019-08-18 00:00:00.000', SHA2('cobre44', 256), 'Java;CShard;CPlusPlus;Javascript', 2000.0, 2);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
@@ -133,7 +133,7 @@ VALUES(3, 'Juanito Unitario', '2018-08-10 00:00:00.000', SHA2('mitrilo90', 256),
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(4, 'Iria Manzanara', '2021-01-20 00:00:00.000', SHA2('oro1504', 256), 'C;C++;Javascript', 2000.0, 4);
+VALUES(4, 'Iria Manzanara', '2021-01-20 00:00:00.000', SHA2('oro1504', 256), 'C;CPlusPlus;Javascript', 2000.0, 4);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
@@ -145,11 +145,11 @@ VALUES(6, 'Vicente Vago', '2020-02-27 00:00:00.000', SHA2('plata9797', 256), 'Ja
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(7, 'Mavi López', '2021-03-01 00:00:00.000', SHA2('iridio19', 256), 'Java;C;C++', 1250.0, 3);
+VALUES(7, 'Mavi López', '2021-03-01 00:00:00.000', SHA2('iridio19', 256), 'Java;C;CPlusPlus', 1250.0, 3);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(8, 'Katarina Loto', '2020-12-11 00:00:00.000', SHA2('niquel34', 256), 'C++', 1000.0, 4);
+VALUES(8, 'Katarina Loto', '2020-12-11 00:00:00.000', SHA2('niquel34', 256), 'CPlusPlus', 1000.0, 4);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
@@ -165,7 +165,7 @@ VALUES(11, 'Ulises Grande', '2018-05-12 00:00:00.000', SHA2('potasio9', 256), 'C
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(12, 'Clementina Pérez', '2021-06-11 00:00:00.000', SHA2('wolframio17', 256), 'Java;C++', 1000.0, 4);
+VALUES(12, 'Clementina Pérez', '2021-06-11 00:00:00.000', SHA2('wolframio17', 256), 'Java;CPlusPlus', 1000.0, 4);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
@@ -181,7 +181,7 @@ VALUES(15, 'Eliseo Santo', '2021-10-20 00:00:00.000', SHA2('hidrogeno5', 256), '
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(16, 'Jesus Matamoros', '2020-03-12 00:00:00.000', SHA2('vanadio65', 256), 'Java;C++', 1200.0, 4);
+VALUES(16, 'Jesus Matamoros', '2020-03-12 00:00:00.000', SHA2('vanadio65', 256), 'Java;CPlusPlus', 1200.0, 4);
 
 /*
  * Project insertion
@@ -196,11 +196,11 @@ VALUES(2, 'GnomeUI', '2019-12-11 00:00:00.000', '2020-12-11 00:00:00.000', 'Java
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(3, 'GnomeTester', '2021-02-09 00:00:00.000', NULL, 'Java;C++', 100000, 'active', 7, 3);
+VALUES(3, 'GnomeTester', '2021-02-09 00:00:00.000', NULL, 'Java;CPlusPlus', 100000, 'active', 7, 3);
 
 INSERT INTO data_access_sl.project
 (id, name, start_date, end_date, technologies, annual_budget, state, id_boss, id_department)
-VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00.000', NULL, 'C++', 100000, 'active', 8, 4);
+VALUES(4, 'GnomeMaker', '2021-02-09 00:00:00.000', NULL, 'CPlusPlus', 100000, 'active', 8, 4);
 
 /*
  * Project Assignment insertion
