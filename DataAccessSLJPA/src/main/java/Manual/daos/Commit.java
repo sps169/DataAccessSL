@@ -1,35 +1,56 @@
 package Manual.daos;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "commit")
 public class Commit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String text;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime date;
-    private long repositoryId;
-    private long programmerId;
-    private long issueId;
+
+    @ManyToOne
+    @JoinColumn(name = "id_repository", referencedColumnName = "id", nullable = false)
+    private Repository repository;
+
+    @ManyToOne
+    @JoinColumn(name = "id_programmer", referencedColumnName = "id", nullable = false)
+    private Programmer programmer;
+
+    @ManyToOne
+    @JoinColumn(name = "id_issue", referencedColumnName = "id", nullable = false)
+    private Issue issue;
 
     public Commit() {
     }
 
-    public Commit(long id, long repositoryId, long programmerId, long id_issue) {
+    public Commit(long id, Repository repository, Programmer programmer, Issue issue) {
         this.id = id;
-        this.repositoryId = repositoryId;
-        this.programmerId = programmerId;
-        this.issueId = id_issue;
+        this.repository = repository;
+        this.programmer = programmer;
+        this.issue = issue;
     }
 
-    public Commit(long id, String title, String text, LocalDateTime date, long repositoryId, long programmerId, long id_issue) {
+    public Commit(long id, String title, String text, LocalDateTime date, Repository repository, Programmer programmer, Issue issue) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.date = date;
-        this.repositoryId = repositoryId;
-        this.programmerId = programmerId;
-        this.issueId = id_issue;
+        this.repository = repository;
+        this.programmer = programmer;
+        this.issue = issue;
     }
 
     @Override
@@ -37,12 +58,12 @@ public class Commit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Commit commit = (Commit) o;
-        return id == commit.id && repositoryId == commit.repositoryId && programmerId == commit.programmerId && issueId == commit.issueId && title.equals(commit.title) && text.equals(commit.text) && date.equals(commit.date);
+        return id == commit.id && repository.equals(commit.repository) && programmer.equals(commit.programmer) && issue.equals(commit.issue) && title.equals(commit.title) && text.equals(commit.text) && date.equals(commit.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, text, date, repositoryId, programmerId, issueId);
+        return Objects.hash(id, title, text, date, repository, programmer, issue);
     }
 
     public long getId() {
@@ -77,28 +98,28 @@ public class Commit {
         this.date = date;
     }
 
-    public long getRepositoryId() {
-        return repositoryId;
+    public Repository getRepository() {
+        return repository;
     }
 
-    public void setRepositoryId(long repositoryId) {
-        this.repositoryId = repositoryId;
+    public void setRepository(Repository repositoryId) {
+        this.repository = repositoryId;
     }
 
-    public long getProgrammerId() {
-        return programmerId;
+    public Programmer getProgrammer() {
+        return programmer;
     }
 
-    public void setProgrammerId(long programmerId) {
-        this.programmerId = programmerId;
+    public void setProgrammer(Programmer programmerId) {
+        this.programmer = programmerId;
     }
 
-    public long getIssueId() {
-        return issueId;
+    public Issue getIssue() {
+        return issue;
     }
 
-    public void setIssueId(long issueId) {
-        this.issueId = issueId;
+    public void setIssue(Issue issue) {
+        this.issue = issue;
     }
 
     @Override
@@ -108,9 +129,9 @@ public class Commit {
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 ", date=" + date +
-                ", repositoryId=" + repositoryId +
-                ", programmerId=" + programmerId +
-                ", issueId=" + issueId +
+                ", repository=" + repository +
+                ", programmer=" + programmer +
+                ", issue=" + issue +
                 '}';
     }
 }

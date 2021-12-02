@@ -1,13 +1,26 @@
 package Manual.daos;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "repository")
 public class Repository {
-     private long id;
-     private String name;
-     private LocalDateTime creationDate;
-     private long projectId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "creation_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime creationDate;
+
+    @Column(name = "id_project", nullable = false)
+    private long projectId;
 
     public Repository() {
     }

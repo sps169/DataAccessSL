@@ -1,12 +1,24 @@
 package Manual.daos;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "department")
 public class Department {
-     private long id;
-     private String name;
-     private long departmentBossId;
-     private float budget;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "boss", nullable = false)
+    private long departmentBossId;
+
+    @Column(nullable = false)
+    private float budget;
 
     public Department() {
     }

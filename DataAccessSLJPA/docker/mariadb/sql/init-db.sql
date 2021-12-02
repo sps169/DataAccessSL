@@ -125,7 +125,7 @@ VALUES(1, 'Sergio Pérez', '2020-12-21 00:00:00.000', SHA2('aluminio', 256),'Jav
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)
-VALUES(2, 'Federico Toledo', '2019-08-18 00:00:00.000', SHA2('cobre44', 256), 'Java;CShard;CPlusPlus;Javascript', 2000.0, 2);
+VALUES(2, 'Federico Toledo', '2019-08-18 00:00:00.000', SHA2('cobre44', 256), 'Java;CSharp;CPlusPlus;Javascript', 2000.0, 2);
 
 INSERT INTO data_access_sl.programmer
 (id, name, entry_date, password, technologies, salary, id_department)

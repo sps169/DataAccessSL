@@ -1,17 +1,41 @@
 package Manual.daos;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "project")
 public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
+
+    @Column(nullable = false)
     private String technologies;
+
+    @Column(nullable = false)
     private float annualBudget;
+
+    @Column(nullable = false)
     private String state;
+
+    @Column(name = "id_boss", nullable = false)
     private long projectBossId;
+
+    @Column(name = "id_department", nullable = false)
     private long departmentId;
 
     public Project() {

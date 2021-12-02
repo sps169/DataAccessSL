@@ -76,7 +76,7 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     private Set<Commit> getSetCommits(long id) throws SQLException {
         CommitService commitService = new CommitService(new CommitRepo());
         return commitService.findAll().orElseThrow(() -> new SQLException("Error al obtener Commits para Repository"))
-                .stream().filter(s->s.getRepositoryId()==id).collect(Collectors.toSet());
+                .stream().filter(s->s.getRepository()==id).collect(Collectors.toSet());
     }
     private Set<Issue> getSetIssues(long id) throws SQLException {
         IssueService issueService = new IssueService(new IssueRepo());

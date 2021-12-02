@@ -68,8 +68,8 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
         DataBaseController db = DataBaseController.getInstance();
         db.open();
         ResultSet result = db.insert(query, commit.getId(),commit.getText(),commit.getTitle(),
-                commit.getDate(), commit.getRepositoryId(),commit.getProgrammerId(),
-                commit.getIssueId()).orElseThrow(() ->
+                commit.getDate(), commit.getRepository(),commit.getProgrammer(),
+                commit.getIssue()).orElseThrow(() ->
                 new SQLException("Error CommitRepository al consultar para insertar commit"));
         db.close();
         if (result.next()) {
@@ -86,8 +86,8 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
         DataBaseController db = DataBaseController.getInstance();
         db.open();
         int result = db.update(query,commit.getText(),commit.getTitle(),
-                commit.getDate(), commit.getRepositoryId(),commit.getProgrammerId(),
-                commit.getIssueId(), commit.getId());
+                commit.getDate(), commit.getRepository(),commit.getProgrammer(),
+                commit.getIssue(), commit.getId());
         db.close();
         if (result > 0)
             return Optional.of(commit);

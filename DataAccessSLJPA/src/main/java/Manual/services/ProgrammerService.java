@@ -91,7 +91,7 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
     private Set<Commit> getCommitsOfProgrammer(long id) throws SQLException {
         CommitService commitsService = new CommitService(new CommitRepo());
         return commitsService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los commits de un programador"))
-                .stream().filter(s -> s.getProgrammerId() == id).collect(Collectors.toSet());
+                .stream().filter(s -> s.getProgrammer() == id).collect(Collectors.toSet());
 
     }
 }

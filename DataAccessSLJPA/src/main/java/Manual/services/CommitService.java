@@ -14,7 +14,6 @@ import Manual.repositories.RepositoryRepo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CommitService extends BaseService<Commit,Long, CommitRepo> {
     private final CommitMapper mapper = new CommitMapper();
@@ -26,9 +25,9 @@ public class CommitService extends BaseService<Commit,Long, CommitRepo> {
         List<CommitDTO> result = new ArrayList<>();
         for(Commit commit: commits){
             CommitDTO commitDTO = mapper.toDTO(commit);
-            commitDTO.setRepository(this.getRepositoryById(commit.getRepositoryId()));
-            commitDTO.setProgrammer(this.getProgrammerById(commit.getProgrammerId()));
-            commitDTO.setIssue(this.getIssueById(commit.getIssueId()));
+            commitDTO.setRepository(this.getRepositoryById(commit.getRepository()));
+            commitDTO.setProgrammer(this.getProgrammerById(commit.getProgrammer()));
+            commitDTO.setIssue(this.getIssueById(commit.getIssue()));
             result.add(commitDTO);
         }
         return result;
@@ -37,36 +36,36 @@ public class CommitService extends BaseService<Commit,Long, CommitRepo> {
     public CommitDTO getCommitById(Long id) throws SQLException {
         Commit commit = this.getById(id).orElseThrow(() -> new SQLException("Error al obtener Project por Id "+id));
         CommitDTO commitDTO = mapper.toDTO(commit);
-        commitDTO.setRepository(this.getRepositoryById(commit.getRepositoryId()));
-        commitDTO.setProgrammer(this.getProgrammerById(commit.getProgrammerId()));
-        commitDTO.setIssue(this.getIssueById(commit.getIssueId()));
+        commitDTO.setRepository(this.getRepositoryById(commit.getRepository()));
+        commitDTO.setProgrammer(this.getProgrammerById(commit.getProgrammer()));
+        commitDTO.setIssue(this.getIssueById(commit.getIssue()));
         return commitDTO;
     }
 
     public CommitDTO insertCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.insert(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al insertar Commit"));
         CommitDTO result = mapper.toDTO(commit);
-        result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
-        result.setProgrammer(this.getProgrammerById(commit.getProgrammerId()));
-        result.setIssue(this.getIssueById(commit.getIssueId()));
+        result.setRepository(this.getRepositoryById(commit.getRepository()));
+        result.setProgrammer(this.getProgrammerById(commit.getProgrammer()));
+        result.setIssue(this.getIssueById(commit.getIssue()));
         return result;
     }
 
     public CommitDTO updateCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.update(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al actualizar Commit"));
         CommitDTO result = mapper.toDTO(commit);
-        result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
-        result.setProgrammer(this.getProgrammerById(commit.getProgrammerId()));
-        result.setIssue(this.getIssueById(commit.getIssueId()));
+        result.setRepository(this.getRepositoryById(commit.getRepository()));
+        result.setProgrammer(this.getProgrammerById(commit.getProgrammer()));
+        result.setIssue(this.getIssueById(commit.getIssue()));
         return result;
     }
 
     public CommitDTO deleteCommit (CommitDTO commitDTO) throws SQLException {
         Commit commit = this.delete(mapper.fromDTO(commitDTO)).orElseThrow(()->new SQLException("Error al borrar Commit"));
         CommitDTO result = mapper.toDTO(commit);
-        result.setRepository(this.getRepositoryById(commit.getRepositoryId()));
-        result.setProgrammer(this.getProgrammerById(commit.getProgrammerId()));
-        result.setIssue(this.getIssueById(commit.getIssueId()));
+        result.setRepository(this.getRepositoryById(commit.getRepository()));
+        result.setProgrammer(this.getProgrammerById(commit.getProgrammer()));
+        result.setIssue(this.getIssueById(commit.getIssue()));
         return result;
     }
 

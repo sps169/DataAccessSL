@@ -27,10 +27,10 @@ class ProjectRepoTest extends ProgrammerRepo {
                 "Java", 90000,"ended",6,2));
         listProjects.add(new Project(3,"GnomeTester",
                 LocalDateTime.parse("2021-02-09 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null,"Java;C++",100000,"active",7,3));
+                null,"Java;CPlusPlus",100000,"active",7,3));
         listProjects.add(new Project(4,"GnomeMaker",
                 LocalDateTime.parse("2021-02-09 00:00:00",DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                null,"C++",100000,"active",8,4));
+                null,"CPlusPlus",100000,"active",8,4));
     }
 
     @Test
