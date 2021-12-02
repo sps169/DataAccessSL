@@ -32,11 +32,15 @@ public class ProjectService extends BaseService<Project,Long, ProjectRepo> {
     }
 
     public ProjectDTO insertProject(ProjectDTO project) throws SQLException {
+        if (checkRestrictions(project))
+            throw new SQLException("Error al insertar projecto puesto que jefe de proyecto no cumple las condiciones");
         Project result = this.insert(mapper.fromDTO(project)).orElseThrow(() -> new SQLException("Error al insertar el projecto con id: "+ project.getId()));
         return fillProject(result);
     }
 
     public ProjectDTO updateProject(ProjectDTO project) throws SQLException {
+        if (checkRestrictions(project))
+            throw new SQLException("Error al actualizar projecto puesto que jefe de proyecto no cumple las condiciones");
         Project result = this.update(mapper.fromDTO(project)).orElseThrow(() -> new SQLException("Error al actualizar el projecto con id: "+ project.getId()));
         return fillProject(result);
     }
@@ -44,6 +48,14 @@ public class ProjectService extends BaseService<Project,Long, ProjectRepo> {
     public ProjectDTO deleteProject(ProjectDTO project) throws SQLException {
         Project result = this.delete(mapper.fromDTO(project)).orElseThrow(() -> new SQLException("Error al eliminar el projecto con id: "+ project.getId()));
         return fillProject(result);
+    }
+
+    private boolean checkRestrictions(ProjectDTO project) throws SQLException {
+        DepartmentService departmentService = new DepartmentService(new DepartmentRepo());
+        ProgrammerService programmerService = new ProgrammerService(new ProgrammerRepo());
+        return departmentService.getDepartmentById(project.getDepartment().getId()).getDepartmentBoss().equals(project.getProjectBoss())
+                || programmerService.getProgrammerById(project.getProjectBoss().getId()).getProjects()
+                .stream().anyMatch(s -> s.getDepartmentId() == project.getDepartment().getId());
     }
 
     private ProjectDTO fillProject(Project project) throws SQLException {

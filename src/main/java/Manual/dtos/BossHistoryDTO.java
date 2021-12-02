@@ -26,6 +26,14 @@ public class BossHistoryDTO {
         this.leaveDate = leaveDate;
     }
 
+    public BossHistoryDTO(Programmer programmer, Department department,
+                          LocalDateTime entryDate, LocalDateTime leaveDate) {
+        this.programmer = programmer;
+        this.department = department;
+        this.entryDate = entryDate;
+        this.leaveDate = leaveDate;
+    }
+
     public BossHistoryDTO(long id, LocalDateTime entryDate, LocalDateTime leaveDate) {
         this.id = id;
         this.entryDate = entryDate;

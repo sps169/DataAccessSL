@@ -1,23 +1,14 @@
 package Manual.services;
 
-import Manual.daos.BossHistory;
-import Manual.daos.Department;
-import Manual.daos.Programmer;
-import Manual.daos.Project;
+import Manual.daos.*;
+import Manual.dtos.BossHistoryDTO;
 import Manual.dtos.DepartmentDTO;
-import Manual.dtos.ProjectDTO;
 import Manual.mappers.DepartmentMapper;
-import Manual.repositories.BossHistoryRepo;
-import Manual.repositories.DepartmentRepo;
-import Manual.repositories.ProgrammerRepo;
-import Manual.repositories.ProjectRepo;
-import jdk.internal.org.jline.reader.History;
+import Manual.repositories.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DepartmentService extends BaseService<Department,Long, DepartmentRepo> {
@@ -41,13 +32,51 @@ public class DepartmentService extends BaseService<Department,Long, DepartmentRe
     }
 
     public DepartmentDTO insertDepartment(DepartmentDTO department) throws SQLException {
+        if (this.isBossWorkingAtProyects(department.getDepartmentBoss().getId()))
+            throw new SQLException("Error al insertar departamento: el jefe participa en proyectos activos");
         Department result = this.insert(mapper.fromDTO(department)).orElseThrow(() -> new SQLException("Error al insertar departamento con id" + department.getId()));
+        this.insertNewBossInHistory(department);
         return fillDepartment(result);
     }
 
+    private void insertNewBossInHistory(DepartmentDTO departmentDTO) throws SQLException {
+        BossHistoryService bossHistoryService = new BossHistoryService(new BossHistoryRepo());
+        bossHistoryService.insertBossHistory(new BossHistoryDTO(departmentDTO.getDepartmentBoss(), mapper.fromDTO(departmentDTO), LocalDateTime.now(), null));
+    }
+
+    private boolean isBossWorkingAtProyects(Long id_boss) throws SQLException {
+        ProjectAssignmentService projectAssignmentService = new ProjectAssignmentService(new ProjectAssignmentRepo());
+        return projectAssignmentService.getAllProjectAssignments().stream().anyMatch(s -> s.getProject().getState().equals("active") && s.getProgrammer().getId() == id_boss);
+    }
+
     public DepartmentDTO updateDepartment(DepartmentDTO department) throws SQLException {
+        boolean hasNewBoss = false;
+        if (this.isBossWorkingAtProyects(department.getDepartmentBoss().getId()))
+            throw new SQLException("Error al actualizar departamento: el jefe participa en proyectos activos");
+        hasNewBoss = updateOldBoss(department);
         Department result = this.update(mapper.fromDTO(department)).orElseThrow(() -> new SQLException("Error al actualizar departamento con id" + department.getId()));
-        return fillDepartment(result);
+        DepartmentDTO resultDTO = fillDepartment(result);
+        if (hasNewBoss)
+            insertNewBossInHistory(department);
+        return resultDTO;
+    }
+
+    private boolean updateOldBoss(DepartmentDTO department) throws SQLException {
+        BossHistoryService bossHistoryService = new BossHistoryService(new BossHistoryRepo());
+        BossHistoryDTO bossHistoryLastBoss = bossHistoryService.getAllBossHistory().stream().filter(s -> s.getDepartment().getId() == department.getId()).max((o1, o2) -> {
+            if (o1.getEntryDate().isBefore(o2.getEntryDate()))
+                return -1;
+            else if(o1.getEntryDate().isAfter(o2.getEntryDate()))
+                return 1;
+            else
+                return 0;
+        }).orElseThrow(() ->new SQLException("No existe ultimo jefe"));
+        if (!bossHistoryLastBoss.getProgrammer().equals(department.getDepartmentBoss())) {
+            bossHistoryLastBoss.setLeaveDate(LocalDateTime.now());
+            bossHistoryService.updateBossHistory(bossHistoryLastBoss);
+            return true;
+        }
+        return false;
     }
 
     public DepartmentDTO deleteDepartment(DepartmentDTO department) throws SQLException {
