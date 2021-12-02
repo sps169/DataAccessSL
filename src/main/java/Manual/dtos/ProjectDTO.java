@@ -20,7 +20,7 @@ public class ProjectDTO {
     private Department department;
 
     public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate,
-                      Set<Technologies> technologiesToSet, float annualBudget, String state) {
+                      Set<Technologies> technologies, float annualBudget, String state) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;

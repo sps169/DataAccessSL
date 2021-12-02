@@ -1,9 +1,6 @@
 package Manual.dtos;
 
-import Manual.daos.Commit;
-import Manual.daos.Department;
-import Manual.daos.IssueAssignment;
-import Manual.daos.ProjectAssignment;
+import Manual.daos.*;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
@@ -31,14 +28,14 @@ public class ProgrammerDTO {
     private Set<Technologies> technologies;
     private float salary;
     private Department department;
-    private Set<ProjectAssignment> projects;
+    private Set<Project> projects;
     private Set<Commit> commits;
-    private Set<IssueAssignment> issuesAssigned;
+    private Set<Issue> issuesAssigned;
 
     public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password,
                          Set<Technologies> technologies, float salary, Department department,
-                         Set<ProjectAssignment> projects, Set<Commit> commits,
-                         Set<IssueAssignment> issuesAssigned) {
+                         Set<Project> projects, Set<Commit> commits,
+                         Set<Issue> issuesAssigned) {
         this.id = id;
         this.name = name;
         this.entry_date = entry_date;
@@ -119,11 +116,11 @@ public class ProgrammerDTO {
         this.technologies = technologies;
     }
 
-    public Set<ProjectAssignment> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(Set<ProjectAssignment> projects) {
+    public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
 
@@ -135,11 +132,11 @@ public class ProgrammerDTO {
         this.commits = commits;
     }
 
-    public Set<IssueAssignment> getIssuesAssigned() {
+    public Set<Issue> getIssuesAssigned() {
         return issuesAssigned;
     }
 
-    public void setIssuesAssigned(Set<IssueAssignment> issuesAssigned) {
+    public void setIssuesAssigned(Set<Issue> issuesAssigned) {
         this.issuesAssigned = issuesAssigned;
     }
 
