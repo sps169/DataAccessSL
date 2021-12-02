@@ -2,6 +2,7 @@ package Manual.daos;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "department")
@@ -14,24 +15,25 @@ public class Department {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "boss", nullable = false)
-    private long departmentBossId;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true )
+    private Set<BossHistory> bossHistory;
 
     @Column(nullable = false)
     private float budget;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
+    private Set<Programmer> programmers;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
+    private Set<Project> projects;
+
     public Department() {
     }
 
-    public Department(long id, long departmentBossId) {
-        this.id = id;
-        this.departmentBossId = departmentBossId;
-    }
-
-    public Department(long id, String name, long departmentBossId, float budget) {
+    public Department(long id, String name, Programmer departmentBoss, float budget) {
         this.id = id;
         this.name = name;
-        this.departmentBossId = departmentBossId;
+        this.departmentBoss = departmentBoss;
         this.budget = budget;
     }
 
@@ -40,12 +42,12 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return id == that.id && departmentBossId == that.departmentBossId && Float.compare(that.budget, budget) == 0 && name.equals(that.name);
+        return id == that.id && Float.compare(that.budget, budget) == 0 && name.equals(that.name) && bossHistory.equals(that.bossHistory) && programmers.equals(that.programmers) && projects.equals(that.projects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, departmentBossId, budget);
+        return Objects.hash(id, name, departmentBoss, budget);
     }
 
     public long getId() {
@@ -64,12 +66,12 @@ public class Department {
         this.name = name;
     }
 
-    public long getDepartmentBossId() {
-        return departmentBossId;
+    public Programmer getDepartmentBoss() {
+        return departmentBoss;
     }
 
-    public void setDepartmentBossId(long departmentBossId) {
-        this.departmentBossId = departmentBossId;
+    public void setDepartmentBoss(Programmer departmentBossId) {
+        this.departmentBoss = departmentBossId;
     }
 
     public float getBudget() {
@@ -85,7 +87,7 @@ public class Department {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", departmentBossId=" + departmentBossId +
+                ", departmentBoss=" + departmentBoss +
                 ", budget=" + budget +
                 '}';
     }

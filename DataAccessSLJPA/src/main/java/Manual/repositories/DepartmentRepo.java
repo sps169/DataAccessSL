@@ -1,7 +1,6 @@
 package Manual.repositories;
 
 import Manual.daos.Department;
-import Manual.daos.Programmer;
 import Manual.database.DataBaseController;
 
 import java.sql.ResultSet;
@@ -60,7 +59,7 @@ public class DepartmentRepo implements CRUDRepo<Department,Long> {
         String query = "INSERT INTO department VALUES (?,?,?,?)";
         DataBaseController db = DataBaseController.getInstance();
         db.open();
-        ResultSet result = db.insert(query, department.getId(),department.getName(),department.getDepartmentBossId(),
+        ResultSet result = db.insert(query, department.getId(),department.getName(),department.getDepartmentBoss(),
                 department.getBudget()).orElseThrow(() ->
                 new SQLException("Error DepartmentRepository al consultar para insertar department"));
         db.close();
@@ -76,7 +75,7 @@ public class DepartmentRepo implements CRUDRepo<Department,Long> {
         String query = "UPDATE department SET name = ?, boss = ?, budget = ? WHERE id = ?";
         DataBaseController db = DataBaseController.getInstance();
         db.open();
-        int result = db.update(query,department.getName(),department.getDepartmentBossId(),
+        int result = db.update(query,department.getName(),department.getDepartmentBoss(),
                 department.getBudget(), department.getId());
         db.close();
         if (result > 0)
