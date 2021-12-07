@@ -13,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "commit")
+@NamedQuery(name = "Commit.findAll", query = "SELECT b FROM Commit b")
 public class Commit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

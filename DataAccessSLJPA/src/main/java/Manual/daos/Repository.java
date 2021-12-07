@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "repository")
+@NamedQuery(name = "Repository.findAll", query = "SELECT b FROM Repository b")
 public class Repository {
 
     @Id
