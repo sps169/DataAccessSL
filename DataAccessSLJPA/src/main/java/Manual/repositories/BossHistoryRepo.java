@@ -3,6 +3,7 @@ package Manual.repositories;
 import Manual.daos.BossHistory;
 import Manual.utils.HibernateController;
 
+import javax.persistence.TypedQuery;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,10 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
     @Override
     public Optional<List<BossHistory>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        TypedQuery<BossHistory> query = hb.getManager().createNamedQuery("BossHistory.findAll", BossHistory.class);
+        List<BossHistory> list = query.getResultList();
+        hb.close();
+        return Optional.of(list);
     }
 
     @Override
@@ -58,6 +63,8 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
                 hb.getTransaction().rollback();
             hb.close();
         }
+
+        return Optional.of(bossHistory);
     }
 
     @Override
@@ -77,5 +84,7 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
                 hb.getTransaction().rollback();
             hb.close();
         }
+
+        return Optional.of(bossHistory);
     }
 }

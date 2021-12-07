@@ -13,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "boss_history")
+@NamedQuery(name = "BossHistory.findAll", query = "SELECT b FROM BossHistory b")
 public class BossHistory {
 
     @Id
