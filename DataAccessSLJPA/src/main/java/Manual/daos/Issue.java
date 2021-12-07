@@ -14,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "issue")
+@NamedQuery(name = "Issue.findAll", query = "SELECT b FROM Issue b")
 public class Issue {
 
     @Id

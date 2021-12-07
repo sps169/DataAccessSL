@@ -13,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "issue_assignment")
+@NamedQuery(name = "IssueAssignment.findAll", query = "SELECT b FROM IssueAssignment b")
 public class IssueAssignment {
 
     @Id

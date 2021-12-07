@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "department")
+@NamedQuery(name = "Department.findAll", query = "SELECT b FROM Department b")
 public class Department {
 
     @Id
