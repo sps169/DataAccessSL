@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -22,7 +23,7 @@ public class Department {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Programmer boss;
 
     @Column(nullable = false)
@@ -34,5 +35,28 @@ public class Department {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
     private Set<BossHistory> bosses;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return id == that.id && Float.compare(that.budget, budget) == 0 && name.equals(that.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, budget);
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", boss=" + boss +
+                ", budget=" + budget +
+                ", projects=" + projects +
+                ", bosses=" + bosses +
+                '}';
+    }
 }

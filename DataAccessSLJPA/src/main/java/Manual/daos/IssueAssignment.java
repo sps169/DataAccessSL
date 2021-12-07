@@ -27,6 +27,27 @@ public class IssueAssignment {
     private Issue issue;
 
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime startDate;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IssueAssignment that = (IssueAssignment) o;
+        return id == that.id && startDate.equals(that.startDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startDate);
+    }
+
+    @Override
+    public String toString() {
+        return "IssueAssignment{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                '}';
+    }
 }

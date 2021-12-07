@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -24,7 +25,7 @@ public class Repository {
     private String name;
 
     @Column(name = "creation_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime creationDate;
 
     @OneToOne
@@ -36,4 +37,28 @@ public class Repository {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
     private Set<Commit> commits;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Repository that = (Repository) o;
+        return id == that.id && name.equals(that.name) && creationDate.equals(that.creationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, creationDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", creationDate=" + creationDate +
+                ", issues=" + issues +
+                ", commits=" + commits +
+                '}';
+    }
 }

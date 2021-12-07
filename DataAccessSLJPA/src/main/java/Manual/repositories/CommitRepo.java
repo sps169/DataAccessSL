@@ -19,6 +19,14 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
         return Optional.of(list);
     }
 
+    public List<Commit> finddAll() throws SQLException {
+        HibernateController hb = HibernateController.getInstance();
+        TypedQuery<Commit> query = hb.getManager().createNamedQuery("Commit.findAll", Commit.class);
+        List<Commit> list = query.getResultList();
+        hb.close();
+        return list;
+    }
+
     @Override
     public Optional<Commit> getById(Long id) throws SQLException {
         HibernateController hb = HibernateController.getInstance();
@@ -38,7 +46,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
             hb.getTransaction().commit();
             hb.close();
         }catch (Exception ex) {
-            throw new SQLException("Error al insertar Commit");
+            throw new SQLException("Error al insertar Commit" + ex.getMessage());
         }finally {
             if (hb.getTransaction().isActive())
                 hb.getTransaction().rollback();
@@ -58,7 +66,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
             hb.getTransaction().commit();
             hb.close();
         }catch (Exception ex) {
-            throw new SQLException("Error al update boss history");
+            throw new SQLException("Error al update Commit" + ex.getMessage());
         }finally {
             if (hb.getTransaction().isActive())
                 hb.getTransaction().rollback();
@@ -79,7 +87,7 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
             hb.getTransaction().commit();
             hb.close();
         }catch (Exception ex) {
-            throw new SQLException("Error al remove boss history");
+            throw new SQLException("Error al remove Commit" + ex.getMessage());
         }finally {
             if (hb.getTransaction().isActive())
                 hb.getTransaction().rollback();

@@ -23,18 +23,18 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 
     @Column(nullable = false)
     private String technologies;
 
-    @Column(nullable = false)
+    @Column(name = "annual_budget", nullable = false)
     private float annualBudget;
 
     @Column(nullable = false)
@@ -51,4 +51,31 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "project", orphanRemoval = true)
     private Repository repository;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return id == project.id && Float.compare(project.annualBudget, annualBudget) == 0 && name.equals(project.name) && startDate.equals(project.startDate) && endDate.equals(project.endDate) && technologies.equals(project.technologies) && state.equals(project.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, startDate, endDate, technologies, annualBudget, state);
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", technologies='" + technologies + '\'' +
+                ", annualBudget=" + annualBudget +
+                ", state='" + state + '\'' +
+                ", projectBoss=" + projectBoss +
+                ", repository=" + repository +
+                '}';
+    }
 }

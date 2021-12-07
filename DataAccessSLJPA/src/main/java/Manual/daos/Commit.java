@@ -26,7 +26,7 @@ public class Commit {
     private String text;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime date;
 
     @ManyToOne
@@ -41,4 +41,26 @@ public class Commit {
     @JoinColumn(name = "id_issue", referencedColumnName = "id", nullable = false)
     private Issue issue;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Commit commit = (Commit) o;
+        return id == commit.id && title.equals(commit.title) && text.equals(commit.text) && date.equals(commit.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, text, date);
+    }
+
+    @Override
+    public String toString() {
+        return "Commit{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

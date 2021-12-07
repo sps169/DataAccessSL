@@ -29,10 +29,34 @@ public class BossHistory {
     private Department department;
 
     @Column(name = "entry_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime entryDate;
 
     @Column(name = "leave_date")
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime leave_date;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BossHistory that = (BossHistory) o;
+        return id == that.id && entryDate.equals(that.entryDate) && leave_date.equals(that.leave_date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, entryDate, leave_date);
+    }
+
+    @Override
+    public String toString() {
+        return "BossHistory{" +
+                "id=" + id +
+                ", programmer=" + programmer +
+                ", department=" + department +
+                ", entryDate=" + entryDate +
+                ", leave_date=" + leave_date +
+                '}';
+    }
 }

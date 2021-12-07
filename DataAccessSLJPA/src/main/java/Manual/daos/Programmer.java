@@ -26,7 +26,7 @@ public class Programmer {
     private String name;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime entry_date;
 
     @Column(nullable = false)
@@ -39,7 +39,7 @@ public class Programmer {
     @Column(nullable = false)
     private float salary;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_department", referencedColumnName = "id", nullable = false)
     private Department department;
 
@@ -51,4 +51,32 @@ public class Programmer {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "programmer", orphanRemoval = true)
     private Set<Commit> commits;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Programmer that = (Programmer) o;
+        return id == that.id && Float.compare(that.salary, salary) == 0 && name.equals(that.name) && entry_date.equals(that.entry_date) && password.equals(that.password) && technologies.equals(that.technologies);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, entry_date, password, technologies, salary);
+    }
+
+    @Override
+    public String toString() {
+        return "Programmer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", entry_date=" + entry_date +
+                ", password='" + password + '\'' +
+                ", technologies='" + technologies + '\'' +
+                ", salary=" + salary +
+                ", issueAssignmentList=" + issueAssignmentList +
+                ", projectAssignmentList=" + projectAssignmentList +
+                ", commits=" + commits +
+                '}';
+    }
 }

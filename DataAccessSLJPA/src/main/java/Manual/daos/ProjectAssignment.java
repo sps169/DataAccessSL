@@ -28,12 +28,35 @@ public class ProjectAssignment {
     @JoinColumn(name = "id_project",referencedColumnName = "id", nullable = false)
     private Project project;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date", nullable = true)
     private LocalDateTime endDate;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProjectAssignment that = (ProjectAssignment) o;
+        return id == that.id && startDate.equals(that.startDate) && endDate.equals(that.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startDate, endDate);
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectAssignment{" +
+                "id=" + id +
+                ", programmer=" + programmer +
+                ", project=" + project +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }
