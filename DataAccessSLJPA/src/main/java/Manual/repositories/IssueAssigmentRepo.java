@@ -12,6 +12,7 @@ public class IssueAssigmentRepo implements CRUDRepo<IssueAssignment,Long> {
     @Override
     public Optional<List<IssueAssignment>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<IssueAssignment> query = hb.getManager().createNamedQuery("IssueAssignment.findAll", IssueAssignment.class);
         List<IssueAssignment> list = query.getResultList();
         hb.close();

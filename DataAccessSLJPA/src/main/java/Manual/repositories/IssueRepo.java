@@ -13,6 +13,7 @@ public class IssueRepo implements CRUDRepo<Issue,Long> {
     @Override
     public Optional<List<Issue>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<Issue> query = hb.getManager().createNamedQuery("Issue.findAll", Issue.class);
         List<Issue> list = query.getResultList();
         hb.close();

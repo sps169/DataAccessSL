@@ -5,7 +5,7 @@ public class Main {
         Database.checkService();
         try {
             CommitRepo commitRepo = new CommitRepo();
-            System.out.println(commitRepo.finddAll());
+            System.out.println(commitRepo.findAll().orElse(null));
         }catch (Exception e) {
             e.printStackTrace();
         }

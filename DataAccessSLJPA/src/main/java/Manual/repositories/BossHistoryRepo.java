@@ -12,6 +12,7 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
     @Override
     public Optional<List<BossHistory>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<BossHistory> query = hb.getManager().createNamedQuery("BossHistory.findAll", BossHistory.class);
         List<BossHistory> list = query.getResultList();
         hb.close();

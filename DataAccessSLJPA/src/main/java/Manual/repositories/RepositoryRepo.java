@@ -12,6 +12,7 @@ public class RepositoryRepo implements CRUDRepo<Repository,Long> {
     @Override
     public Optional<List<Repository>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<Repository> query = hb.getManager().createNamedQuery("Repository.findAll", Repository.class);
         List<Repository> list = query.getResultList();
         hb.close();

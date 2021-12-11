@@ -12,6 +12,7 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
     @Override
     public Optional<List<Programmer>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<Programmer> query = hb.getManager().createNamedQuery("Programmer.findAll", Programmer.class);
         List<Programmer> list = query.getResultList();
         hb.close();

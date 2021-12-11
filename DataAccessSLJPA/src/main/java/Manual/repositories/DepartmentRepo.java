@@ -13,6 +13,7 @@ public class DepartmentRepo implements CRUDRepo<Department,Long> {
     @Override
     public Optional<List<Department>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<Department> query = hb.getManager().createNamedQuery("Department.findAll", Department.class);
         List<Department> list = query.getResultList();
         hb.close();

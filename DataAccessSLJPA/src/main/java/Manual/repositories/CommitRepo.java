@@ -13,18 +13,11 @@ public class CommitRepo implements CRUDRepo<Commit,Long>{
     @Override
     public Optional<List<Commit>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
+        hb.open();
         TypedQuery<Commit> query = hb.getManager().createNamedQuery("Commit.findAll", Commit.class);
         List<Commit> list = query.getResultList();
         hb.close();
         return Optional.of(list);
-    }
-
-    public List<Commit> finddAll() throws SQLException {
-        HibernateController hb = HibernateController.getInstance();
-        TypedQuery<Commit> query = hb.getManager().createNamedQuery("Commit.findAll", Commit.class);
-        List<Commit> list = query.getResultList();
-        hb.close();
-        return list;
     }
 
     @Override

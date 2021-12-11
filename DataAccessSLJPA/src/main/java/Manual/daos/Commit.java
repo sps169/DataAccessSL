@@ -8,13 +8,20 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "commit")
 @NamedQuery(name = "Commit.findAll", query = "SELECT b FROM Commit b")
+//@NamedNativeQuery(
+//        name = "Commit.findAll",
+//        query = "SELECT * FROM commit",
+//        resultClass = Commit.class
+//)
+@Table(name = "commit")
 public class Commit {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
