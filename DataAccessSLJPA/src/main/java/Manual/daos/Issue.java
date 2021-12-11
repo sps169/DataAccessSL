@@ -45,6 +45,16 @@ public class Issue {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "issue", orphanRemoval = true)
     private Set<IssueAssignment> assignments;
 
+    public Issue(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+        this.state = state;
+        this.repository = repository;
+        this.boss = boss;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

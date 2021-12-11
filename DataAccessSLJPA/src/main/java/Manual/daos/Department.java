@@ -35,6 +35,12 @@ public class Department {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
     private Set<BossHistory> bosses;
 
+    public Department(long id, String name, Programmer boss, float budget) {
+        this.id = id;
+        this.name = name;
+        this.boss = boss;
+        this.budget = budget;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

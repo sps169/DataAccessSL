@@ -2,6 +2,7 @@ package Manual.dtos;
 
 import Manual.daos.Department;
 import Manual.daos.Programmer;
+import Manual.daos.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,21 +19,11 @@ public class ProjectDTO {
     private String state;
     private Programmer projectBoss;
     private Department department;
-
-    public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate,
-                      Set<Technologies> technologies, float annualBudget, String state) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.technologies = technologies;
-        this.annualBudget = annualBudget;
-        this.state = state;
-    }
+    private Repository repository;
 
     public ProjectDTO(long id, String name, LocalDateTime startDate, LocalDateTime endDate,
                       Set<Technologies> technologies, float annualBudget, String state,
-                      Programmer projectBoss, Department department) {
+                      Programmer projectBoss, Department department, Repository repository) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -42,6 +33,7 @@ public class ProjectDTO {
         this.state = state;
         this.projectBoss = projectBoss;
         this.department = department;
+        this.repository = repository;
     }
 
     public ProjectDTO() {
@@ -121,6 +113,14 @@ public class ProjectDTO {
         this.department = department;
     }
 
+    public Repository getRepository() {
+        return repository;
+    }
+
+    public void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public String toString() {
         return "ProjectDTO{" +
@@ -133,8 +133,10 @@ public class ProjectDTO {
                 ", state='" + state + '\'' +
                 ", projectBoss=" + projectBoss +
                 ", department=" + department +
+                ", repository=" + repository +
                 '}';
     }
+
     public static ProjectDTO fromJSON(String json) {
         final Gson gson = new Gson();
         return gson.fromJson(json, ProjectDTO.class);

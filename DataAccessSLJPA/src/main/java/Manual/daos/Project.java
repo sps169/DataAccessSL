@@ -51,6 +51,7 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "project", orphanRemoval = true)
     private Repository repository;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

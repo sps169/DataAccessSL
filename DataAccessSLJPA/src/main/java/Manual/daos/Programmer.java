@@ -52,6 +52,16 @@ public class Programmer {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "programmer", orphanRemoval = true)
     private Set<Commit> commits;
 
+    public Programmer(long id, String name, LocalDateTime entry_date, String password, String technologies, float salary, Department department) {
+        this.id = id;
+        this.name = name;
+        this.entry_date = entry_date;
+        this.password = password;
+        this.technologies = technologies;
+        this.salary = salary;
+        this.department = department;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

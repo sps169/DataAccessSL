@@ -38,6 +38,13 @@ public class Repository {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
     private Set<Commit> commits;
 
+    public Repository(long id, String name, LocalDateTime creationDate, Project project) {
+        this.id = id;
+        this.name = name;
+        this.creationDate = creationDate;
+        this.project = project;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
