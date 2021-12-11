@@ -29,10 +29,11 @@ public class RepositoryDTO {
     public RepositoryDTO() {
     }
 
-    public RepositoryDTO(long id, String name, LocalDateTime creationDate) {
+    public RepositoryDTO(long id, String name, LocalDateTime creationDate, Project project) {
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
+        this.project = project;
     }
 
     public long getId() {

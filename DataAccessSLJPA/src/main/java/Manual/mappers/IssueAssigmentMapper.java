@@ -7,12 +7,11 @@ public class IssueAssigmentMapper extends BaseMapper<IssueAssignment, IssueAssig
 
     @Override
     public IssueAssignment fromDTO(IssueAssignmentDTO item) {
-        return new IssueAssignment(item.getId(), item.getProgrammer().getId(), item.getIssue().getId(),
-                item.getStartDate());
+        return new IssueAssignment(item.getId(), item.getProgrammer(), item.getIssue(), item.getStartDate());
     }
 
     @Override
     public IssueAssignmentDTO toDTO(IssueAssignment item) {
-        return new IssueAssignmentDTO(item.getId(),  item.getStartDate());
+        return new IssueAssignmentDTO(item.getId(), item.getProgrammer(), item.getIssue(), item.getStartDate());
     }
 }

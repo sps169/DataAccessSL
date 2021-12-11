@@ -21,7 +21,6 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
         List<RepositoryDTO> result = new ArrayList<>();
         for(Repository repository: repositories){
             RepositoryDTO repositoryDTO = mapper.toDTO(repository);
-            repositoryDTO.setProject(this.getProjectById(repository.getProjectId()));
             repositoryDTO.setCommits(this.getSetCommits(repository.getId()));
             repositoryDTO.setIssues(this.getSetIssues(repository.getId()));
             result.add(repositoryDTO);
@@ -32,7 +31,6 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     public RepositoryDTO getRepositoryById(Long id) throws SQLException {
         Repository repository = this.getById(id).orElseThrow(() -> new SQLException("Error al obtener Repository por Id "+id));
         RepositoryDTO repositoryDTO = mapper.toDTO(repository);
-        repositoryDTO.setProject(this.getProjectById(repository.getProjectId()));
         repositoryDTO.setCommits(this.getSetCommits(repository.getId()));
         repositoryDTO.setIssues(this.getSetIssues(repository.getId()));
         return repositoryDTO;
@@ -41,7 +39,6 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     public RepositoryDTO insertRepository (RepositoryDTO repositoryDTO) throws SQLException {
         Repository repository = this.insert(mapper.fromDTO(repositoryDTO)).orElseThrow(()->new SQLException("Error al insertar Repository"));
         RepositoryDTO result = mapper.toDTO(repository);
-        result.setProject(this.getProjectById(repository.getProjectId()));
         result.setCommits(this.getSetCommits(repository.getId()));
         result.setIssues(this.getSetIssues(repository.getId()));
         return result;
@@ -50,7 +47,6 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     public RepositoryDTO updateRepository (RepositoryDTO repositoryDTO) throws SQLException {
         Repository repository = this.update(mapper.fromDTO(repositoryDTO)).orElseThrow(()->new SQLException("Error al actualizar Repository"));
         RepositoryDTO result = mapper.toDTO(repository);
-        result.setProject(this.getProjectById(repository.getProjectId()));
         result.setCommits(this.getSetCommits(repository.getId()));
         result.setIssues(this.getSetIssues(repository.getId()));
         return result;
@@ -63,25 +59,20 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
             deleteIssue(issue);
         Repository repository = this.delete(mapper.fromDTO(repositoryDTO)).orElseThrow(()->new SQLException("Error al borrar Repository"));
         RepositoryDTO result = mapper.toDTO(repository);
-        result.setProject(this.getProjectById(repository.getProjectId()));
         result.setCommits(this.getSetCommits(repository.getId()));
         result.setIssues(this.getSetIssues(repository.getId()));
         return result;
     }
 
-    private Project getProjectById(long projectId) throws SQLException {
-        ProjectService projectService = new ProjectService(new ProjectRepo());
-        return projectService.getById(projectId).orElseThrow(()->new SQLException("Error al intentar obtener Project por id"+ projectId+" Repository"));
-    }
     private Set<Commit> getSetCommits(long id) throws SQLException {
         CommitService commitService = new CommitService(new CommitRepo());
         return commitService.findAll().orElseThrow(() -> new SQLException("Error al obtener Commits para Repository"))
-                .stream().filter(s->s.getRepository()==id).collect(Collectors.toSet());
+                .stream().filter(s->s.getRepository().getId()==id).collect(Collectors.toSet());
     }
     private Set<Issue> getSetIssues(long id) throws SQLException {
         IssueService issueService = new IssueService(new IssueRepo());
         return issueService.findAll().orElseThrow(() -> new SQLException("Error al obtener Issues para Repository"))
-                .stream().filter(s->s.getRepositoryId()==id).collect(Collectors.toSet());
+                .stream().filter(s->s.getRepository().getId()==id).collect(Collectors.toSet());
     }
 
     private void deleteCommit(Commit commit) throws SQLException {
@@ -94,7 +85,7 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
         IssueAssignmentService issueAssignmentService = new IssueAssignmentService(new IssueAssigmentRepo());
         List<IssueAssignment> issueAssignmentList = issueAssignmentService.findAll().orElseThrow(
                     () -> new SQLException("Error al obtener issueAssignments de issue con id " + issue.getId())
-                ).stream().filter(s -> s.getIssueId() == issue.getId()).collect(Collectors.toList());
+                ).stream().filter(s -> s.getIssue().getId() == issue.getId()).collect(Collectors.toList());
         for (IssueAssignment issueAssign : issueAssignmentList)
             issueAssignmentService.delete(issueAssign);
         issueService.delete(issue);

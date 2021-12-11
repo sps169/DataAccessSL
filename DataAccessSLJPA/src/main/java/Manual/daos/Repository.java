@@ -1,11 +1,20 @@
 package Manual.daos;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "repository")
+@NamedQuery(name = "Repository.findAll", query = "SELECT b FROM Repository b")
 public class Repository {
 
     @Id
@@ -16,25 +25,23 @@ public class Repository {
     private String name;
 
     @Column(name = "creation_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime creationDate;
 
     @OneToOne
-    @Column(name = "id_project", nullable = false)
+    @JoinColumn(name = "id_project", nullable = false)
     private Project project;
 
-    public Repository() {
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
+    private Set<Issue> issues;
 
-    public Repository(long id, Project project) {
-        this.id = id;
-        this.project = project;
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
+    private Set<Commit> commits;
 
-    public Repository(long id, String name, LocalDateTime creation_date, Project project) {
+    public Repository(long id, String name, LocalDateTime creationDate, Project project) {
         this.id = id;
         this.name = name;
-        this.creationDate = creation_date;
+        this.creationDate = creationDate;
         this.project = project;
     }
 
@@ -43,44 +50,12 @@ public class Repository {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Repository that = (Repository) o;
-        return id == that.id && project.equals(that.project) && name.equals(that.name) && creationDate.equals(that.creationDate);
+        return id == that.id && name.equals(that.name) && creationDate.equals(that.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, creationDate, project);
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public long getProject() {
-        return project;
-    }
-
-    public void setProject(long project) {
-        this.project = project;
+        return Objects.hash(id, name, creationDate);
     }
 
     @Override
@@ -89,7 +64,8 @@ public class Repository {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", creationDate=" + creationDate +
-                ", project=" + project +
+                ", issues=" + issues +
+                ", commits=" + commits +
                 '}';
     }
 }

@@ -55,13 +55,11 @@ public class ProjectService extends BaseService<Project,Long, ProjectRepo> {
         ProgrammerService programmerService = new ProgrammerService(new ProgrammerRepo());
         return departmentService.getDepartmentById(project.getDepartment().getId()).getDepartmentBoss().equals(project.getProjectBoss())
                 || programmerService.getProgrammerById(project.getProjectBoss().getId()).getProjects()
-                .stream().anyMatch(s -> s.getDepartmentId() == project.getDepartment().getId());
+                .stream().anyMatch(s -> s.getDepartment().getId() == project.getDepartment().getId());
     }
 
     private ProjectDTO fillProject(Project project) throws SQLException {
         ProjectDTO dto = mapper.toDTO(project);
-        dto.setProjectBoss(this.getBossById(project.getProjectBossId()));
-        dto.setDepartment(this.getDepartmentById(project.getDepartmentId()));
         return dto;
     }
 

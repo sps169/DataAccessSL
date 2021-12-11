@@ -1,11 +1,20 @@
 package Manual.daos;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "issue")
+@NamedQuery(name = "Issue.findAll", query = "SELECT b FROM Issue b")
 public class Issue {
 
     @Id
@@ -19,7 +28,7 @@ public class Issue {
     private String text;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime date;
 
     @Column(nullable = false)
@@ -33,14 +42,8 @@ public class Issue {
     @JoinColumn(name = "id_boss",referencedColumnName="id", nullable = false)
     private Programmer boss;
 
-    public Issue() {
-    }
-
-    public Issue(long id, Repository repository, Programmer boss) {
-        this.id = id;
-        this.repository = repository;
-        this.boss = boss;
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "issue", orphanRemoval = true)
+    private Set<IssueAssignment> assignments;
 
     public Issue(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
         this.id = id;
@@ -57,74 +60,12 @@ public class Issue {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Issue issue = (Issue) o;
-        return id == issue.id &&
-                repository.equals(issue.repository) &&
-                boss.equals(issue.boss) &&
-                title.equals(issue.title) &&
-                text.equals(issue.text) &&
-                date.equals(issue.date) &&
-                state.equals(issue.state);
+        return id == issue.id && title.equals(issue.title) && text.equals(issue.text) && date.equals(issue.date) && state.equals(issue.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, text, date, state, repository, boss);
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Repository getRepository() {
-        return repository;
-    }
-
-    public void setRepository(Repository repository) {
-        this.repository = repository;
-    }
-
-    public Programmer getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Programmer boss) {
-        this.boss = boss;
+        return Objects.hash(id, title, text, date, state);
     }
 
     @Override
@@ -135,8 +76,8 @@ public class Issue {
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 ", state='" + state + '\'' +
-                ", repository=" + repository +
                 ", boss=" + boss +
+                ", assignments=" + assignments +
                 '}';
     }
 }

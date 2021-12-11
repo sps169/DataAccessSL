@@ -6,90 +6,90 @@ CREATE DATABASE `data_access_sl`;
 USE `data_access_sl`;
 
 CREATE TABLE `boss_history` (
-                                `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-                                `id_programmer` int(10) unsigned NOT NULL,
-                                `id_department` int(10) unsigned NOT NULL,
+                                `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                `id_programmer` bigint unsigned NOT NULL,
+                                `id_department` bigint unsigned NOT NULL,
                                 `entry_date` datetime NOT NULL,
                                 `leave_date` datetime DEFAULT NULL,
                                 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `commit` (
-                          `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                          `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                           `title` varchar(100) NOT NULL,
-                          `text` text NOT NULL,
+                          `text` varchar(255) NOT NULL,
                           `date` datetime NOT NULL,
-                          `id_repository` int(10) unsigned NOT NULL,
-                          `id_programmer` int(10) unsigned NOT NULL,
-                          `id_issue` int(10) unsigned NOT NULL,
+                          `id_repository` bigint unsigned NOT NULL,
+                          `id_programmer` bigint unsigned NOT NULL,
+                          `id_issue` bigint unsigned NOT NULL,
                           PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `department` (
-                              `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                               `name` varchar(50) NOT NULL,
-                              `boss` int(10) unsigned NOT NULL,
+                              `id_boss` bigint unsigned NOT NULL,
                               `budget` float NOT NULL,
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `issue` (
-                         `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                         `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                          `title` varchar(100) NOT NULL,
-                         `text` text NOT NULL,
+                         `text` varchar(255) NOT NULL,
                          `date` datetime NOT NULL,
                          `state` varchar(20) NOT NULL,
-                         `id_repository` int(10) unsigned NOT NULL,
-                         `id_boss` int(10) unsigned NOT NULL,
+                         `id_repository` bigint unsigned NOT NULL,
+                         `id_boss` bigint unsigned NOT NULL,
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `issue_assignment` (
-                                    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-                                    `id_programmer` int(10) unsigned NOT NULL,
-                                    `id_issue` int(10) unsigned NOT NULL,
+                                    `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                    `id_programmer` bigint unsigned NOT NULL,
+                                    `id_issue` bigint unsigned NOT NULL,
                                     `start_date` datetime NOT NULL,
                                     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `programmer` (
-                              `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                               `name` varchar(50) NOT NULL,
                               `entry_date` datetime NOT NULL,
                               `password` varchar(100) NOT NULL,
                               `technologies` varchar(200) DEFAULT NULL,
                               `salary` float NOT NULL,
-                              `id_department` int(10) unsigned NOT NULL,
+                              `id_department` bigint unsigned NOT NULL,
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `project` (
-                           `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                           `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                            `name` varchar(100) NOT NULL,
                            `start_date` datetime NOT NULL,
                            `end_date` datetime DEFAULT NULL,
                            `technologies` varchar(512) NOT NULL,
                            `annual_budget` float NOT NULL,
                            `state` varchar(20) NOT NULL,
-                           `id_boss` int(10) unsigned NOT NULL,
-                           `id_department` int(10) unsigned NOT NULL,
+                           `id_boss` bigint unsigned NOT NULL,
+                           `id_department` bigint unsigned NOT NULL,
                            PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE project_assignment (
-                                    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-                                    `id_programmer` int(10) unsigned NOT NULL,
-                                    `id_project` int(10) unsigned NOT NULL,
+                                    `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                    `id_programmer` bigint unsigned NOT NULL,
+                                    `id_project` bigint unsigned NOT NULL,
                                     `start_date` datetime NOT NULL,
                                     `end_date` datetime DEFAULT NULL,
                                     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `repository` (
-                              `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                              `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                               `name` varchar(100) NOT NULL,
                               `creation_date` datetime NOT NULL,
-                              `id_project` int(10) unsigned NOT NULL,
+                              `id_project` bigint unsigned NOT NULL,
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -101,19 +101,19 @@ ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment
  * Department insertion
  */
 INSERT INTO data_access_sl.department
-(id, name, boss, budget)
+(id, name, id_boss, budget)
 VALUES(1, 'Inteligencia Artificial', 1, 200000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss, budget)
+(id, name, id_boss, budget)
 VALUES(2, 'Interfaces', 2, 100000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss, budget)
+(id, name, id_boss, budget)
 VALUES(3, 'Software de pruebas', 3, 120000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss, budget)
+(id, name, id_boss, budget)
 VALUES(4, 'Desarrollo de servicios nativos', 4, 140000);
 
 /*

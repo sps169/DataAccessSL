@@ -6,7 +6,7 @@ import Manual.dtos.BossHistoryDTO;
 public class BossHistoryMapper extends BaseMapper<BossHistory, BossHistoryDTO>{
     @Override
     public BossHistory fromDTO(BossHistoryDTO item) {
-        return new BossHistory(item.getId(), item.getProgrammer().getId(), item.getDepartment().getId(), item.getEntryDate(), item.getLeaveDate());
+        return new BossHistory(item.getId(), item.getProgrammer(), item.getDepartment(), item.getEntryDate(), item.getLeaveDate());
     }
 
     @Override

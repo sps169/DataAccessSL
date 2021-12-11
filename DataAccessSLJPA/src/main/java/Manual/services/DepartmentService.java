@@ -95,17 +95,17 @@ public class DepartmentService extends BaseService<Department,Long, DepartmentRe
     private Set<Project> getProjects(long id, String status) throws SQLException {
         ProjectService projectService = new ProjectService(new ProjectRepo());
         return projectService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los projectos activos del departamento con id " + id))
-                .stream().filter(s -> s.getDepartmentId() == id && s.getState().equals(status)).collect(Collectors.toSet());
+                .stream().filter(s -> s.getDepartment().getId() == id && s.getState().equals(status)).collect(Collectors.toSet());
     }
 
-    private List<Programmer> getBossesOfDepartment(long id) throws SQLException {
+    private Set<Programmer> getBossesOfDepartment(long id) throws SQLException {
         ProgrammerService programmerService = new ProgrammerService(new ProgrammerRepo());
         BossHistoryService bossHistoryService = new BossHistoryService(new BossHistoryRepo());
-        List<BossHistory> bossHistories = bossHistoryService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los boss history"))
-                .stream().filter(s -> s.getDepartmentId() == id).collect(Collectors.toList());
-        List<Programmer> programmers = new ArrayList<>();
+        Set<BossHistory> bossHistories = bossHistoryService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los boss history"))
+                .stream().filter(s -> s.getDepartment().getId() == id).collect(Collectors.toSet());
+        Set<Programmer> programmers = new HashSet<>();
         for (BossHistory bossHistory : bossHistories) {
-            programmers.add(programmerService.getById(bossHistory.getProgrammerId()).orElseThrow(() -> new SQLException("Error al obtener jefes de departamento")));
+            programmers.add(programmerService.getById(bossHistory.getProgrammer().getId()).orElseThrow(() -> new SQLException("Error al obtener jefes de departamento")));
         }
         return programmers;
     }

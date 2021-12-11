@@ -51,13 +51,14 @@ public class ProgrammerDTO {
     public ProgrammerDTO() {
     }
 
-    public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password, Set<Technologies> technologies, float salary) {
+    public ProgrammerDTO(long id, String name, LocalDateTime entry_date, String password, Set<Technologies> technologies, float salary, Department department) {
         this.id = id;
         this.name = name;
         this.entry_date = entry_date;
         this.password = password;
         this.technologies = technologies;
         this.salary = salary;
+        this.department = department;
     }
 
     public long getId() {

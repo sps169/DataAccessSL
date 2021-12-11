@@ -50,14 +50,8 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
         return fillProgrammerDTO(result);
     }
 
-    private Department getDepartmentById(long departmentId) throws SQLException {
-        DepartmentService departmentService = new DepartmentService(new DepartmentRepo());
-        return departmentService.getById(departmentId).orElseThrow(() -> new SQLException("Error al obtener departamento de programador"));
-    }
-
     private ProgrammerDTO fillProgrammerDTO(Programmer result) throws SQLException {
         ProgrammerDTO dto = mapper.toDTO(result);
-        dto.setDepartment(this.getDepartmentById(result.getDepartmentId()));
         dto.setCommits(this.getCommitsOfProgrammer(result.getId()));
         dto.setIssuesAssigned(this.getIssuesOfProgrammer(result.getId()));
         dto.setProjects(this.getProjectsOfProgrammer(result.getId()));
@@ -68,10 +62,10 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
         ProjectAssignmentService projectAssignmentService = new ProjectAssignmentService(new ProjectAssignmentRepo());
         ProjectService projectService = new ProjectService(new ProjectRepo());
         List<ProjectAssignment> projectAssignments = projectAssignmentService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los project assignments de programador"))
-                .stream().filter(s -> s.getProgrammerId() == id).collect(Collectors.toList());
+                .stream().filter(s -> s.getProgrammer().getId() == id).collect(Collectors.toList());
         Set<Project> projects = new HashSet<>();
         for (ProjectAssignment projectAssignment : projectAssignments) {
-            projects.add(projectService.getById(projectAssignment.getProjectId()).orElseThrow(() -> new SQLException("Error al obtener todos los project de programador")));
+            projects.add(projectService.getById(projectAssignment.getProject().getId()).orElseThrow(() -> new SQLException("Error al obtener todos los project de programador")));
         }
         return projects;
     }
@@ -79,11 +73,11 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
     private Set<Issue> getIssuesOfProgrammer(long id) throws SQLException {
         IssueAssignmentService issueAssignmentService = new IssueAssignmentService(new IssueAssigmentRepo());
         List<IssueAssignment> issueAssignments = issueAssignmentService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los issueAssignment de un programador"))
-                .stream().filter(s -> s.getProgrammerId() == id).collect(Collectors.toList());
+                .stream().filter(s -> s.getProgrammer().getId() == id).collect(Collectors.toList());
         IssueService issueService = new IssueService(new IssueRepo());
         Set<Issue> result = new HashSet<>();
         for(IssueAssignment issueAssignment : issueAssignments) {
-            result.add(issueService.getById(issueAssignment.getIssueId()).orElseThrow(() -> new SQLException("Error al obtener todos los issues de programaddor")));
+            result.add(issueService.getById(issueAssignment.getIssue().getId()).orElseThrow(() -> new SQLException("Error al obtener todos los issues de programaddor")));
         }
         return result;
     }
@@ -91,7 +85,7 @@ public class ProgrammerService extends BaseService<Programmer, Long, ProgrammerR
     private Set<Commit> getCommitsOfProgrammer(long id) throws SQLException {
         CommitService commitsService = new CommitService(new CommitRepo());
         return commitsService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los commits de un programador"))
-                .stream().filter(s -> s.getProgrammer() == id).collect(Collectors.toSet());
+                .stream().filter(s -> s.getProgrammer().getId() == id).collect(Collectors.toSet());
 
     }
 }
