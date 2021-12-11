@@ -24,6 +24,7 @@ public class Department {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_boss", referencedColumnName = "id", nullable = false)
     private Programmer boss;
 
     @Column(nullable = false)

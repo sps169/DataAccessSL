@@ -28,7 +28,7 @@ CREATE TABLE `commit` (
 CREATE TABLE `department` (
                               `id` bigint unsigned NOT NULL AUTO_INCREMENT,
                               `name` varchar(50) NOT NULL,
-                              `boss_id` bigint unsigned NOT NULL,
+                              `id_boss` bigint unsigned NOT NULL,
                               `budget` float NOT NULL,
                               PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -101,19 +101,19 @@ ALTER TABLE data_access_sl.project_assignment ADD CONSTRAINT `project_assignment
  * Department insertion
  */
 INSERT INTO data_access_sl.department
-(id, name, boss_id, budget)
+(id, name, id_boss, budget)
 VALUES(1, 'Inteligencia Artificial', 1, 200000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss_id, budget)
+(id, name, id_boss, budget)
 VALUES(2, 'Interfaces', 2, 100000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss_id, budget)
+(id, name, id_boss, budget)
 VALUES(3, 'Software de pruebas', 3, 120000);
 
 INSERT INTO data_access_sl.department
-(id, name, boss_id, budget)
+(id, name, id_boss, budget)
 VALUES(4, 'Desarrollo de servicios nativos', 4, 140000);
 
 /*

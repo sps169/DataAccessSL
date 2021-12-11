@@ -1,11 +1,13 @@
+import Manual.controllers.CommitController;
 import Manual.repositories.CommitRepo;
+import Manual.services.CommitService;
 
 public class Main {
     public static void main(String[] args){
         Database.checkService();
         try {
-            CommitRepo commitRepo = new CommitRepo();
-            System.out.println(commitRepo.findAll().orElse(null));
+            CommitController controller = CommitController.getInstance();
+            System.out.println(controller.getAllCommitsJSON());
         }catch (Exception e) {
             e.printStackTrace();
         }
