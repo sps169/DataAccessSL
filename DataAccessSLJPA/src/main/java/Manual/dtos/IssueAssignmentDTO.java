@@ -25,11 +25,6 @@ public class IssueAssignmentDTO {
         this.startDate = startDate;
     }
 
-    public IssueAssignmentDTO(long id, LocalDateTime startDate) {
-        this.id = id;
-        this.startDate = startDate;
-    }
-
     public long getId() {return id;}
 
     public void setId(long id) {this.id = id;}

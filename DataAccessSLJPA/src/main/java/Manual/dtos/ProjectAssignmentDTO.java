@@ -25,12 +25,6 @@ public class ProjectAssignmentDTO {
     public ProjectAssignmentDTO() {
     }
 
-    public ProjectAssignmentDTO(long id, LocalDateTime startDate, LocalDateTime endDate) {
-        this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
     public long getId() {
         return id;
     }

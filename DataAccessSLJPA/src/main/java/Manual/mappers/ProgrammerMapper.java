@@ -15,6 +15,6 @@ public class ProgrammerMapper extends BaseMapper<Programmer, ProgrammerDTO>{
 	@Override
 	public ProgrammerDTO toDTO(Programmer item) {
 		return new ProgrammerDTO(item.getId(), item.getName(), item.getEntry_date(), item.getPassword(),
-				TechnologiesParser.technologiesToSet(item.getTechnologies()), item.getSalary());
+				TechnologiesParser.technologiesToSet(item.getTechnologies()), item.getSalary(), item.getDepartment());
 	}
 }

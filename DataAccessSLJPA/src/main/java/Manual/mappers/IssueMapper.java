@@ -13,6 +13,6 @@ public class IssueMapper extends BaseMapper<Issue, IssueDTO>{
     @Override
     public IssueDTO toDTO(Issue item) {
         return new IssueDTO(item.getId(), item.getTitle(), item.getText(), item.getDate(),
-                item.getState());
+                item.getState(), item.getRepository(), item.getBoss());
     }
 }
