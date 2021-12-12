@@ -1,4 +1,4 @@
-import Manual.database.DataBaseController;
+import jpa.database.DataBaseController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

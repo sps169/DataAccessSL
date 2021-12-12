@@ -1,0 +1,16 @@
+package jpa.mappers;
+
+import jpa.daos.ProjectAssignment;
+import jpa.dtos.ProjectAssignmentDTO;
+
+public class ProjectAssigmentMapper extends BaseMapper<ProjectAssignment, ProjectAssignmentDTO>{
+    @Override
+    public ProjectAssignment fromDTO(ProjectAssignmentDTO item) {
+        return new ProjectAssignment(item.getId(), item.getProgrammer(), item.getProject(), item.getStartDate(), item.getEndDate());
+    }
+
+    @Override
+    public ProjectAssignmentDTO toDTO(ProjectAssignment item) {
+        return new ProjectAssignmentDTO(item.getId(), item.getProgrammer(), item.getProject(), item.getStartDate(), item.getEndDate());
+    }
+}

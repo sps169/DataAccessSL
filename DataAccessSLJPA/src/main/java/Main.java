@@ -1,6 +1,4 @@
-import Manual.controllers.CommitController;
-import Manual.repositories.CommitRepo;
-import Manual.services.CommitService;
+import jpa.controllers.CommitController;
 
 public class Main {
     public static void main(String[] args){

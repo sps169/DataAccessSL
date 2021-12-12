@@ -1,0 +1,17 @@
+package jpa.mappers;
+
+import jpa.daos.IssueAssignment;
+import jpa.dtos.IssueAssignmentDTO;
+
+public class IssueAssigmentMapper extends BaseMapper<IssueAssignment, IssueAssignmentDTO>{
+
+    @Override
+    public IssueAssignment fromDTO(IssueAssignmentDTO item) {
+        return new IssueAssignment(item.getId(), item.getProgrammer(), item.getIssue(), item.getStartDate());
+    }
+
+    @Override
+    public IssueAssignmentDTO toDTO(IssueAssignment item) {
+        return new IssueAssignmentDTO(item.getId(), item.getProgrammer(), item.getIssue(), item.getStartDate());
+    }
+}

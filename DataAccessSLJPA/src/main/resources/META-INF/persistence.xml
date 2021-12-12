@@ -7,15 +7,15 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>Manual.daos.BossHistory</class>
-        <class>Manual.daos.Commit</class>
-        <class>Manual.daos.Department</class>
-        <class>Manual.daos.Issue</class>
-        <class>Manual.daos.IssueAssignment</class>
-        <class>Manual.daos.Programmer</class>
-        <class>Manual.daos.Project</class>
-        <class>Manual.daos.ProjectAssignment</class>
-        <class>Manual.daos.Repository</class>
+        <class>jpa.daos.BossHistory</class>
+        <class>jpa.daos.Commit</class>
+        <class>jpa.daos.Department</class>
+        <class>jpa.daos.Issue</class>
+        <class>jpa.daos.IssueAssignment</class>
+        <class>jpa.daos.Programmer</class>
+        <class>jpa.daos.Project</class>
+        <class>jpa.daos.ProjectAssignment</class>
+        <class>jpa.daos.Repository</class>
 
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/data_access_sl"/>
