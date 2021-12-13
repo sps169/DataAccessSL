@@ -1,5 +1,6 @@
 package jpa.daos;
 
+import com.google.gson.annotations.Expose;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,14 +22,16 @@ public class Commit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Basic
     @Column(nullable = false)
     private String title;
 
+    @Basic
     @Column(nullable = false)
     private String text;
 
+    @Basic
     @Column(nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime date;
 
     @ManyToOne

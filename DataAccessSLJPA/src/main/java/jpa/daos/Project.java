@@ -48,7 +48,7 @@ public class Project {
     @JoinColumn(name = "id_department", referencedColumnName = "id",nullable = false)
     private Department department;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "project", orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", orphanRemoval = true)
     private Repository repository;
 
 

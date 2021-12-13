@@ -34,6 +34,7 @@ public class GsonConverter {
         builder.addSerializationExclusionStrategy(strategy)
                 .registerTypeHierarchyAdapter(byte[].class, new GsonByteArrayToBase64())
                 .registerTypeAdapter(LocalDateTime.class, new GsonLocalDateTime())
+                .registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY)
                 .setPrettyPrinting()
         ;
         this.gson = builder.create();

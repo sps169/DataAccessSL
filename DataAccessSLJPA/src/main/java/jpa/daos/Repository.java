@@ -32,10 +32,10 @@ public class Repository {
     @JoinColumn(name = "id_project", nullable = false)
     private Project project;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "repository", orphanRemoval = true)
     private Set<Issue> issues;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "repository", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "repository", orphanRemoval = true)
     private Set<Commit> commits;
 
     public Repository(long id, String name, LocalDateTime creationDate, Project project) {
@@ -43,6 +43,10 @@ public class Repository {
         this.name = name;
         this.creationDate = creationDate;
         this.project = project;
+    }
+
+    public Repository(long id) {
+        this.id = id;
     }
 
     @Override
@@ -64,8 +68,6 @@ public class Repository {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", creationDate=" + creationDate +
-                ", issues=" + issues +
-                ", commits=" + commits +
                 '}';
     }
 }

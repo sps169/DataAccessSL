@@ -5,6 +5,7 @@ import jpa.daos.Programmer;
 import jpa.daos.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import jpa.utils.HibernateProxyTypeAdapter;
 
 import java.time.LocalDateTime;
 
@@ -101,9 +102,6 @@ public class CommitDTO {
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 ", date=" + date +
-                ", repository=" + repository +
-                ", programmer=" + programmer +
-                ", issue=" + issue +
                 '}';
     }
     public static CommitDTO fromJSON(String json) {

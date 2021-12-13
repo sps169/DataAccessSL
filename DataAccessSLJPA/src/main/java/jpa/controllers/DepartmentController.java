@@ -1,4 +1,4 @@
-package Manual.controllers;
+package jpa.controllers;
 
 import jpa.dtos.DepartmentDTO;
 import jpa.repositories.DepartmentRepo;

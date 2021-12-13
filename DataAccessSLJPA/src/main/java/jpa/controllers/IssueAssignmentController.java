@@ -1,4 +1,4 @@
-package Manual.controllers;
+package jpa.controllers;
 
 import jpa.dtos.IssueAssignmentDTO;
 import jpa.repositories.IssueAssigmentRepo;

@@ -43,13 +43,13 @@ public class Programmer {
     @JoinColumn(name = "id_department", referencedColumnName = "id", nullable = false)
     private Department department;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "programmer", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
     private Set<IssueAssignment> issueAssignmentList;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "programmer", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
     private Set<ProjectAssignment> projectAssignmentList;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "programmer", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
     private Set<Commit> commits;
 
     public Programmer(long id, String name, LocalDateTime entry_date, String password, String technologies, float salary, Department department) {
@@ -60,6 +60,10 @@ public class Programmer {
         this.technologies = technologies;
         this.salary = salary;
         this.department = department;
+    }
+
+    public Programmer(long id) {
+        this.id = id;
     }
 
     @Override

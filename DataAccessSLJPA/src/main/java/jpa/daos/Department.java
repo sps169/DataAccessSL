@@ -30,10 +30,10 @@ public class Department {
     @Column(nullable = false)
     private float budget;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", orphanRemoval = true)
     private Set<Project> projects;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", orphanRemoval = true)
     private Set<BossHistory> bosses;
 
     public Department(long id, String name, Programmer boss, float budget) {

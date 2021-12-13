@@ -42,7 +42,7 @@ public class Issue {
     @JoinColumn(name = "id_boss",referencedColumnName="id", nullable = false)
     private Programmer boss;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "issue", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "issue", orphanRemoval = true)
     private Set<IssueAssignment> assignments;
 
     public Issue(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
@@ -53,6 +53,10 @@ public class Issue {
         this.state = state;
         this.repository = repository;
         this.boss = boss;
+    }
+
+    public Issue(long id) {
+        this.id = id;
     }
 
     @Override
