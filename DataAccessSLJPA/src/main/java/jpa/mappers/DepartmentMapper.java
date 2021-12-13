@@ -13,6 +13,6 @@ public class DepartmentMapper extends BaseMapper<Department, DepartmentDTO>{
 
     @Override
     public DepartmentDTO toDTO(Department department) {
-        return new DepartmentDTO(department.getId(), department.getName(),new Programmer(department.getBoss().getId()), department.getBudget());
+        return new DepartmentDTO(department.getId(), department.getName(),department.getBoss(), department.getBudget());
     }
 }

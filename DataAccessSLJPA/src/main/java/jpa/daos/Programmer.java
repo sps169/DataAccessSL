@@ -41,16 +41,16 @@ public class Programmer {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_department", referencedColumnName = "id", nullable = false)
-    private Department department;
+    private transient Department department;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
-    private Set<IssueAssignment> issueAssignmentList;
+    private transient Set<IssueAssignment> issueAssignmentList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
-    private Set<ProjectAssignment> projectAssignmentList;
+    private transient Set<ProjectAssignment> projectAssignmentList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "programmer", orphanRemoval = true)
-    private Set<Commit> commits;
+    private transient Set<Commit> commits;
 
     public Programmer(long id, String name, LocalDateTime entry_date, String password, String technologies, float salary, Department department) {
         this.id = id;

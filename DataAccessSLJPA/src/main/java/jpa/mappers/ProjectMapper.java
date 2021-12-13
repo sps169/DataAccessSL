@@ -20,8 +20,6 @@ public class ProjectMapper extends BaseMapper<Project, ProjectDTO> {
     public ProjectDTO toDTO(Project item) {
         return new ProjectDTO(item.getId(), item.getName(), item.getStartDate(), item.getEndDate(),
                 TechnologiesParser.technologiesToSet(item.getTechnologies()), item.getAnnualBudget(),
-                item.getState(),
-                new Programmer(item.getProjectBoss().getId()), new Department(item.getDepartment().getId()),
-                new Repository(item.getRepository().getId()));
+                item.getState(), item.getProjectBoss(), item.getDepartment(), item.getRepository());
     }
 }

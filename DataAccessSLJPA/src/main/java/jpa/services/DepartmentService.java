@@ -95,7 +95,7 @@ public class DepartmentService extends BaseService<Department,Long, DepartmentRe
     private Set<Project> getProjects(long id, String status) throws SQLException {
         ProjectService projectService = new ProjectService(new ProjectRepo());
         return projectService.findAll().orElseThrow(() -> new SQLException("Error al obtener todos los projectos activos del departamento con id " + id))
-                .stream().filter(s -> s.getDepartment().getId() == id && s.getState().equals(status)).collect(Collectors.toSet());
+                .stream().filter(s -> s.getDepartmentId() == id && s.getState().equals(status)).collect(Collectors.toSet());
     }
 
     private Set<Programmer> getBossesOfDepartment(long id) throws SQLException {

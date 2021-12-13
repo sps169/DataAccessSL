@@ -42,19 +42,35 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "id_boss",referencedColumnName = "id", nullable = false)
-    private Programmer projectBoss;
+    private transient Programmer projectBoss;
 
     @ManyToOne
     @JoinColumn(name = "id_department", referencedColumnName = "id",nullable = false)
-    private Department department;
+    private transient Department department;
+
+    @Transient
+    private long departmentId;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", orphanRemoval = true)
-    private Repository repository;
+    private transient Repository repository;
 
     public Project(long id) {
         this.id = id;
     }
 
+    public Project(long id, String name, LocalDateTime startDate, LocalDateTime endDate, String technologies, float annualBudget, String state, Programmer projectBoss, Department department, Repository repository) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.technologies = technologies;
+        this.annualBudget = annualBudget;
+        this.state = state;
+        this.projectBoss = projectBoss;
+        this.department = department;
+        this.departmentId = department.getId();
+        this.repository = repository;
+    }
 
     @Override
     public boolean equals(Object o) {

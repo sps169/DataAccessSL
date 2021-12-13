@@ -3,7 +3,7 @@ package jpa.dtos;
 public enum Technologies {
     Java,
     C,
-    CShard,
+    CSharp,
     CPlusPlus,
     Javascript,
     Python

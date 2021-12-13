@@ -13,6 +13,6 @@ public class BossHistoryMapper extends BaseMapper<BossHistory, BossHistoryDTO>{
 
     @Override
     public BossHistoryDTO toDTO(BossHistory item) {
-        return new BossHistoryDTO(item.getId(), new Programmer(item.getProgrammer().getId()), new Department(item.getDepartment().getId()), item.getEntryDate(), item.getLeave_date());
+        return new BossHistoryDTO(item.getId(), item.getProgrammer(), item.getDepartment(), item.getEntryDate(), item.getLeave_date());
     }
 }

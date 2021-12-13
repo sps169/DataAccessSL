@@ -36,14 +36,17 @@ public class Issue {
 
     @ManyToOne
     @JoinColumn(name = "id_repository",referencedColumnName = "id", nullable = false)
-    private Repository repository;
+    private transient Repository repository;
+
+    @Transient
+    private long repositoryId;
 
     @ManyToOne
     @JoinColumn(name = "id_boss",referencedColumnName="id", nullable = false)
-    private Programmer boss;
+    private transient Programmer boss;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "issue", orphanRemoval = true)
-    private Set<IssueAssignment> assignments;
+    private transient Set<IssueAssignment> assignments;
 
     public Issue(long id, String title, String text, LocalDateTime date, String state, Repository repository, Programmer boss) {
         this.id = id;
@@ -52,6 +55,7 @@ public class Issue {
         this.date = date;
         this.state = state;
         this.repository = repository;
+        this.repositoryId = repository.getId();
         this.boss = boss;
     }
 

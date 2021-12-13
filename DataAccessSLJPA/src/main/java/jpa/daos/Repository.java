@@ -32,17 +32,21 @@ public class Repository {
     @JoinColumn(name = "id_project", nullable = false)
     private Project project;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "repository", orphanRemoval = true)
-    private Set<Issue> issues;
+    @Transient
+    private long projectId;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "repository", orphanRemoval = true)
-    private Set<Commit> commits;
+    private transient Set<Issue> issues;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "repository", orphanRemoval = true)
+    private transient Set<Commit> commits;
 
     public Repository(long id, String name, LocalDateTime creationDate, Project project) {
         this.id = id;
         this.name = name;
         this.creationDate = creationDate;
         this.project = project;
+        this.projectId = project.getId();
     }
 
     public Repository(long id) {

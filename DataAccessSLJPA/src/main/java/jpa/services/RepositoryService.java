@@ -17,6 +17,7 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     public RepositoryService(RepositoryRepo repository) {super(repository);}
 
     public List<RepositoryDTO> getAllRepositories() throws SQLException {
+
         List<Repository> repositories = this.findAll().orElseThrow(()-> new SQLException("Error al obtener todos los Repositories"));
         List<RepositoryDTO> result = new ArrayList<>();
         for(Repository repository: repositories){
@@ -67,12 +68,12 @@ public class RepositoryService extends BaseService<Repository,Long, RepositoryRe
     private Set<Commit> getSetCommits(long id) throws SQLException {
         CommitService commitService = new CommitService(new CommitRepo());
         return commitService.findAll().orElseThrow(() -> new SQLException("Error al obtener Commits para Repository"))
-                .stream().filter(s->s.getRepository().getId()==id).collect(Collectors.toSet());
+                .stream().filter(s->s.getRepositoryId()==id).collect(Collectors.toSet());
     }
     private Set<Issue> getSetIssues(long id) throws SQLException {
         IssueService issueService = new IssueService(new IssueRepo());
         return issueService.findAll().orElseThrow(() -> new SQLException("Error al obtener Issues para Repository"))
-                .stream().filter(s->s.getRepository().getId()==id).collect(Collectors.toSet());
+                .stream().filter(s->s.getRepositoryId()==id).collect(Collectors.toSet());
     }
 
     private void deleteCommit(Commit commit) throws SQLException {

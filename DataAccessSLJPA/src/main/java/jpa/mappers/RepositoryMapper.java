@@ -12,8 +12,6 @@ public class RepositoryMapper extends BaseMapper<Repository, RepositoryDTO> {
 
     @Override
     public RepositoryDTO toDTO(Repository item) {
-        return new RepositoryDTO(item.getId(), item.getName(), item.getCreationDate(),
-                new Project(item.getProject().getId()));
-                //item.getProject());
+        return new RepositoryDTO(item.getId(), item.getName(), item.getCreationDate(), item.getProject());
     }
 }

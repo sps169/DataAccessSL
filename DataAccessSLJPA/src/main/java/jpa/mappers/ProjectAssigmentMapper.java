@@ -13,9 +13,7 @@ public class ProjectAssigmentMapper extends BaseMapper<ProjectAssignment, Projec
 
     @Override
     public ProjectAssignmentDTO toDTO(ProjectAssignment item) {
-        return new ProjectAssignmentDTO(item.getId(),
-               new Programmer(item.getProgrammer().getId()),new Project(item.getProject().getId()),
-                item.getStartDate(), item.getEndDate());
+        return new ProjectAssignmentDTO(item.getId(), item.getProgrammer(),item.getProject(), item.getStartDate(), item.getEndDate());
 
     }
 }

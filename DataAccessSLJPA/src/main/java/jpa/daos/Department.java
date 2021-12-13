@@ -25,16 +25,16 @@ public class Department {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_boss", referencedColumnName = "id", nullable = false)
-    private Programmer boss;
+    private transient Programmer boss;
 
     @Column(nullable = false)
     private float budget;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
-    private Set<Project> projects;
+    private transient Set<Project> projects;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
-    private Set<BossHistory> bosses;
+    private transient Set<BossHistory> bosses;
 
     public Department(long id, String name, Programmer boss, float budget) {
         this.id = id;
