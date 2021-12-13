@@ -51,6 +51,10 @@ public class Project {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project", orphanRemoval = true)
     private Repository repository;
 
+    public Project(long id) {
+        this.id = id;
+    }
+
 
     @Override
     public boolean equals(Object o) {
