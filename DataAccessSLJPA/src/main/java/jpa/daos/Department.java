@@ -23,17 +23,17 @@ public class Department {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_boss", referencedColumnName = "id", nullable = false)
     private Programmer boss;
 
     @Column(nullable = false)
     private float budget;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
     private Set<Project> projects;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", orphanRemoval = true)
     private Set<BossHistory> bosses;
 
     public Department(long id, String name, Programmer boss, float budget) {
