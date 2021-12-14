@@ -1,0 +1,9 @@
+unnamed package
+Manual.controllers
+Manual.daos
+Manual.database
+Manual.dtos
+Manual.mappers
+Manual.repositories
+Manual.services
+Manual.utils

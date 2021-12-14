@@ -1,0 +1,9 @@
+unnamed package
+jpa.controllers
+jpa.daos
+jpa.database
+jpa.dtos
+jpa.mappers
+jpa.repositories
+jpa.services
+jpa.utils

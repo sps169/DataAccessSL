@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="default">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>jpa.daos.BossHistory</class>
+        <class>jpa.daos.Commit</class>
+        <class>jpa.daos.Department</class>
+        <class>jpa.daos.Issue</class>
+        <class>jpa.daos.IssueAssignment</class>
+        <class>jpa.daos.Programmer</class>
+        <class>jpa.daos.Project</class>
+        <class>jpa.daos.ProjectAssignment</class>
+        <class>jpa.daos.Repository</class>
+
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:3306/data_access_sl"/>
+            <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
+            <property name="hibernate.connection.user" value="mariadb"/>
+            <property name="hibernate.connection.password" value="mariadb"/>
+            <property name="hibernate.hbm2ddl.auto" value ="validate"/>
+            <property name="show_sql" value="true"/>
+            <property name="format_sql" value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
