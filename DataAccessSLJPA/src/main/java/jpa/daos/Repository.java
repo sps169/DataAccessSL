@@ -13,7 +13,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

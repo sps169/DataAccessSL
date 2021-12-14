@@ -13,7 +13,6 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Entity
 @Table(name = "issue")
 @NamedQuery(name = "Issue.findAll", query = "SELECT b FROM Issue b")
