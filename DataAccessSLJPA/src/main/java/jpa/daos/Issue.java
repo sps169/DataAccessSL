@@ -64,6 +64,10 @@ public class Issue {
         this.id = id;
     }
 
+    public Issue() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
