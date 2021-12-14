@@ -6,7 +6,10 @@ import Manual.services.IssueAssignmentService;
 import Manual.utils.GsonConverter;
 
 import java.sql.SQLException;
-
+/**
+ * Singleton Class that models ToJSON the CRUD Operations of IssueAssignment
+ * @author sps169, FedericoTB
+ */
 public class IssueAssignmentController {
 
     private static IssueAssignmentController controller;
@@ -22,7 +25,10 @@ public class IssueAssignmentController {
         }
         return controller;
     }
-
+    /**
+     * Method that query to database using IssueAssignmentService and GSON to obtain all IssueAssignments as JSON String.
+     * @return String of JSON All IssueAssignments
+     */
     public String getAllIssueAssignmentsJSON() {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -32,7 +38,11 @@ public class IssueAssignmentController {
             return "Error al obtener los IssueAssignment: " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueAssignmentService and GSON to obtain a IssueAssignment by ID as JSON String.
+     * @param id Long of ID IssueAssignment to find
+     * @return String of JSON of finded IssueAssignment
+     */
     public String getIssueAssignmentByIdJSON(Long id) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -42,7 +52,11 @@ public class IssueAssignmentController {
             return "Error al obtener IssueAssignment con id " + id + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueAssignmentService and GSON to insert a IssueAssignment by ID as JSON String.
+     * @param  issueAssignment IssueAssignmentDTO to insert
+     * @return String of JSON of inserted IssueAssignment
+     */
     public String insertIssueAssignmentJSON(IssueAssignmentDTO issueAssignment) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -52,7 +66,11 @@ public class IssueAssignmentController {
             return "Error al actualizar IssueAssignment con id " + issueAssignment.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueAssignmentService and GSON to update a IssueAssignment by ID as JSON String.
+     * @param  issueAssignment IssueAssignmentDTO to update
+     * @return String of JSON of updated IssueAssignment
+     */
     public String updateIssueAssignmentJSON(IssueAssignmentDTO issueAssignment) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -62,7 +80,11 @@ public class IssueAssignmentController {
             return "Error al actualizar IssueAssignment con id " + issueAssignment.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueAssignmentService and GSON to delete a IssueAssignment by ID as JSON String.
+     * @param  issueAssignment IssueAssignmentDTO to delete
+     * @return String of JSON of deleted IssueAssignment
+     */
     public String deleteIssueAssignmentJSON(IssueAssignmentDTO issueAssignment) {
         try {
             GsonConverter gsonConverter = new GsonConverter();

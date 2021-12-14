@@ -6,7 +6,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.time.LocalDateTime;
-
+/**
+ * Class that models the POJO DTO of the BossHistory table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class BossHistoryDTO {
     private long id;
     private Programmer programmer;

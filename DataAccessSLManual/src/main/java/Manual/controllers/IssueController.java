@@ -9,7 +9,10 @@ import Manual.services.ProjectService;
 import Manual.utils.GsonConverter;
 
 import java.sql.SQLException;
-
+/**
+ * Singleton Class that models ToJSON the CRUD Operations of Issue
+ * @author sps169, FedericoTB
+ */
 public class IssueController {
     private static IssueController controller;
 
@@ -24,7 +27,10 @@ public class IssueController {
         }
         return controller;
     }
-
+    /**
+     * Method that query to database using IssueService and GSON to obtain all Issues as JSON String.
+     * @return String of JSON All Issues
+     */
     public String getAllIssuesJSON() {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -34,7 +40,11 @@ public class IssueController {
             return "Error al obtener los Issues: " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueService and GSON to obtain a Issue by ID as JSON String.
+     * @param id Long of ID Issue to find
+     * @return String of JSON of finded Issue
+     */
     public String getIssueByIdJSON(Long id) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -44,7 +54,11 @@ public class IssueController {
             return "Error al obtener Issue con id " + id + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueService and GSON to insert a Issue by ID as JSON String.
+     * @param  issue IssueDTO to insert
+     * @return String of JSON of inserted Issue
+     */
     public String insertIssueJSON(IssueDTO issue) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -54,7 +68,11 @@ public class IssueController {
             return "Error al actualizar Issue con id " + issue.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueService and GSON to update a Issue by ID as JSON String.
+     * @param  issue IssueDTO to update
+     * @return String of JSON of updated Issue
+     */
     public String updateIssueJSON(IssueDTO issue) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -64,7 +82,11 @@ public class IssueController {
             return "Error al actualizar Issue con id " + issue.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using IssueService and GSON to delete a Issue by ID as JSON String.
+     * @param  issue IssueDTO to delete
+     * @return String of JSON of deleted Issue
+     */
     public String deleteIssueJSON(IssueDTO issue) {
         try {
             GsonConverter gsonConverter = new GsonConverter();

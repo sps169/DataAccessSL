@@ -8,7 +8,11 @@ import com.google.gson.GsonBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-
+/**
+ * Class that models the POJO DTO of the Programmer table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class ProgrammerDTO {
     ExclusionStrategy strategy = new ExclusionStrategy() {
         @Override

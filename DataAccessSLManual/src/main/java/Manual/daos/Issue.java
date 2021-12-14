@@ -2,7 +2,10 @@ package Manual.daos;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+/**
+ * Class that models the POJO DAO of the Issue table
+ * @author sps169, FedericoTB
+ */
 public class Issue {
     private long id;
     private String title;

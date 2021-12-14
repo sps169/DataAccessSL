@@ -10,8 +10,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Class that models the CRUD operations for BossHistory Repository class
+ * with the Database using Database Controller
+ * @author sps169, FedericoTB
+ */
 public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
+    /**
+     * Method that query to database using Database Controller to obtain all BossHistories in the table boss_history.
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<List<BossHistory>>
+     */
     @Override
     public Optional<List<BossHistory>> findAll() throws SQLException {
         String query = "SELECT * FROM boss_history";
@@ -38,7 +47,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
     }
-
+    /**
+     * Method that query to database using Database Controller to obtain a BossHistory in the table boss_history by an ID.
+     * @param id Long of the bossHistory to find
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory>
+     */
     @Override
     public Optional<BossHistory> getById(Long id) throws SQLException {
         String query = "SELECT * FROM boss_history WHERE id = ?";
@@ -62,7 +76,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
             throw new SQLException("Error BossHistoryRepository no existe boss_history con ID: " + id);
         }
     }
-
+    /**
+     * Method that query to database using Database Controller to insert a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to insert
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object inserted
+     */
     @Override
     public Optional<BossHistory> insert(BossHistory bossHistory) throws SQLException {
         String query = "INSERT INTO boss_history VALUES (?,?,?,?,?)";
@@ -78,7 +97,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
             throw new SQLException("Error BossHistoryRepository al insertar boss_history en BD");
         }
     }
-
+    /**
+     * Method that query to database using Database Controller to update a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to update
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object updated
+     */
     @Override
     public Optional<BossHistory> update(BossHistory bossHistory) throws SQLException {
         String query = "UPDATE boss_history SET id_programmer = ?, id_department = ?, entry_date = ?,leave_date = ? " +
@@ -94,7 +118,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
             throw new SQLException("Error BossHistoryRepository al actualizar boss_history con id: " +
                     bossHistory.getId());
     }
-
+    /**
+     * Method that query to database using Database Controller to delete a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to delete
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object deleted
+     */
     @Override
     public Optional<BossHistory> delete(BossHistory bossHistory) throws SQLException {
         String query = "DELETE FROM boss_history WHERE id = ?";
