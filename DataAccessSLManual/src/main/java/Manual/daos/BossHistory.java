@@ -2,7 +2,10 @@ package Manual.daos;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-
+/**
+ * Class that models the POJO DAO of the BossHistory table
+ * @author sps169, FedericoTB
+ */
 public class BossHistory {
     private long id;
     private long programmerId;

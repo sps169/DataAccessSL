@@ -6,14 +6,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.time.LocalDateTime;
-
+/**
+ * Class that models the POJO DTO of the IssueAssignment table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class IssueAssignmentDTO {
     private long id;
     private Programmer programmer;
     private Issue issue;
     private LocalDateTime startDate;
-
-
 
     public IssueAssignmentDTO() {
     }

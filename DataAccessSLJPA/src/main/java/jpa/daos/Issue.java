@@ -1,17 +1,19 @@
 package jpa.daos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * Class that models the POJO DAO of the Issue table
+ * with JPA and Lombok marks
+ * @author sps169, FedericoTB
+ */
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 @Table(name = "issue")
 @NamedQuery(name = "Issue.findAll", query = "SELECT b FROM Issue b")

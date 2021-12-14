@@ -7,8 +7,17 @@ import javax.persistence.TypedQuery;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Class that models the CRUD operations for BossHistory Repository class
+ * with the Database using Hibernate Controller
+ * @author sps169, FedericoTB
+ */
 public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
+    /**
+     * Method that query to database using Hibernate Controller to obtain all BossHistories in the table boss_history.
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<List<BossHistory>>
+     */
     @Override
     public Optional<List<BossHistory>> findAll() throws SQLException {
         HibernateController hb = HibernateController.getInstance();
@@ -18,7 +27,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
         hb.close();
         return Optional.of(list);
     }
-
+    /**
+     * Method that query to database using Hibernate Controller to obtain a BossHistory in the table boss_history by an ID.
+     * @param id Long of the bossHistory to find
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory>
+     */
     @Override
     public Optional<BossHistory> getById(Long id) throws SQLException {
         HibernateController hb = HibernateController.getInstance();
@@ -27,7 +41,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
         hb.close();
         return Optional.of(bossHistory);
     }
-
+    /**
+     * Method that query to database using Hibernate Controller to insert a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to insert
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object inserted
+     */
     @Override
     public Optional<BossHistory> insert(BossHistory bossHistory) throws SQLException {
         HibernateController hb = HibernateController.getInstance();
@@ -47,7 +66,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
 
         return Optional.of(bossHistory);
     }
-
+    /**
+     * Method that query to database using Hibernate Controller to update a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to update
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object updated
+     */
     @Override
     public Optional<BossHistory> update(BossHistory bossHistory) throws SQLException {
         HibernateController hb = HibernateController.getInstance();
@@ -67,7 +91,12 @@ public class BossHistoryRepo implements CRUDRepo<BossHistory,Long> {
 
         return Optional.of(bossHistory);
     }
-
+    /**
+     * Method that query to database using Hibernate Controller to delete a BossHistory in the table boss_history.
+     * @param bossHistory BossHistory object to delete
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<BossHistory> of BossHistory object deleted
+     */
     @Override
     public Optional<BossHistory> delete(BossHistory bossHistory) throws SQLException {
         HibernateController hb = HibernateController.getInstance();

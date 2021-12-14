@@ -2,7 +2,10 @@ package Manual.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-
+/**
+ *  Class used to parse String to a encrypted SHA256
+ * @author joseluisgs
+ */
 public class Cifrate {
 
     public static String SHA256(String cadena) {

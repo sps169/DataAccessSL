@@ -1,7 +1,10 @@
 package Manual.daos;
 
 import java.util.Objects;
-
+/**
+ * Class that models the POJO DAO of the Department table
+ * @author sps169, FedericoTB
+ */
 public class Department {
      private long id;
      private String name;

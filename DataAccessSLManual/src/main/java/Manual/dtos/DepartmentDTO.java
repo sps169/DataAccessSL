@@ -7,7 +7,11 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 import java.util.Set;
-
+/**
+ * Class that models the POJO DTO of the Department table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class DepartmentDTO {
     private long id;
     private String name;

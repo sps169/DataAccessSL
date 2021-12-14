@@ -5,6 +5,11 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *  Class that read the file ConnectionProperties.Properties to use the parameters of connection with the Database
+ * @author joseluisgs
+ */
+
 public class ApplicationProperties {
 
     private final Properties properties;

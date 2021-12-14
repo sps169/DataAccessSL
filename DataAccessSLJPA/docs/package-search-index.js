@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"jpa.controllers"},{"l":"jpa.daos"},{"l":"jpa.database"},{"l":"jpa.dtos"},{"l":"jpa.mappers"},{"l":"jpa.repositories"},{"l":"jpa.services"},{"l":"jpa.utils"}]

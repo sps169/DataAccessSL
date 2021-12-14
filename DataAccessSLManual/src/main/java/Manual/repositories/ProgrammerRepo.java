@@ -8,8 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Class that models the CRUD operations for Programmer Repository class
+ * with the Database using Database Controller
+ * @author sps169, FedericoTB
+ */
 public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
+    /**
+     * Method that query to database using Database Controller to obtain all Programmers in the table programmer.
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<List<Programmer>>
+     */
     @Override
     public Optional<List<Programmer>> findAll() throws SQLException {
         String query = "SELECT * FROM programmer";
@@ -36,7 +45,12 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
         if(list.isEmpty()) return Optional.empty();
         else return Optional.of(list);
     }
-
+    /**
+     * Method that query to database using Database Controller to obtain a Programmer in the table programmer by an ID.
+     * @param ID Long of the programmer to find
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<Programmer>
+     */
     @Override
     public Optional<Programmer> getById(Long ID) throws SQLException {
         String query = "SELECT * FROM programmer WHERE id = ?";
@@ -61,7 +75,12 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
             throw new SQLException("Error ProgrammerRepository no existe programmer con ID: " + ID);
         }
     }
-
+    /**
+     * Method that query to database using Database Controller to insert a Programmer in the table programmer.
+     * @param programmer Programmer object to insert
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<Programmer> of Programmer object inserted
+     */
     @Override
     public Optional<Programmer> insert(Programmer programmer) throws SQLException {
         String query = "INSERT INTO programmer VALUES (?,?,?,?,?,?,?)";
@@ -78,7 +97,12 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
             throw new SQLException("Error ProgrammerRepository al insertar programmer en BD");
         }
     }
-
+    /**
+     * Method that query to database using Database Controller to update a Programmer in the table programmer.
+     * @param programmer Programmer object to update
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<Programmer> of Programmer object updated
+     */
     @Override
     public Optional<Programmer> update(Programmer programmer) throws SQLException {
         String query = "UPDATE programmer SET name = ?, entry_date = ?, password = ?,technologies = ?, salary =?,"
@@ -94,7 +118,12 @@ public class ProgrammerRepo implements CRUDRepo<Programmer,Long>{
         else
             throw new SQLException("Error ProgrammerRepository al actualizar programmer con id: " + programmer.getId());
     }
-
+    /**
+     * Method that query to database using Database Controller to delete a Programmer in the table programmer.
+     * @param programmer Programmer object to delete
+     * @throws SQLException when fails in the query transaction
+     * @return Optional<Programmer> of Programmer object deleted
+     */
     @Override
     public Optional<Programmer> delete(Programmer programmer) throws SQLException {
         String query = "DELETE FROM programmer WHERE id = ?";

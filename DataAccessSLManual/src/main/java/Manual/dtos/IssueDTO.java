@@ -8,7 +8,11 @@ import com.google.gson.GsonBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-
+/**
+ * Class that models the POJO DTO of the Issue table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class IssueDTO {
     private long id;
     private String title;

@@ -4,13 +4,12 @@ import jpa.dtos.ProgrammerDTO;
 import jpa.repositories.ProgrammerRepo;
 import jpa.services.ProgrammerService;
 import jpa.utils.GsonConverter;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.sql.SQLException;
-
+/**
+ * Singleton Class that models ToJSON the CRUD Operations of Programmer
+ * @author sps169, FedericoTB
+ */
 public class ProgrammerController {
     private static ProgrammerController controller;
 
@@ -25,7 +24,10 @@ public class ProgrammerController {
         }
         return controller;
     }
-
+    /**
+     * Method that query to database using ProgrammerService and GSON to obtain all Programmers as JSON String.
+     * @return String of JSON All Programmers
+     */
     public String getAllProgrammersJSON() {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -35,7 +37,11 @@ public class ProgrammerController {
             return "Error al obtener los programadores: " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using ProgrammerService and GSON to obtain a Programmer by ID as JSON String.
+     * @param id Long of ID Programmer to find
+     * @return String of JSON of finded Programmer
+     */
     public String getProgrammerByIdJSON(Long id) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -45,7 +51,11 @@ public class ProgrammerController {
             return "Error al obtener programador con id " + id + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using ProgrammerService and GSON to insert a Programmer by ID as JSON String.
+     * @param  programmer ProgrammerDTO to insert
+     * @return String of JSON of inserted Programmer
+     */
     public String insertProgrammerJSON(ProgrammerDTO programmer) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -55,7 +65,11 @@ public class ProgrammerController {
             return "Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using ProgrammerService and GSON to update a Programmer by ID as JSON String.
+     * @param  programmer ProgrammerDTO to update
+     * @return String of JSON of updated Programmer
+     */
     public String updateProgrammerJSON(ProgrammerDTO programmer) {
         try {
             GsonConverter gsonConverter = new GsonConverter();
@@ -65,7 +79,11 @@ public class ProgrammerController {
             return "Error al actualizar programador con id " + programmer.getId() + ": " + e.getMessage();
         }
     }
-
+    /**
+     * Method that query to database using ProgrammerService and GSON to delete a Programmer by ID as JSON String.
+     * @param  programmer ProgrammerDTO to delete
+     * @return String of JSON of deleted Programmer
+     */
     public String deleteProgrammerJSON(ProgrammerDTO programmer) {
         try {
             GsonConverter gsonConverter = new GsonConverter();

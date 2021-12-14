@@ -3,7 +3,10 @@ package Manual.repositories;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Interface Class that models the CRUD operations for all Repositories class
+ * @author sps169, FedericoTB
+ */
 public interface CRUDRepo<T, ID>{
         // Operaciones CRUD
 

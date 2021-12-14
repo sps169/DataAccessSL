@@ -5,10 +5,13 @@ import jpa.daos.Programmer;
 import jpa.daos.Repository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import jpa.utils.HibernateProxyTypeAdapter;
 
 import java.time.LocalDateTime;
-
+/**
+ * Class that models the POJO DTO of the Commit table
+ * with ToJason FromJason methods
+ * @author sps169, FedericoTB
+ */
 public class CommitDTO {
     private long id;
     private String title;

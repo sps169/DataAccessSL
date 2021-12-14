@@ -3,8 +3,14 @@ import jpa.database.DataBaseController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-
+/**
+ * Class to check the connection to the database
+ * @author joseluisgs
+ */
 public class Database {
+    /**
+     * Method that check the connection with the database.
+     */
     public static void checkService() {
         DataBaseController controller = DataBaseController.getInstance();
         try {

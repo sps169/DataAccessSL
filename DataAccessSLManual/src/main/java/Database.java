@@ -3,7 +3,10 @@ import Manual.database.DataBaseController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-
+/**
+ * Class to check the connection to the database
+ * @author joseluisgs
+ */
 public class Database {
     public static void checkService() {
         DataBaseController controller = DataBaseController.getInstance();

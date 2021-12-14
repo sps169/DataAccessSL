@@ -1,14 +1,18 @@
 package jpa.daos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-
-@Data
+/**
+ * Class that models the POJO DAO of the Department table
+ * with JPA and Lombok marks
+ * @author sps169, FedericoTB
+ */
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

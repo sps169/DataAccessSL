@@ -5,7 +5,10 @@ import jpa.repositories.CRUDRepo;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Abstract Class that models the CRUD operations for all Services class
+ * @author sps169, FedericoTB
+ */
 public abstract class BaseService<T, ID, R extends CRUDRepo<T, ID>> {
     protected final R repository;
 
